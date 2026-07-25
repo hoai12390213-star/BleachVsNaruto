@@ -17,115 +17,23 @@
  */
 
 package net.play5d.game.bvn.ide.component {
-import flash.text.TextField;
-
-import net.play5d.game.bvn.ide.interfaces.BaseComponent;
 import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
 
 /**
  * 效果类 IDE 组件基类。
  *
- * <p>仅面向 FighterMain 时间轴：读取 <code>$effect_ctrler</code>，并对动态对象做方法存在性检查。</p>
+ * <p>仅面向 FighterMain 时间轴：读取 <code>$effect_ctrler</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.utils.IdeRuntimeUtils#findEffectCtrler()
+ * @see #invokeEffect()
  */
-public class BaseEffect extends BaseComponent {
-
-    /**
-     * 标题文本。
-     *
-     * @default null
-     */
-    public var titleTxt:TextField = getChildByName('titleTxt') as TextField;
-
-    /**
-     * 预览文字文本。
-     *
-     * @default null
-     */
-    public var textTxt:TextField = getChildByName('textTxt') as TextField;
-
-    /** @private 特效控制器 */
-    protected var _effectCtrler:* = null;
+public class BaseEffect extends BaseIdeCtrler {
 
     /**
      * 构造方法。
      */
     public function BaseEffect() {
         super();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function destroy():void {
-        titleTxt = null;
-        textTxt  = null;
-
-        _effectCtrler = null;
-
-        super.destroy();
-    }
-
-    /**
-     * 标题文本内容。
-     *
-     * @return 标题字符串；无文本框时返回空串。
-     */
-    public function get title():String {
-        return titleTxt ? titleTxt.text : '';
-    }
-
-    /** @private */
-    public function set title(v:String):void {
-        if (titleTxt) {
-            titleTxt.text = v;
-        }
-    }
-
-    /**
-     * 预览文字内容。
-     *
-     * @return 预览字符串；无文本框时返回空串。
-     */
-    public function get text():String {
-        return textTxt ? textTxt.text : '';
-    }
-
-    /** @private */
-    public function set text(v:String):void {
-        updatePreviewText(v);
-    }
-
-    /**
-     * 第一帧要执行的代码。
-     *
-     * <p>解析特效控制器后隐藏、执行动作并销毁。</p>
-     */
-    override public function init():void {
-        initEffectCtrler();
-
-        hidden();
-        doAction();
-        destroy();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        super.doAction();
-    }
-
-    /**
-     * 更新检查器预览文字。
-     *
-     * @param v 预览字符串。
-     */
-    protected function updatePreviewText(v:String):void {
-        if (textTxt) {
-            textTxt.text = v;
-        }
     }
 
     /**
@@ -141,29 +49,15 @@ public class BaseEffect extends BaseComponent {
      * </listing>
      */
     protected function invokeEffect(methodName:String, args:Array = null):Boolean {
-        if (!_effectCtrler) {
-            return false;
-        }
-
-        if (!IdeRuntimeUtils.hasMethod(_effectCtrler, methodName)) {
-            trace('[BaseEffect] method missing on $effect_ctrler:', methodName, this);
-            return false;
-        }
-
-        try {
-            var fn:Function = _effectCtrler[methodName] as Function;
-            fn.apply(_effectCtrler, args);
-            return true;
-        }
-        catch (e:Error) {
-            trace('[BaseEffect] invoke failed:', methodName, e.message, this);
-        }
-        return false;
+        return invokeCtrler(methodName, args);
     }
 
-    /** @private */
-    private function initEffectCtrler():void {
-        _effectCtrler = IdeRuntimeUtils.findEffectCtrler(this);
+    /**
+     * @inheritDoc
+     */
+    override protected function resolveCtrler():void {
+        _ctrlerProp = IdeRuntimeUtils.EFFECT_CTRLER_PROP;
+        _ctrler     = IdeRuntimeUtils.findEffectCtrler(this);
     }
 }
 }
