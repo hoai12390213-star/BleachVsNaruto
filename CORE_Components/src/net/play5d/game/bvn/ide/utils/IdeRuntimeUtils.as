@@ -28,6 +28,8 @@ public class IdeRuntimeUtils {
 
     /**
      * 效果控制器属性名（角色 main_mc 注入契约）。
+     *
+     * @default $effect_ctrler
      */
     public static const EFFECT_CTRLER_PROP:String = '$effect_ctrler';
 
@@ -44,6 +46,8 @@ public class IdeRuntimeUtils {
      *     ctrler.shine(0xffffff);
      * }
      * </listing>
+     *
+     * @see #EFFECT_CTRLER_PROP
      */
     public static function findEffectCtrler(from:DisplayObject):* {
         var node:DisplayObject = from;
@@ -67,4 +71,3 @@ public class IdeRuntimeUtils {
     }
 }
 }
-

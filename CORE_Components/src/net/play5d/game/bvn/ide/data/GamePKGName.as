@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,18 +19,24 @@
 package net.play5d.game.bvn.ide.data {
 
 /**
- * 游戏包名
+ * 游戏包名常量。
+ *
+ * <p>用于 <code>getDefinitionByName</code> 拼接全限定类名。</p>
  */
 public class GamePKGName {
 
-    // 包路径前缀
+    /** @private 包路径前缀 */
     private static const PREF:String = 'net.play5d.game.bvn.';
-    // 包路径后缀
+    /** @private 包路径后缀 */
     private static const SUF:String = '::';
 
-    // fighter
-    public static const FIGHTER       :String = PREF + 'fighter' + SUF;
-    // ctrler.game_ctrls
+    /**
+     * fighter 包路径前缀。
+     */
+    public static const FIGHTER:String = PREF + 'fighter' + SUF;
+    /**
+     * ctrler.game_ctrls 包路径前缀。
+     */
     public static const CTRLER_GAMECTRLS:String = PREF + 'ctrler.game_ctrls' + SUF;
 
 }

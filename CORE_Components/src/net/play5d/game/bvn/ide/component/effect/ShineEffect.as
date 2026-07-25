@@ -25,7 +25,9 @@ import net.play5d.game.bvn.ide.utils.ColorUtils;
 /**
  * 闪光特效 IDE 组件。
  *
- * <p>调用 <code>FighterEffectCtrl.shine</code>。</p>
+ * <p>调用效果控制器的 <code>shine</code> 方法。</p>
+ *
+ * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
 public class ShineEffect extends BaseEffect {
 
@@ -58,9 +60,7 @@ public class ShineEffect extends BaseEffect {
 
     /////////////// 私有属性 ///////////////
 
-    /**
-     * @private color 属性。
-     */
+    /** @private 闪光颜色 */
     private var _color:uint = 0xffffff;
 
     ///////////////////////////////////////
@@ -70,13 +70,14 @@ public class ShineEffect extends BaseEffect {
 
     /**
      * 闪光颜色。
+     *
+     * @return 颜色值。
+     * @default 0xffffff
      */
     public function get color():uint {
         return _color;
     }
-    /**
-     * @private
-     */
+    /** @private */
     [Inspectable(name='color', type='Color', defaultValue='ffffff')]
     public function set color(v:uint):void {
         _color = v;
@@ -96,7 +97,7 @@ public class ShineEffect extends BaseEffect {
     /////////////// 公有方法 ///////////////
 
     /**
-     * 要详细执行的动作。
+     * @inheritDoc
      */
     override public function doAction():void {
         shine();
@@ -107,9 +108,7 @@ public class ShineEffect extends BaseEffect {
 
     /////////////// 私有方法 ///////////////
 
-    /**
-     * 执行闪光。
-     */
+    /** @private 执行闪光 */
     private function shine():void {
         if (!_effectCtrler) {
             return;
@@ -122,4 +121,3 @@ public class ShineEffect extends BaseEffect {
 
 }
 }
-

@@ -26,6 +26,8 @@ import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
  * 效果类 IDE 组件基类。
  *
  * <p>优先沿显示树读取 <code>$effect_ctrler</code>；找不到时回退到 <code>$owner</code> 控制器。</p>
+ *
+ * @see net.play5d.game.bvn.ide.utils.IdeRuntimeUtils#findEffectCtrler()
  */
 public class BaseEffect extends BaseComponent {
 
@@ -49,7 +51,7 @@ public class BaseEffect extends BaseComponent {
     /////////////// 实现接口 ///////////////
 
     /**
-     * 销毁自身。
+     * @inheritDoc
      */
     override public function destroy():void {
         titleTxt = null;
@@ -67,10 +69,14 @@ public class BaseEffect extends BaseComponent {
 
     /**
      * 标题文本。
+     *
+     * @default null
      */
     public var titleTxt:TextField = getChildByName('titleTxt') as TextField;
     /**
-     * 文字文本。
+     * 预览文字文本。
+     *
+     * @default null
      */
     public var textTxt:TextField = getChildByName('textTxt') as TextField;
 
@@ -79,9 +85,7 @@ public class BaseEffect extends BaseComponent {
 
     /////////////// 私有属性 ///////////////
 
-    /**
-     * @private 特效控制器。
-     */
+    /** @private 特效控制器 */
     protected var _effectCtrler:* = null;
 
     ///////////////////////////////////////
@@ -91,13 +95,13 @@ public class BaseEffect extends BaseComponent {
 
     /**
      * 标题文本内容。
+     *
+     * @return 标题字符串；无文本框时返回空串。
      */
     public function get title():String {
         return titleTxt ? titleTxt.text : '';
     }
-    /**
-     * @private
-     */
+    /** @private */
     public function set title(v:String):void {
         if (titleTxt) {
             titleTxt.text = v;
@@ -106,13 +110,13 @@ public class BaseEffect extends BaseComponent {
 
     /**
      * 预览文字内容。
+     *
+     * @return 预览字符串；无文本框时返回空串。
      */
     public function get text():String {
         return textTxt ? textTxt.text : '';
     }
-    /**
-     * @private
-     */
+    /** @private */
     public function set text(v:String):void {
         updatePreviewText(v);
     }
@@ -124,6 +128,8 @@ public class BaseEffect extends BaseComponent {
 
     /**
      * 第一帧要执行的代码。
+     *
+     * <p>解析特效控制器后隐藏、执行动作并销毁。</p>
      */
     override public function init():void {
         initEffectCtrler();
@@ -134,7 +140,7 @@ public class BaseEffect extends BaseComponent {
     }
 
     /**
-     * 要详细执行的动作。
+     * @inheritDoc
      */
     override public function doAction():void {
         super.doAction();
@@ -157,9 +163,7 @@ public class BaseEffect extends BaseComponent {
     }
 
     /**
-     * 初始化特效控制器。
-     *
-     * <p>优先 parent 链上的 <code>$effect_ctrler</code>；否则用 <code>$owner</code> fallback。</p>
+     * @private 初始化特效控制器。
      */
     private function initEffectCtrler():void {
         _effectCtrler = IdeRuntimeUtils.findEffectCtrler(this);
@@ -167,6 +171,7 @@ public class BaseEffect extends BaseComponent {
             return;
         }
 
+        // 未注入 $effect_ctrler 时回退 owner 链
         bindContext();
 
         try {
@@ -186,4 +191,3 @@ public class BaseEffect extends BaseComponent {
     ///////////////////////////////////////
 }
 }
-

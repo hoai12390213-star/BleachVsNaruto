@@ -25,8 +25,11 @@ import net.play5d.game.bvn.interfaces.IComponents;
 /**
  * Animate IDE 组件基类（类，非 interface）。
  *
- * <p>生命周期：构造挂接第 0 帧 → <code>init</code>（隐藏 → <code>doAction</code> → <code>destroy</code>）。</p>
+ * <p>生命周期：构造挂接第 0 帧，再执行 <code>init</code>（隐藏 → <code>doAction</code> → <code>destroy</code>）。</p>
  * <p><code>$self</code> / <code>$target</code> / <code>$owner</code> 在 <code>init</code> 时懒绑定。</p>
+ *
+ * @see net.play5d.game.bvn.interfaces.IComponents
+ * @see net.play5d.game.bvn.ide.entity.GameSpriteEntity
  */
 public class BaseComponent extends MovieClip implements IComponents {
 
@@ -55,7 +58,7 @@ public class BaseComponent extends MovieClip implements IComponents {
     /////////////// 实现接口 ///////////////
 
     /**
-     * 销毁自身。
+     * @inheritDoc
      */
     public function destroy():void {
         try {
@@ -86,22 +89,14 @@ public class BaseComponent extends MovieClip implements IComponents {
 
     /////////////// 私有属性 ///////////////
 
-    /**
-     * @private 游戏元件实体。
-     */
+    /** @private 游戏元件实体 */
     protected var _gameSpriteEntity:GameSpriteEntity;
 
-    /**
-     * @private 自身类引用。
-     */
+    /** @private 自身类引用 */
     protected var $self:* = null;
-    /**
-     * @private 对手主人类引用，类型 FighterMain。
-     */
+    /** @private 对手主人类引用（FighterMain） */
     protected var $target:* = null;
-    /**
-     * @private 最顶主人类引用，类型 FighterMain。
-     */
+    /** @private 最顶主人类引用（FighterMain） */
     protected var $owner:* = null;
 
     ///////////////////////////////////////
@@ -118,6 +113,9 @@ public class BaseComponent extends MovieClip implements IComponents {
      * 初始化。
      *
      * <p>第一帧执行：绑定上下文 → 隐藏 → 动作 → 销毁。</p>
+     *
+     * @see #doAction()
+     * @see #destroy()
      */
     public function init():void {
         bindContext();
@@ -141,6 +139,8 @@ public class BaseComponent extends MovieClip implements IComponents {
 
     /**
      * 绑定游戏上下文引用。
+     *
+     * @see net.play5d.game.bvn.ide.entity.GameSpriteEntity
      */
     protected function bindContext():void {
         if (!_gameSpriteEntity) {
@@ -162,4 +162,3 @@ public class BaseComponent extends MovieClip implements IComponents {
     ///////////////////////////////////////
 }
 }
-

@@ -29,40 +29,31 @@ import net.play5d.game.bvn.ide.utils.GameSpriteUtils;
  * 游戏元件实体。
  *
  * <p>将 IDE 组件所在显示树解析为运行时 <code>self</code> / <code>target</code> / <code>owner</code>。</p>
- * <p>反射类静态缓存一次；owner 通过递归上溯到 <code>FighterMain</code>。</p>
+ * <p>反射类静态缓存一次；owner 通过递归上溯到 FighterMain。</p>
+ *
+ * @see net.play5d.game.bvn.ide.data.GameSpriteType
+ * @see net.play5d.game.bvn.ide.utils.GameSpriteUtils
  */
 public class GameSpriteEntity {
 
     /////////////// 静态方法 ///////////////
 
-    /**
-     * @private 是否已加载反射类。
-     */
+    /** @private 是否已加载反射类 */
     private static var _classesReady:Boolean = false;
 
-    /**
-     * @private FighterMain。
-     */
+    /** @private FighterMain */
     private static var FighterMain:Class;
-    /**
-     * @private Assister。
-     */
+    /** @private Assister */
     private static var Assister:Class;
-    /**
-     * @private Bullet。
-     */
+    /** @private Bullet */
     private static var Bullet:Class;
-    /**
-     * @private FighterAttacker。
-     */
+    /** @private FighterAttacker */
     private static var FighterAttacker:Class;
-    /**
-     * @private GameCtrl。
-     */
+    /** @private GameCtrl */
     private static var GameCtrl:Class;
 
     /**
-     * 懒加载 KernelLogic 反射类（全实例共享）。
+     * @private 懒加载 KernelLogic 反射类（全实例共享）。
      */
     private static function ensureClasses():void {
         if (_classesReady) {
@@ -83,7 +74,7 @@ public class GameSpriteEntity {
     /////////////// 构造方法 ///////////////
 
     /**
-     * 构造函数。
+     * 构造方法。
      *
      * @param component 组件。
      */
@@ -118,26 +109,16 @@ public class GameSpriteEntity {
 
     /////////////// 私有属性 ///////////////
 
-    /**
-     * @private 组件所在父级 MC（用于匹配游戏精灵显示对象）。
-     */
+    /** @private 组件所在父级 MC（匹配游戏精灵显示对象） */
     private var _thisMc:MovieClip;
 
-    /**
-     * @private 自身类引用。
-     */
+    /** @private 自身类引用 */
     private var _self:* = null;
-    /**
-     * @private 对手主人类引用。
-     */
+    /** @private 对手主人类引用 */
     private var _target:* = null;
-    /**
-     * @private 最顶主人类引用。
-     */
+    /** @private 最顶主人类引用 */
     private var _owner:* = null;
-    /**
-     * @private 自身类型。
-     */
+    /** @private 自身类型 */
     private var _selfType:String = null;
 
     ///////////////////////////////////////
@@ -146,7 +127,7 @@ public class GameSpriteEntity {
     /////////// Getter & Setter ///////////
 
     /**
-     * 获得自身类引用。
+     * 自身游戏精灵引用。
      *
      * @return 自身游戏精灵；未找到时返回 <code>null</code>。
      */
@@ -166,8 +147,7 @@ public class GameSpriteEntity {
             for each (var sp:* in gameSprites) {
                 var d:DisplayObject = sp.getDisplay();
 
-                // 等于 parent 可获取 FighterAttacker / Bullet / Assister
-                // 等于 parent.parent 可获取 FighterMain
+                // parent 匹配 Assister/Bullet/Attacker；parent.parent 匹配 FighterMain
                 if (d == _thisMc || (_thisMc.parent && d == _thisMc.parent)) {
                     _self = sp;
                     return _self;
@@ -181,7 +161,7 @@ public class GameSpriteEntity {
     }
 
     /**
-     * 获得对手主人类引用，始终返回 FighterMain。
+     * 对手主人类引用（始终为 FighterMain）。
      *
      * @return 对手 FighterMain；未找到时返回 <code>null</code>。
      */
@@ -204,7 +184,7 @@ public class GameSpriteEntity {
     }
 
     /**
-     * 获得最顶主人类引用，始终返回 FighterMain。
+     * 最顶主人类引用（始终为 FighterMain）。
      *
      * @return 玩家 FighterMain；未找到时返回 <code>null</code>。
      */
@@ -221,6 +201,8 @@ public class GameSpriteEntity {
      * 获取自身类型。
      *
      * @return 自身类型字符串（见 <code>GameSpriteType</code>）。
+     *
+     * @see net.play5d.game.bvn.ide.data.GameSpriteType
      */
     public function getSelfType():String {
         if (_selfType) {
@@ -242,10 +224,7 @@ public class GameSpriteEntity {
     /////////////// 私有方法 ///////////////
 
     /**
-     * 递归上溯到 FighterMain。
-     *
-     * @param sp 当前精灵。
-     * @return FighterMain；无法解析时返回 <code>null</code>。
+     * @private 递归上溯到 FighterMain。
      */
     private function resolveFighterOwner(sp:*):* {
         if (!sp) {
@@ -281,10 +260,7 @@ public class GameSpriteEntity {
     }
 
     /**
-     * 获取类型。
-     *
-     * @param sp 指定精灵。
-     * @return 类型字符串。
+     * @private 获取精灵类型。
      */
     private function getType(sp:*):String {
         if (!sp) {
@@ -310,4 +286,3 @@ public class GameSpriteEntity {
     ///////////////////////////////////////
 }
 }
-

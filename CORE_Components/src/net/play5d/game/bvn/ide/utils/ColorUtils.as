@@ -31,7 +31,7 @@ public class ColorUtils {
      *
      * @example
      * <listing version="3.0">
-     * ColorUtils.dec2hex(0xff0000); // "#FF0000"
+     * ColorUtils.dec2hex(0xff0000); // '#FF0000'
      * </listing>
      */
     public static function dec2hex(color:uint):String {
@@ -43,4 +43,3 @@ public class ColorUtils {
     }
 }
 }
-

@@ -25,6 +25,9 @@ import net.play5d.game.bvn.ide.data.GamePKGName;
  * 游戏元件相关实用工具。
  *
  * <p>通过反射获取 KernelLogic 类，避免 CORE_Components 编译期依赖 KernelLogic。</p>
+ *
+ * @see net.play5d.game.bvn.ide.data.GamePKGName
+ * @see net.play5d.game.bvn.ide.data.GameSpriteType
  */
 public class GameSpriteUtils {
 
@@ -33,6 +36,14 @@ public class GameSpriteUtils {
      *
      * @param type 类型（见 <code>GameSpriteType</code>）。
      * @return 指定游戏元件类；找不到时返回 <code>null</code>。
+     *
+     * @example
+     * <listing version="3.0">
+     * var cls:Class = GameSpriteUtils.getGameSpriteClass('FighterMain');
+     * </listing>
+     *
+     * @see #getGameClass()
+     * @see net.play5d.game.bvn.ide.data.GameSpriteType
      */
     public static function getGameSpriteClass(type:String):Class {
         return getGameClass(GamePKGName.FIGHTER + type);
@@ -43,6 +54,11 @@ public class GameSpriteUtils {
      *
      * @param name 类的全限定名称。
      * @return 指定类；找不到时返回 <code>null</code>。
+     *
+     * @example
+     * <listing version="3.0">
+     * var cls:Class = GameSpriteUtils.getGameClass('net.play5d.game.bvn.ctrler.game_ctrls::GameCtrl');
+     * </listing>
      */
     public static function getGameClass(name:String):Class {
         try {
@@ -55,4 +71,3 @@ public class GameSpriteUtils {
     }
 }
 }
-

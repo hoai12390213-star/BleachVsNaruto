@@ -22,7 +22,9 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 震动特效 IDE 组件。
  *
- * <p>调用 <code>FighterEffectCtrl.shake</code>。</p>
+ * <p>调用效果控制器的 <code>shake</code> 方法。</p>
+ *
+ * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
 public class ShakeEffect extends BaseEffect {
 
@@ -55,13 +57,9 @@ public class ShakeEffect extends BaseEffect {
 
     /////////////// 私有属性 ///////////////
 
-    /**
-     * @private powX 属性。
-     */
+    /** @private X 轴震动幅度 */
     private var _powX:Number = 0;
-    /**
-     * @private powY 属性。
-     */
+    /** @private Y 轴震动幅度 */
     private var _powY:Number = 0;
 
     ///////////////////////////////////////
@@ -71,13 +69,14 @@ public class ShakeEffect extends BaseEffect {
 
     /**
      * X 轴震动幅度。
+     *
+     * @return X 幅度。
+     * @default 0
      */
     public function get powX():Number {
         return _powX;
     }
-    /**
-     * @private
-     */
+    /** @private */
     [Inspectable(name='powX', type='Number', defaultValue=0)]
     public function set powX(v:Number):void {
         _powX = v;
@@ -86,13 +85,14 @@ public class ShakeEffect extends BaseEffect {
 
     /**
      * Y 轴震动幅度。
+     *
+     * @return Y 幅度。
+     * @default 0
      */
     public function get powY():Number {
         return _powY;
     }
-    /**
-     * @private
-     */
+    /** @private */
     [Inspectable(name='powY', type='Number', defaultValue=0)]
     public function set powY(v:Number):void {
         _powY = v;
@@ -105,7 +105,7 @@ public class ShakeEffect extends BaseEffect {
     /////////////// 公有方法 ///////////////
 
     /**
-     * 要详细执行的动作。
+     * @inheritDoc
      */
     override public function doAction():void {
         shake();
@@ -116,16 +116,12 @@ public class ShakeEffect extends BaseEffect {
 
     /////////////// 私有方法 ///////////////
 
-    /**
-     * 刷新检查器预览文字。
-     */
+    /** @private 刷新检查器预览文字 */
     private function refreshPreview():void {
         updatePreviewText('(' + _powX + ', ' + _powY + ')');
     }
 
-    /**
-     * 执行震动。
-     */
+    /** @private 执行震动 */
     private function shake():void {
         if (!_effectCtrler) {
             return;
@@ -138,4 +134,3 @@ public class ShakeEffect extends BaseEffect {
 
 }
 }
-
