@@ -350,17 +350,14 @@ public class FighterCtrler implements IGameSpriteCntlr {
         _cameraCtrler.setTarget(fighter);
         _fighterMcCtrl.effectCtrler = _effectCtrl;
 
-        /**
-         * 初始化角色
-         *
-         * @param param 参数
-         */
+        // 注入到角色 main_mc：可在时间轴用 parent.$fighter_ctrler / $mc_ctrler / $effect_ctrler / $camera_ctrler
         var initFighter:Function = fighter.mc.initFighter;
         if (initFighter != null) {
             initFighter({
                             fighter_ctrler: this,
                             mc_ctrler     : _fighterMcCtrl,
-                            effect_ctrler : _effectCtrl
+                            effect_ctrler : _effectCtrl,
+                            camera_ctrler : _cameraCtrler
                         });
         }
 //        else {
