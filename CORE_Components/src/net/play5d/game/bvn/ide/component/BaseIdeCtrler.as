@@ -17,7 +17,11 @@
  */
 
 package net.play5d.game.bvn.ide.component {
+import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
+import flash.display.MovieClip;
 import flash.text.TextField;
+import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 
 import net.play5d.game.bvn.ide.interfaces.BaseComponent;
@@ -27,6 +31,8 @@ import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
  * 绑定 FighterMain 注入控制器的 IDE 组件基类。
  *
  * <p>提供检查器预览文本，以及带动态方法校验的 <code>invokeCtrler</code>。</p>
+ * <p>皮肤约定：根下实例 <code>mc</code> 为公用模板，内含 <code>titleTxt</code> /
+ * <code>textTxt</code> / <code>bg</code>；缺 <code>mc</code> 时回退到根节点查找。</p>
  * <p>子类覆盖 <code>resolveCtrler</code> 解析对应 <code>$xxx_ctrler</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.utils.IdeRuntimeUtils
@@ -34,18 +40,32 @@ import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
 public class BaseIdeCtrler extends BaseComponent {
 
     /**
+     * 公用模板实例。
+     *
+     * @default null
+     */
+    public var mc:MovieClip = null;
+
+    /**
+     * 背景板。
+     *
+     * @default null
+     */
+    public var bg:DisplayObject = null;
+
+    /**
      * 标题文本。
      *
      * @default null
      */
-    public var titleTxt:TextField = getChildByName('titleTxt') as TextField;
+    public var titleTxt:TextField = null;
 
     /**
      * 预览文字文本。
      *
      * @default null
      */
-    public var textTxt:TextField = getChildByName('textTxt') as TextField;
+    public var textTxt:TextField = null;
 
     /** @private 已解析的控制器 */
     protected var _ctrler:* = null;
@@ -53,17 +73,26 @@ public class BaseIdeCtrler extends BaseComponent {
     /** @private 诊断用属性名（如 <code>$effect_ctrler</code>） */
     protected var _ctrlerProp:String = '';
 
+    /** @private 背景最小宽度（取自模板初始宽度） */
+    private var _minWidth:Number = 400;
+
+    /** @private 文本左右边距合计 */
+    private static const PAD_X:Number = 4;
+
     /**
      * 构造方法。
      */
     public function BaseIdeCtrler() {
         super();
+        bindSkin();
     }
 
     /**
      * @inheritDoc
      */
     override public function destroy():void {
+        mc       = null;
+        bg       = null;
         titleTxt = null;
         textTxt  = null;
 
@@ -76,6 +105,8 @@ public class BaseIdeCtrler extends BaseComponent {
     /**
      * 标题文本内容。
      *
+     * <p>显示为注释样式，如 <code>// 效果_必杀</code>。</p>
+     *
      * @return 标题字符串；无文本框时返回空串。
      */
     public function get title():String {
@@ -84,9 +115,17 @@ public class BaseIdeCtrler extends BaseComponent {
 
     /** @private */
     public function set title(v:String):void {
-        if (titleTxt) {
-            titleTxt.text = v;
+        if (!titleTxt) {
+            return;
         }
+
+        var label:String = v ? v : '';
+        if (label.indexOf('//') != 0) {
+            label = '// ' + label;
+        }
+
+        titleTxt.text = label;
+        layoutPreview();
     }
 
     /**
@@ -124,6 +163,60 @@ public class BaseIdeCtrler extends BaseComponent {
     }
 
     /**
+     * 绑定模板皮肤子节点。
+     *
+     * <p>优先从 <code>mc</code> 取 <code>titleTxt</code> / <code>textTxt</code> / <code>bg</code>。</p>
+     */
+    protected function bindSkin():void {
+        mc = getChildByName('mc') as MovieClip;
+
+        var skin:DisplayObjectContainer = mc ? mc : this;
+        titleTxt = skin.getChildByName('titleTxt') as TextField;
+        textTxt  = skin.getChildByName('textTxt') as TextField;
+        bg       = skin.getChildByName('bg');
+
+        if (bg) {
+            _minWidth = bg.width;
+        }
+
+        if (textTxt) {
+            textTxt.autoSize  = TextFieldAutoSize.LEFT;
+            textTxt.wordWrap  = false;
+            textTxt.multiline = false;
+        }
+    }
+
+    /**
+     * 按预览文字宽度调节文本框与背景板。
+     */
+    protected function layoutPreview():void {
+        if (!textTxt && !titleTxt) {
+            return;
+        }
+
+        var titleW:Number   = titleTxt ? titleTxt.textWidth : 0;
+        var textW:Number    = textTxt ? textTxt.textWidth : 0;
+        var contentW:Number = titleW > textW ? titleW : textW;
+        var w:Number        = contentW + PAD_X;
+
+        if (w < _minWidth) {
+            w = _minWidth;
+        }
+
+        if (titleTxt) {
+            titleTxt.width = w - PAD_X;
+        }
+        if (textTxt) {
+            textTxt.autoSize  = TextFieldAutoSize.LEFT;
+            textTxt.wordWrap  = false;
+            textTxt.multiline = false;
+        }
+        if (bg) {
+            bg.width = w;
+        }
+    }
+
+    /**
      * 更新检查器预览文字。
      *
      * @param v 预览字符串。
@@ -131,6 +224,7 @@ public class BaseIdeCtrler extends BaseComponent {
     protected function updatePreviewText(v:String):void {
         if (textTxt) {
             textTxt.text = v;
+            layoutPreview();
         }
     }
 
@@ -158,16 +252,60 @@ public class BaseIdeCtrler extends BaseComponent {
         var textFormat:TextFormat = new TextFormat();
         textFormat.color          = success ? 0x00aa00 : 0xff0000;
         textTxt.setTextFormat(textFormat);
+        layoutPreview();
+    }
+
+    /**
+     * 显示等价时间轴调用代码。
+     *
+     * <p>形如 <code>parent.$effect_ctrler.bisha(false, 'ichigo1');</code>。</p>
+     *
+     * @param methodName 方法名。
+     * @param args 参数列表。
+     * @param rawArgs 为 <code>true</code> 时参数已是字面量字符串，不再二次格式化。
+     *
+     * @example
+     * <listing version="3.0">
+     * updateCallPreview('bisha', [false, 'ichigo1']);
+     * updateCallPreview('shine', [ColorUtils.asLiteral(0xffffff)], true);
+     * </listing>
+     */
+    protected function updateCallPreview(methodName:String, args:Array = null, rawArgs:Boolean = false):void {
+        updatePreviewText(formatCallCode(methodName, args, rawArgs));
+    }
+
+    /**
+     * 拼凑等价时间轴调用代码。
+     *
+     * @param methodName 方法名。
+     * @param args 参数列表。
+     * @param rawArgs 为 <code>true</code> 时参数已是字面量字符串，不再二次格式化。
+     * @return 形如 <code>parent.$effect_ctrler.bisha(false, 'ichigo1');</code> 的字符串。
+     */
+    protected function formatCallCode(methodName:String, args:Array = null, rawArgs:Boolean = false):String {
+        var prop:String = _ctrlerProp ? _ctrlerProp : '$ctrler';
+        var parts:Array = [];
+        var i:int;
+        var len:int;
+
+        if (args) {
+            len = args.length;
+            for (i = 0; i < len; i++) {
+                parts.push(rawArgs ? String(args[i]) : formatLiteral(args[i]));
+            }
+        }
+
+        return 'parent.' + prop + '.' + methodName + '(' + parts.join(', ') + ');';
     }
 
     /**
      * 校验参数是否符合预期。
      *
-     * <p>失败时仅将参数名标红显示；通过时不改预览文字，由调用方继续更新。</p>
+     * <p>失败时以红色显示完整错误提示；通过时不改预览文字，由调用方继续更新。</p>
      * <p><code>expected</code> 为 <code>null</code>：校验非空（非 <code>null</code>、非空串）。
      * 为 <code>Array</code>：值须为其中之一；其它：值须与期望相等。</p>
      *
-     * @param name 参数名（失败时标红显示）。
+     * @param name 参数名（错误提示用）。
      * @param value 实际值。
      * @param expected 期望；默认 <code>null</code> 表示非空校验。
      * @return 通过返回 <code>true</code>。
@@ -181,23 +319,27 @@ public class BaseIdeCtrler extends BaseComponent {
      */
     protected function validateParam(name:String, value:*, expected:* = null):Boolean {
         var ok:Boolean;
+        var tip:String;
 
         if (expected == null) {
-            ok = !isBlankParam(value);
+            ok  = !isBlankParam(value);
+            tip = '参数错误: ' + name + ' 不能为空';
         }
         else if (expected is Array) {
-            ok = (expected as Array).indexOf(value) != -1;
+            ok  = (expected as Array).indexOf(value) != -1;
+            tip = '参数错误: ' + name + ' 须为 ' + (expected as Array).join('/');
         }
         else {
-            ok = value == expected;
+            ok  = value == expected;
+            tip = '参数错误: ' + name + ' 须为 ' + expected;
         }
 
         if (ok) {
             return true;
         }
 
-        updateStatusText(name, false);
-        trace('[BaseIdeCtrler] invalid param:', name, 'value=', value, 'expected=', expected, this);
+        updateStatusText(tip, false);
+        trace('[BaseIdeCtrler]', tip, 'value=', value, this);
         return false;
     }
 
@@ -251,6 +393,20 @@ public class BaseIdeCtrler extends BaseComponent {
             return String(value).length == 0;
         }
         return false;
+    }
+
+    /** @private 将参数格式化为 AS 字面量 */
+    private function formatLiteral(value:*):String {
+        if (value == null) {
+            return 'null';
+        }
+        if (value is String) {
+            return "'" + String(value).split("'").join("\\'") + "'";
+        }
+        if (value is Boolean) {
+            return value ? 'true' : 'false';
+        }
+        return String(value);
     }
 }
 }

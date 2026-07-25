@@ -97,7 +97,7 @@ public class BishaEffect extends BaseEffect {
             return;
         }
 
-        updatePreviewText(_isSuper + ', "' + _face + '"');
+        updateCallPreview('bisha', [_isSuper, _face]);
     }
 }
 }
