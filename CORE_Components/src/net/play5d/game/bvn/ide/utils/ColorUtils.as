@@ -41,5 +41,24 @@ public class ColorUtils {
         }
         return '#' + hex;
     }
+
+    /**
+     * 颜色转 AS 十六进制字面量。
+     *
+     * @param color 颜色值。
+     * @return 形如 <code>0xffffff</code> 的字符串。
+     *
+     * @example
+     * <listing version="3.0">
+     * ColorUtils.asLiteral(0xff0000); // '0xff0000'
+     * </listing>
+     */
+    public static function asLiteral(color:uint):String {
+        var hex:String = color.toString(16);
+        while (hex.length < 6) {
+            hex = '0' + hex;
+        }
+        return '0x' + hex;
+    }
 }
 }
