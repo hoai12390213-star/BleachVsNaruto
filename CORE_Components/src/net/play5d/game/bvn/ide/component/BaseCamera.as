@@ -34,6 +34,7 @@ public class BaseCamera extends BaseIdeCtrler {
      */
     public function BaseCamera() {
         super();
+        _ctrlerProp = IdeRuntimeUtils.CAMERA_CTRLER_PROP;
     }
 
     /**
