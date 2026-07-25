@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,10 @@ import net.play5d.game.bvn.ide.entity.GameSpriteEntity;
 import net.play5d.game.bvn.interfaces.IComponents;
 
 /**
- * 基本组件
+ * Animate IDE 组件基类（类，非 interface）。
+ *
+ * <p>生命周期：构造挂接第 0 帧 → <code>init</code>（隐藏 → <code>doAction</code> → <code>destroy</code>）。</p>
+ * <p><code>$self</code> / <code>$target</code> / <code>$owner</code> 在 <code>init</code> 时懒绑定。</p>
  */
 public class BaseComponent extends MovieClip implements IComponents {
 
@@ -34,18 +37,15 @@ public class BaseComponent extends MovieClip implements IComponents {
 
     /////////////// 构造方法 ///////////////
 
+    /**
+     * 构造方法。
+     */
     public function BaseComponent() {
         if (!root) {
             return;
         }
 
-        // 初始化
         _gameSpriteEntity = new GameSpriteEntity(this);
-
-        $self   = _gameSpriteEntity.self;
-        $target = _gameSpriteEntity.target;
-        $owner  = _gameSpriteEntity.owner;
-
         addFrameScript(0, init);
     }
 
@@ -55,11 +55,13 @@ public class BaseComponent extends MovieClip implements IComponents {
     /////////////// 实现接口 ///////////////
 
     /**
-     * 销毁自身
+     * 销毁自身。
      */
     public function destroy():void {
         try {
-            parent.removeChild(this);
+            if (parent) {
+                parent.removeChild(this);
+            }
         }
         catch (e:Error) {
         }
@@ -84,15 +86,23 @@ public class BaseComponent extends MovieClip implements IComponents {
 
     /////////////// 私有属性 ///////////////
 
-    /* 游戏元件实体 */
+    /**
+     * @private 游戏元件实体。
+     */
     protected var _gameSpriteEntity:GameSpriteEntity;
 
-    /* 自身类引用 */
-    protected var $self:*   = null;
-    /* 对手主人类引用，类型 FighterMain */
+    /**
+     * @private 自身类引用。
+     */
+    protected var $self:* = null;
+    /**
+     * @private 对手主人类引用，类型 FighterMain。
+     */
     protected var $target:* = null;
-    /* 最顶主人类引用，类型 FighterMain */
-    protected var $owner:*  = null;
+    /**
+     * @private 最顶主人类引用，类型 FighterMain。
+     */
+    protected var $owner:* = null;
 
     ///////////////////////////////////////
 
@@ -101,20 +111,25 @@ public class BaseComponent extends MovieClip implements IComponents {
 
     ///////////////////////////////////////
 
+
     /////////////// 公有方法 ///////////////
 
     /**
-     * 初始化
-     * 第一帧要执行的代码
+     * 初始化。
+     *
+     * <p>第一帧执行：绑定上下文 → 隐藏 → 动作 → 销毁。</p>
      */
     public function init():void {
+        bindContext();
         hidden();
         doAction();
         destroy();
     }
 
     /**
-     * 要详细执行的动作
+     * 要详细执行的动作。
+     *
+     * <p>子类覆盖实现具体逻辑。</p>
      */
     public function doAction():void {
     }
@@ -125,7 +140,20 @@ public class BaseComponent extends MovieClip implements IComponents {
     /////////////// 私有方法 ///////////////
 
     /**
-     * 隐藏自身
+     * 绑定游戏上下文引用。
+     */
+    protected function bindContext():void {
+        if (!_gameSpriteEntity) {
+            return;
+        }
+
+        $self   = _gameSpriteEntity.self;
+        $target = _gameSpriteEntity.target;
+        $owner  = _gameSpriteEntity.owner;
+    }
+
+    /**
+     * 隐藏自身。
      */
     protected function hidden():void {
         visible = false;
@@ -134,3 +162,4 @@ public class BaseComponent extends MovieClip implements IComponents {
     ///////////////////////////////////////
 }
 }
+

@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+/*
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,12 @@
  */
 
 package net.play5d.game.bvn.ide.component.effect {
-import net.play5d.game.bvn.ide.component.*;
-
-import flash.text.TextField;
-import flash.text.TextFormat;
+import net.play5d.game.bvn.ide.component.BaseEffect;
 
 /**
- * 组件 震动特效
+ * 震动特效 IDE 组件。
+ *
+ * <p>调用 <code>FighterEffectCtrl.shake</code>。</p>
  */
 public class ShakeEffect extends BaseEffect {
 
@@ -35,7 +34,7 @@ public class ShakeEffect extends BaseEffect {
     /////////////// 构造方法 ///////////////
 
     /**
-     * 构造方法
+     * 构造方法。
      */
     public function ShakeEffect() {
         super.title = '效果_震动';
@@ -56,35 +55,48 @@ public class ShakeEffect extends BaseEffect {
 
     /////////////// 私有属性 ///////////////
 
+    /**
+     * @private powX 属性。
+     */
+    private var _powX:Number = 0;
+    /**
+     * @private powY 属性。
+     */
+    private var _powY:Number = 0;
+
     ///////////////////////////////////////
 
 
     /////////// Getter & Setter ///////////
 
-    /* powX 属性 */
-    private var _powX:Number = 0;
-    /* X 轴幅度 */
+    /**
+     * X 轴震动幅度。
+     */
     public function get powX():Number {
         return _powX;
     }
+    /**
+     * @private
+     */
     [Inspectable(name='powX', type='Number', defaultValue=0)]
     public function set powX(v:Number):void {
         _powX = v;
-
-        super.text = '(' + _powX + ', ' + _powY + ')';
+        refreshPreview();
     }
 
-    /* powY 属性 */
-    private var _powY:Number = 0;
-    /* Y 轴幅度 */
+    /**
+     * Y 轴震动幅度。
+     */
     public function get powY():Number {
         return _powY;
     }
+    /**
+     * @private
+     */
     [Inspectable(name='powY', type='Number', defaultValue=0)]
     public function set powY(v:Number):void {
         _powY = v;
-
-        super.text = '(' + _powX + ', ' + _powY + ')';
+        refreshPreview();
     }
 
     ///////////////////////////////////////
@@ -93,7 +105,7 @@ public class ShakeEffect extends BaseEffect {
     /////////////// 公有方法 ///////////////
 
     /**
-     * 要详细执行的动作
+     * 要详细执行的动作。
      */
     override public function doAction():void {
         shake();
@@ -105,7 +117,14 @@ public class ShakeEffect extends BaseEffect {
     /////////////// 私有方法 ///////////////
 
     /**
-     * 执行闪光
+     * 刷新检查器预览文字。
+     */
+    private function refreshPreview():void {
+        updatePreviewText('(' + _powX + ', ' + _powY + ')');
+    }
+
+    /**
+     * 执行震动。
      */
     private function shake():void {
         if (!_effectCtrler) {
@@ -119,3 +138,4 @@ public class ShakeEffect extends BaseEffect {
 
 }
 }
+

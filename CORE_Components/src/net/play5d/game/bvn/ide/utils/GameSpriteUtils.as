@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,30 +22,37 @@ import flash.utils.getDefinitionByName;
 import net.play5d.game.bvn.ide.data.GamePKGName;
 
 /**
- * 游戏元件相关实用工具
+ * 游戏元件相关实用工具。
+ *
+ * <p>通过反射获取 KernelLogic 类，避免 CORE_Components 编译期依赖 KernelLogic。</p>
  */
 public class GameSpriteUtils {
 
     /**
-     * 获取游戏元件类
-     * @param type 类型
-     * @return 指定游戏元件类
+     * 获取游戏元件类。
+     *
+     * @param type 类型（见 <code>GameSpriteType</code>）。
+     * @return 指定游戏元件类；找不到时返回 <code>null</code>。
      */
     public static function getGameSpriteClass(type:String):Class {
-        var cls:Class = getDefinitionByName(GamePKGName.FIGHTER + type) as Class;
-
-        return cls;
+        return getGameClass(GamePKGName.FIGHTER + type);
     }
 
     /**
-     * 获取游戏类
-     * @param name 类的全限定名称
-     * @return 指定类
+     * 获取游戏类。
+     *
+     * @param name 类的全限定名称。
+     * @return 指定类；找不到时返回 <code>null</code>。
      */
     public static function getGameClass(name:String):Class {
-        var cls:Class = getDefinitionByName(name) as Class;
-
-        return cls;
+        try {
+            return getDefinitionByName(name) as Class;
+        }
+        catch (e:Error) {
+            trace('[GameSpriteUtils] class not found:', name);
+        }
+        return null;
     }
 }
 }
+

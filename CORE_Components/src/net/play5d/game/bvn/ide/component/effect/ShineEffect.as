@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+/*
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,9 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 import net.play5d.game.bvn.ide.utils.ColorUtils;
 
 /**
- * 组件 闪光特效
+ * 闪光特效 IDE 组件。
+ *
+ * <p>调用 <code>FighterEffectCtrl.shine</code>。</p>
  */
 public class ShineEffect extends BaseEffect {
 
@@ -35,7 +37,7 @@ public class ShineEffect extends BaseEffect {
     /////////////// 构造方法 ///////////////
 
     /**
-     * 构造方法
+     * 构造方法。
      */
     public function ShineEffect() {
         super.title = '效果_闪光';
@@ -56,26 +58,36 @@ public class ShineEffect extends BaseEffect {
 
     /////////////// 私有属性 ///////////////
 
+    /**
+     * @private color 属性。
+     */
+    private var _color:uint = 0xffffff;
+
     ///////////////////////////////////////
 
 
     /////////// Getter & Setter ///////////
 
-    /* color 属性 */
-    private var _color:uint = 0xffffff;
-    /* 颜色 */
+    /**
+     * 闪光颜色。
+     */
     public function get color():uint {
         return _color;
     }
+    /**
+     * @private
+     */
     [Inspectable(name='color', type='Color', defaultValue='ffffff')]
     public function set color(v:uint):void {
         _color = v;
 
-        var textFormat:TextFormat = new TextFormat();
-        textFormat.color          = _color;
+        updatePreviewText(ColorUtils.dec2hex(_color));
 
-        super.text = ColorUtils.dec2hex(_color);
-        textTxt.setTextFormat(textFormat);
+        if (textTxt) {
+            var textFormat:TextFormat = new TextFormat();
+            textFormat.color          = _color;
+            textTxt.setTextFormat(textFormat);
+        }
     }
 
     ///////////////////////////////////////
@@ -84,7 +96,7 @@ public class ShineEffect extends BaseEffect {
     /////////////// 公有方法 ///////////////
 
     /**
-     * 要详细执行的动作
+     * 要详细执行的动作。
      */
     override public function doAction():void {
         shine();
@@ -96,7 +108,7 @@ public class ShineEffect extends BaseEffect {
     /////////////// 私有方法 ///////////////
 
     /**
-     * 执行闪光
+     * 执行闪光。
      */
     private function shine():void {
         if (!_effectCtrler) {
@@ -110,3 +122,4 @@ public class ShineEffect extends BaseEffect {
 
 }
 }
+

@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+/*
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,11 +19,13 @@
 package net.play5d.game.bvn.ide.component {
 import flash.text.TextField;
 
-import net.play5d.game.bvn.ide.data.GameSpriteType;
 import net.play5d.game.bvn.ide.interfaces.BaseComponent;
+import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
 
 /**
- * 组件 基本效果
+ * 效果类 IDE 组件基类。
+ *
+ * <p>优先沿显示树读取 <code>$effect_ctrler</code>；找不到时回退到 <code>$owner</code> 控制器。</p>
  */
 public class BaseEffect extends BaseComponent {
 
@@ -35,7 +37,7 @@ public class BaseEffect extends BaseComponent {
     /////////////// 构造方法 ///////////////
 
     /**
-     * 构造方法
+     * 构造方法。
      */
     public function BaseEffect() {
         super();
@@ -47,7 +49,7 @@ public class BaseEffect extends BaseComponent {
     /////////////// 实现接口 ///////////////
 
     /**
-     * 销毁自身
+     * 销毁自身。
      */
     override public function destroy():void {
         titleTxt = null;
@@ -63,17 +65,23 @@ public class BaseEffect extends BaseComponent {
 
     /////////////// 公有属性 ///////////////
 
-    /* 标题文本 */
+    /**
+     * 标题文本。
+     */
     public var titleTxt:TextField = getChildByName('titleTxt') as TextField;
-    /* 文字文本 */
-    public var textTxt:TextField  = getChildByName('textTxt') as TextField;
+    /**
+     * 文字文本。
+     */
+    public var textTxt:TextField = getChildByName('textTxt') as TextField;
 
     ///////////////////////////////////////
 
 
     /////////////// 私有属性 ///////////////
 
-    /* 特效控制器 */
+    /**
+     * @private 特效控制器。
+     */
     protected var _effectCtrler:* = null;
 
     ///////////////////////////////////////
@@ -81,20 +89,32 @@ public class BaseEffect extends BaseComponent {
 
     /////////// Getter & Setter ///////////
 
-    /* 标题文本 */
+    /**
+     * 标题文本内容。
+     */
     public function get title():String {
-        return titleTxt.text;
+        return titleTxt ? titleTxt.text : '';
     }
+    /**
+     * @private
+     */
     public function set title(v:String):void {
-        titleTxt.text = v;
+        if (titleTxt) {
+            titleTxt.text = v;
+        }
     }
 
-    /* 文字文本 */
+    /**
+     * 预览文字内容。
+     */
     public function get text():String {
-        return textTxt.text;
+        return textTxt ? textTxt.text : '';
     }
+    /**
+     * @private
+     */
     public function set text(v:String):void {
-        textTxt.text = v;
+        updatePreviewText(v);
     }
 
     ///////////////////////////////////////
@@ -103,10 +123,9 @@ public class BaseEffect extends BaseComponent {
     /////////////// 公有方法 ///////////////
 
     /**
-     * 第一帧要执行的代码
+     * 第一帧要执行的代码。
      */
     override public function init():void {
-        // 初始化特效控制器
         initEffectCtrler();
 
         hidden();
@@ -115,7 +134,7 @@ public class BaseEffect extends BaseComponent {
     }
 
     /**
-     * 要详细执行的动作
+     * 要详细执行的动作。
      */
     override public function doAction():void {
         super.doAction();
@@ -127,18 +146,44 @@ public class BaseEffect extends BaseComponent {
     /////////////// 私有方法 ///////////////
 
     /**
-     * 初始化特效控制器
+     * 更新检查器预览文字。
+     *
+     * @param v 预览字符串。
+     */
+    protected function updatePreviewText(v:String):void {
+        if (textTxt) {
+            textTxt.text = v;
+        }
+    }
+
+    /**
+     * 初始化特效控制器。
+     *
+     * <p>优先 parent 链上的 <code>$effect_ctrler</code>；否则用 <code>$owner</code> fallback。</p>
      */
     private function initEffectCtrler():void {
-//        switch (_gameSpriteEntity.getSelfType()) {
-//        case GameSpriteType.FIGHTER_MAIN:
-//            _effectCtrler = $self.getCtrler().getEffectCtrl();
-//            break;
-//        }
+        _effectCtrler = IdeRuntimeUtils.findEffectCtrler(this);
+        if (_effectCtrler) {
+            return;
+        }
 
-        _effectCtrler = $owner.getCtrler().getEffectCtrl();
+        bindContext();
+
+        try {
+            if ($owner) {
+                _effectCtrler = $owner.getCtrler().getEffectCtrl();
+            }
+        }
+        catch (e:Error) {
+            _effectCtrler = null;
+        }
+
+        if (!_effectCtrler) {
+            trace('[BaseEffect] effect ctrler not found:', this);
+        }
     }
 
     ///////////////////////////////////////
 }
 }
+

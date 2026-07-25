@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,24 +19,28 @@
 package net.play5d.game.bvn.ide.utils {
 
 /**
- * 颜色相关实用工具
+ * 颜色相关实用工具。
  */
 public class ColorUtils {
 
     /**
-     * 十进制转十六进制
-     * @param color 颜色十进制数值
-     * @return 颜色十六进制数值
+     * 十进制颜色转十六进制字符串。
+     *
+     * @param color 颜色十进制数值。
+     * @return 形如 <code>#RRGGBB</code> 的字符串。
+     *
+     * @example
+     * <listing version="3.0">
+     * ColorUtils.dec2hex(0xff0000); // "#FF0000"
+     * </listing>
      */
     public static function dec2hex(color:uint):String {
-        var colArr:Array = color.toString(16).toUpperCase().split('');
-        var diff:int     = 6 - colArr.length;
-
-        for (var i:int = 0; i < diff; i++) {
-            colArr.unshift('0');
+        var hex:String = color.toString(16).toUpperCase();
+        while (hex.length < 6) {
+            hex = '0' + hex;
         }
-
-        return '#' + colArr.join('');
+        return '#' + hex;
     }
 }
 }
+
