@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 震动特效 IDE 组件。
  *
- * <p>调用效果控制器的 <code>shake</code> 方法。</p>
+ * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.shake</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -108,7 +108,7 @@ public class ShakeEffect extends BaseEffect {
      * @inheritDoc
      */
     override public function doAction():void {
-        shake();
+        invokeEffect('shake', [_powX, _powY]);
     }
 
     ///////////////////////////////////////
@@ -119,15 +119,6 @@ public class ShakeEffect extends BaseEffect {
     /** @private 刷新检查器预览文字 */
     private function refreshPreview():void {
         updatePreviewText('(' + _powX + ', ' + _powY + ')');
-    }
-
-    /** @private 执行震动 */
-    private function shake():void {
-        if (!_effectCtrler) {
-            return;
-        }
-
-        _effectCtrler.shake(_powX, _powY);
     }
 
     ///////////////////////////////////////

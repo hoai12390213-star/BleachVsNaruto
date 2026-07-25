@@ -25,7 +25,7 @@ import net.play5d.game.bvn.ide.utils.ColorUtils;
 /**
  * 闪光特效 IDE 组件。
  *
- * <p>调用效果控制器的 <code>shine</code> 方法。</p>
+ * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.shine</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -100,22 +100,13 @@ public class ShineEffect extends BaseEffect {
      * @inheritDoc
      */
     override public function doAction():void {
-        shine();
+        invokeEffect('shine', [_color]);
     }
 
     ///////////////////////////////////////
 
 
     /////////////// 私有方法 ///////////////
-
-    /** @private 执行闪光 */
-    private function shine():void {
-        if (!_effectCtrler) {
-            return;
-        }
-
-        _effectCtrler.shine(_color);
-    }
 
     ///////////////////////////////////////
 

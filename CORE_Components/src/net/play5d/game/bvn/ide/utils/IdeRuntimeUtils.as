@@ -18,24 +18,16 @@
 
 package net.play5d.game.bvn.ide.utils {
 import flash.display.DisplayObject;
+import flash.utils.getQualifiedClassName;
 
 /**
  * Animate IDE 组件运行时解析工具。
  *
- * <p>沿显示树查找 FighterMain 经 <code>initFighter</code> 注入的控制器引用。</p>
- * <p>角色 main_mc 契约：</p>
- * <listing version="3.0">
- * var $fighter_ctrler:*;
- * var $mc_ctrler:*;
- * var $effect_ctrler:*;
- * var $camera_ctrler:*;
- * function initFighter(param:Object):void {
- *     $fighter_ctrler = param.fighter_ctrler;
- *     $mc_ctrler      = param.mc_ctrler;
- *     $effect_ctrler  = param.effect_ctrler;
- *     $camera_ctrler  = param.camera_ctrler;
- * }
- * </listing>
+ * <p>当前约定聚焦 FighterMain 时间轴：沿显示树读取 <code>initFighter</code> 注入的动态属性。</p>
+ * <p>因属性为动态类型，查找后应配合 <code>hasMethod</code> / <code>requireMethods</code> 做能力校验。</p>
+ *
+ * @see #findEffectCtrler()
+ * @see #hasMethod()
  */
 public class IdeRuntimeUtils {
 
@@ -65,99 +57,150 @@ public class IdeRuntimeUtils {
     public static const CAMERA_CTRLER_PROP:String = '$camera_ctrler';
 
     /**
+     * 判断目标是否具备指定方法（动态属性鸭子检查）。
+     *
+     * @param target 控制器对象。
+     * @param methodName 方法名。
+     * @return 存在且为 Function 时返回 <code>true</code>。
+     *
+     * @example
+     * <listing version="3.0">
+     * if (IdeRuntimeUtils.hasMethod(ctrler, 'shine')) {
+     *     ctrler.shine(0xffffff);
+     * }
+     * </listing>
+     */
+    public static function hasMethod(target:*, methodName:String):Boolean {
+        if (!target || !methodName) {
+            return false;
+        }
+
+        try {
+            return (methodName in target) && (target[methodName] is Function);
+        }
+        catch (e:Error) {
+        }
+        return false;
+    }
+
+    /**
+     * 校验目标是否具备全部指定方法。
+     *
+     * @param target 控制器对象。
+     * @param methodNames 方法名列表。
+     * @return 全部存在返回 <code>true</code>；否则返回 <code>false</code>。
+     */
+    public static function requireMethods(target:*, methodNames:Array):Boolean {
+        if (!target || !methodNames) {
+            return false;
+        }
+
+        for each (var name:String in methodNames) {
+            if (!hasMethod(target, name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 沿 parent 链查找已注入的角色主控制器。
      *
      * @param from 起始显示对象（通常为组件自身）。
      * @return 角色主控制器；未找到时返回 <code>null</code>。
      *
-     * @example
-     * <listing version="3.0">
-     * var ctrler:* = IdeRuntimeUtils.findFighterCtrler(this);
-     * </listing>
-     *
      * @see #FIGHTER_CTRLER_PROP
      */
     public static function findFighterCtrler(from:DisplayObject):* {
-        return findInjected(from, FIGHTER_CTRLER_PROP);
+        return findInjected(from, FIGHTER_CTRLER_PROP, true);
     }
 
     /**
      * 沿 parent 链查找已注入的 MC 控制器。
      *
-     * <p>对应时间轴用法 <code>parent.$mc_ctrler</code>。</p>
-     *
      * @param from 起始显示对象（通常为组件自身）。
-     * @return MC 控制器（FighterMcCtrler）；未找到时返回 <code>null</code>。
-     *
-     * @example
-     * <listing version="3.0">
-     * var mcCtrler:* = IdeRuntimeUtils.findMcCtrler(this);
-     * if (mcCtrler) {
-     *     mcCtrler.idle();
-     * }
-     * </listing>
+     * @return MC 控制器；未找到时返回 <code>null</code>。
      *
      * @see #MC_CTRLER_PROP
      */
     public static function findMcCtrler(from:DisplayObject):* {
-        return findInjected(from, MC_CTRLER_PROP);
+        return findInjected(from, MC_CTRLER_PROP, true);
     }
 
     /**
      * 沿 parent 链查找已注入的效果控制器。
      *
-     * <p>对应时间轴用法 <code>parent.$effect_ctrler</code>。</p>
+     * <p>对应时间轴用法 <code>parent.$effect_ctrler</code>（FighterMain）。</p>
      *
      * @param from 起始显示对象（通常为组件自身）。
-     * @return 效果控制器；未找到时返回 <code>null</code>。
+     * @param requiredMethods 可选，需具备的方法名列表（如 <code>['shine']</code>）。
+     * @return 效果控制器；未找到或方法校验失败时返回 <code>null</code>。
      *
      * @example
      * <listing version="3.0">
-     * var ctrler:* = IdeRuntimeUtils.findEffectCtrler(this);
-     * if (ctrler) {
-     *     ctrler.shine(0xffffff);
-     * }
+     * var ctrler:* = IdeRuntimeUtils.findEffectCtrler(this, ['shine']);
      * </listing>
      *
      * @see #EFFECT_CTRLER_PROP
+     * @see #hasMethod()
      */
-    public static function findEffectCtrler(from:DisplayObject):* {
-        return findInjected(from, EFFECT_CTRLER_PROP);
+    public static function findEffectCtrler(from:DisplayObject, requiredMethods:Array = null):* {
+        var ctrler:* = findInjected(from, EFFECT_CTRLER_PROP, true);
+        if (!ctrler) {
+            return null;
+        }
+
+        if (requiredMethods && !requireMethods(ctrler, requiredMethods)) {
+            warnInvalidMethods(from, EFFECT_CTRLER_PROP, ctrler, requiredMethods);
+            return null;
+        }
+
+        return ctrler;
     }
 
     /**
      * 沿 parent 链查找已注入的镜头控制器。
      *
-     * <p>对应时间轴用法 <code>parent.$camera_ctrler</code>。</p>
-     *
      * @param from 起始显示对象（通常为组件自身）。
-     * @return 镜头控制器（FighterCameraCtrler）；未找到时返回 <code>null</code>。
-     *
-     * @example
-     * <listing version="3.0">
-     * var cam:* = IdeRuntimeUtils.findCameraCtrler(this);
-     * if (cam) {
-     *     cam.focusSelf();
-     * }
-     * </listing>
+     * @param requiredMethods 可选，需具备的方法名列表。
+     * @return 镜头控制器；未找到或方法校验失败时返回 <code>null</code>。
      *
      * @see #CAMERA_CTRLER_PROP
      */
-    public static function findCameraCtrler(from:DisplayObject):* {
-        return findInjected(from, CAMERA_CTRLER_PROP);
+    public static function findCameraCtrler(from:DisplayObject, requiredMethods:Array = null):* {
+        var ctrler:* = findInjected(from, CAMERA_CTRLER_PROP, true);
+        if (!ctrler) {
+            return null;
+        }
+
+        if (requiredMethods && !requireMethods(ctrler, requiredMethods)) {
+            warnInvalidMethods(from, CAMERA_CTRLER_PROP, ctrler, requiredMethods);
+            return null;
+        }
+
+        return ctrler;
     }
 
     /**
      * @private 沿 parent 链查找指定注入属性。
      */
-    private static function findInjected(from:DisplayObject, prop:String):* {
+    private static function findInjected(from:DisplayObject, prop:String, warnIfMissing:Boolean):* {
+        if (!from) {
+            if (warnIfMissing) {
+                warnMissing(null, prop, 'from is null');
+            }
+            return null;
+        }
+
         var node:DisplayObject = from;
+        var sawProp:Boolean    = false;
 
         while (node) {
             try {
                 if (prop in node) {
+                    sawProp = true;
                     var value:* = node[prop];
-                    if (value) {
+                    if (value != null) {
                         return value;
                     }
                 }
@@ -168,7 +211,59 @@ public class IdeRuntimeUtils {
             node = node.parent;
         }
 
+        if (warnIfMissing) {
+            if (sawProp) {
+                warnMissing(from, prop, 'property exists but value is null (initFighter not called?)');
+            }
+            else {
+                warnMissing(from, prop, 'not found on FighterMain display tree');
+            }
+        }
+
         return null;
+    }
+
+    /**
+     * @private 缺少注入属性时输出诊断信息。
+     */
+    private static function warnMissing(from:DisplayObject, prop:String, detail:String):void {
+        trace('[IdeRuntimeUtils] missing', prop, '-', detail, '-', describe(from));
+    }
+
+    /**
+     * @private 方法能力校验失败时输出诊断信息。
+     */
+    private static function warnInvalidMethods(
+        from          :DisplayObject,
+        prop          :String,
+        ctrler        :*,
+        requiredMethods:Array
+    ):void {
+        var missing:Array = [];
+        for each (var name:String in requiredMethods) {
+            if (!hasMethod(ctrler, name)) {
+                missing.push(name);
+            }
+        }
+
+        trace(
+            '[IdeRuntimeUtils] invalid', prop,
+            'missing methods:', missing.join(','),
+            'ctrler:', getQualifiedClassName(ctrler),
+            '-', describe(from)
+        );
+    }
+
+    /**
+     * @private 描述显示对象，便于定位时间轴组件。
+     */
+    private static function describe(from:DisplayObject):String {
+        if (!from) {
+            return '(null)';
+        }
+
+        var name:String = from.name ? from.name : '(no-name)';
+        return getQualifiedClassName(from) + '#' + name;
     }
 }
 }

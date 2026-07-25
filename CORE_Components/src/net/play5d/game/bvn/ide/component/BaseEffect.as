@@ -25,7 +25,7 @@ import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
 /**
  * 效果类 IDE 组件基类。
  *
- * <p>优先沿显示树读取 <code>$effect_ctrler</code>；找不到时回退到 <code>$owner</code> 控制器。</p>
+ * <p>仅面向 FighterMain 时间轴：读取 <code>$effect_ctrler</code>，并对动态对象做方法存在性检查。</p>
  *
  * @see net.play5d.game.bvn.ide.utils.IdeRuntimeUtils#findEffectCtrler()
  */
@@ -85,7 +85,7 @@ public class BaseEffect extends BaseComponent {
 
     /////////////// 私有属性 ///////////////
 
-    /** @private 特效控制器 */
+    /** @private 特效控制器（$effect_ctrler） */
     protected var _effectCtrler:* = null;
 
     ///////////////////////////////////////
@@ -163,29 +163,43 @@ public class BaseEffect extends BaseComponent {
     }
 
     /**
-     * @private 初始化特效控制器。
+     * 安全调用效果控制器方法（动态属性能力检查）。
+     *
+     * @param methodName 方法名。
+     * @param args 参数列表。
+     * @return 调用成功返回 <code>true</code>。
+     *
+     * @example
+     * <listing version="3.0">
+     * invokeEffect('shine', [0xffffff]);
+     * </listing>
+     */
+    protected function invokeEffect(methodName:String, args:Array = null):Boolean {
+        if (!_effectCtrler) {
+            return false;
+        }
+
+        if (!IdeRuntimeUtils.hasMethod(_effectCtrler, methodName)) {
+            trace('[BaseEffect] method missing on $effect_ctrler:', methodName, this);
+            return false;
+        }
+
+        try {
+            var fn:Function = _effectCtrler[methodName] as Function;
+            fn.apply(_effectCtrler, args);
+            return true;
+        }
+        catch (e:Error) {
+            trace('[BaseEffect] invoke failed:', methodName, e.message, this);
+        }
+        return false;
+    }
+
+    /**
+     * @private 解析 FighterMain 的 $effect_ctrler。
      */
     private function initEffectCtrler():void {
         _effectCtrler = IdeRuntimeUtils.findEffectCtrler(this);
-        if (_effectCtrler) {
-            return;
-        }
-
-        // 未注入 $effect_ctrler 时回退 owner 链
-        bindContext();
-
-        try {
-            if ($owner) {
-                _effectCtrler = $owner.getCtrler().getEffectCtrl();
-            }
-        }
-        catch (e:Error) {
-            _effectCtrler = null;
-        }
-
-        if (!_effectCtrler) {
-            trace('[BaseEffect] effect ctrler not found:', this);
-        }
     }
 
     ///////////////////////////////////////
