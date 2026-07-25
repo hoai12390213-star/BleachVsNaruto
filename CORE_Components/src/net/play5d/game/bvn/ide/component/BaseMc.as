@@ -34,6 +34,7 @@ public class BaseMc extends BaseIdeCtrler {
      */
     public function BaseMc() {
         super();
+        _ctrlerProp = IdeRuntimeUtils.MC_CTRLER_PROP;
     }
 
     /**
