@@ -34,6 +34,7 @@ public class BaseEffect extends BaseIdeCtrler {
      */
     public function BaseEffect() {
         super();
+        _ctrlerProp = IdeRuntimeUtils.EFFECT_CTRLER_PROP;
     }
 
     /**
