@@ -12,7 +12,7 @@
 | 2 | `CORE_Shared` | 对外常量、版本、与资源侧共享的接口 |
 | 3 | `CORE_Utils` / `LIB_KyoLib` | 通用工具；后者为独立子模块库 |
 | — | `BleachVsNaruto_FlashSrc` | 美术/XFL；**代码任务默认避开** |
-| — | `CORE_Components` | Animate 组件库代码；常规玩法少碰 |
+| — | `CORE_Components` | Animate 组件库；约定见 [`components.md`](components.md)；常规玩法少碰 |
 
 ---
 
@@ -25,7 +25,7 @@
 | `CORE_Utils` | 工程内公用工具 | |
 | `LIB_KyoLib` | 通用显示/输入/加载等库 | git 子模块，单独维护 |
 | `LIB_Other` | 其它第三方/附属库 | |
-| `CORE_Components` | Animate 可交互组件类 | 供 `component.xfl` |
+| `CORE_Components` | Animate 可交互组件类 | 供 `component.xfl`；约定 → [`components.md`](components.md) |
 | `BleachVsNaruto_FlashSrc` | Flash/美术源 | 非代码主战场 |
 | `shared` | 共享 SWC 等构建产物/接口落点 | 与 Shared 编译相关 |
 | `SHELL_Dev` | 开发用壳 / Application | 本地跑、调试入口侧 |

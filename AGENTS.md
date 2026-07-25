@@ -7,6 +7,7 @@
 | 不确定改哪个顶层目录 | [`.agents/modules.md`](.agents/modules.md) |
 | 理清/改编译链与 ASDoc embed 顺序 | [`.agents/build_order.md`](.agents/build_order.md) |
 | KernelLogic 内模糊定位 | [`.agents/map.md`](.agents/map.md) |
+| 写/改 `CORE_Components`（Animate 组件） | [`.agents/components.md`](.agents/components.md) |
 | 写/改代码格式 | [`.agents/code_style.md`](.agents/code_style.md) |
 | 写/补 ASDoc 与逻辑注释 | [`.agents/comment.md`](.agents/comment.md) |
 | 单例/命名/类型/复用/任务方式 | [`.agents/codegen.md`](.agents/codegen.md) |
