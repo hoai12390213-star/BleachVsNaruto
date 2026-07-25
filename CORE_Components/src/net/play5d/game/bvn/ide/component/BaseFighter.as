@@ -34,6 +34,7 @@ public class BaseFighter extends BaseIdeCtrler {
      */
     public function BaseFighter() {
         super();
+        _ctrlerProp = IdeRuntimeUtils.FIGHTER_CTRLER_PROP;
     }
 
     /**
