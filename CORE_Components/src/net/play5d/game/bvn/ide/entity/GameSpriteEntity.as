@@ -36,42 +36,38 @@ import net.play5d.game.bvn.ide.utils.GameSpriteUtils;
  */
 public class GameSpriteEntity {
 
-    /////////////// 静态方法 ///////////////
-
     /** @private 是否已加载反射类 */
     private static var _classesReady:Boolean = false;
 
-    /** @private FighterMain */
+    /** @private */
     private static var FighterMain:Class;
-    /** @private Assister */
+
+    /** @private */
     private static var Assister:Class;
-    /** @private Bullet */
+
+    /** @private */
     private static var Bullet:Class;
-    /** @private FighterAttacker */
+
+    /** @private */
     private static var FighterAttacker:Class;
-    /** @private GameCtrl */
+
+    /** @private */
     private static var GameCtrl:Class;
 
-    /**
-     * @private 懒加载 KernelLogic 反射类（全实例共享）。
-     */
-    private static function ensureClasses():void {
-        if (_classesReady) {
-            return;
-        }
-        _classesReady = true;
+    /** @private 组件所在父级 MC */
+    private var _thisMc:MovieClip;
 
-        FighterMain     = GameSpriteUtils.getGameSpriteClass(GameSpriteType.FIGHTER_MAIN);
-        Assister        = GameSpriteUtils.getGameSpriteClass(GameSpriteType.ASSISTER);
-        Bullet          = GameSpriteUtils.getGameSpriteClass(GameSpriteType.BULLET);
-        FighterAttacker = GameSpriteUtils.getGameSpriteClass(GameSpriteType.FIGHTER_ATTACKER);
-        GameCtrl        = GameSpriteUtils.getGameClass(GamePKGName.CTRLER_GAMECTRLS + 'GameCtrl');
-    }
+    /** @private 自身类引用 */
+    private var _self:* = null;
 
-    ///////////////////////////////////////
+    /** @private 对手主人类引用 */
+    private var _target:* = null;
 
+    /** @private 最顶主人类引用 */
+    private var _owner:* = null;
 
-    /////////////// 构造方法 ///////////////
+    /** @private 自身类型 */
+    private var _selfType:String = null;
 
     /**
      * 构造方法。
@@ -83,11 +79,6 @@ public class GameSpriteEntity {
         _thisMc = component.parent ? component.parent as MovieClip : null;
     }
 
-    ///////////////////////////////////////
-
-
-    /////////////// 实现接口 ///////////////
-
     /**
      * 销毁自身。
      */
@@ -98,33 +89,6 @@ public class GameSpriteEntity {
         _owner    = null;
         _selfType = null;
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有属性 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有属性 ///////////////
-
-    /** @private 组件所在父级 MC（匹配游戏精灵显示对象） */
-    private var _thisMc:MovieClip;
-
-    /** @private 自身类引用 */
-    private var _self:* = null;
-    /** @private 对手主人类引用 */
-    private var _target:* = null;
-    /** @private 最顶主人类引用 */
-    private var _owner:* = null;
-    /** @private 自身类型 */
-    private var _selfType:String = null;
-
-    ///////////////////////////////////////
-
-
-    /////////// Getter & Setter ///////////
 
     /**
      * 自身游戏精灵引用。
@@ -146,8 +110,6 @@ public class GameSpriteEntity {
 
             for each (var sp:* in gameSprites) {
                 var d:DisplayObject = sp.getDisplay();
-
-                // parent 匹配 Assister/Bullet/Attacker；parent.parent 匹配 FighterMain
                 if (d == _thisMc || (_thisMc.parent && d == _thisMc.parent)) {
                     _self = sp;
                     return _self;
@@ -213,19 +175,21 @@ public class GameSpriteEntity {
         return _selfType;
     }
 
-    ///////////////////////////////////////
+    /** @private */
+    private static function ensureClasses():void {
+        if (_classesReady) {
+            return;
+        }
+        _classesReady = true;
 
+        FighterMain     = GameSpriteUtils.getGameSpriteClass(GameSpriteType.FIGHTER_MAIN);
+        Assister        = GameSpriteUtils.getGameSpriteClass(GameSpriteType.ASSISTER);
+        Bullet          = GameSpriteUtils.getGameSpriteClass(GameSpriteType.BULLET);
+        FighterAttacker = GameSpriteUtils.getGameSpriteClass(GameSpriteType.FIGHTER_ATTACKER);
+        GameCtrl        = GameSpriteUtils.getGameClass(GamePKGName.CTRLER_GAMECTRLS + 'GameCtrl');
+    }
 
-    /////////////// 公有方法 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有方法 ///////////////
-
-    /**
-     * @private 递归上溯到 FighterMain。
-     */
+    /** @private */
     private function resolveFighterOwner(sp:*):* {
         if (!sp) {
             return null;
@@ -259,9 +223,7 @@ public class GameSpriteEntity {
         return resolveFighterOwner(next);
     }
 
-    /**
-     * @private 获取精灵类型。
-     */
+    /** @private */
     private function getType(sp:*):String {
         if (!sp) {
             return GameSpriteType.UNKNOWN;
@@ -282,7 +244,5 @@ public class GameSpriteEntity {
 
         return GameSpriteType.UNKNOWN;
     }
-
-    ///////////////////////////////////////
 }
 }

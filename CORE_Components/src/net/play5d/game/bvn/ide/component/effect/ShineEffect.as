@@ -31,12 +31,8 @@ import net.play5d.game.bvn.ide.utils.ColorUtils;
  */
 public class ShineEffect extends BaseEffect {
 
-    /////////////// 静态方法 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 构造方法 ///////////////
+    /** @private 闪光颜色 */
+    private var _color:uint = 0xffffff;
 
     /**
      * 构造方法。
@@ -44,29 +40,6 @@ public class ShineEffect extends BaseEffect {
     public function ShineEffect() {
         super.title = '效果_闪光';
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 实现接口 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有属性 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有属性 ///////////////
-
-    /** @private 闪光颜色 */
-    private var _color:uint = 0xffffff;
-
-    ///////////////////////////////////////
-
-
-    /////////// Getter & Setter ///////////
 
     /**
      * 闪光颜色。
@@ -77,6 +50,7 @@ public class ShineEffect extends BaseEffect {
     public function get color():uint {
         return _color;
     }
+
     /** @private */
     [Inspectable(name='color', type='Color', defaultValue='ffffff')]
     public function set color(v:uint):void {
@@ -91,24 +65,11 @@ public class ShineEffect extends BaseEffect {
         }
     }
 
-    ///////////////////////////////////////
-
-
-    /////////////// 公有方法 ///////////////
-
     /**
      * @inheritDoc
      */
     override public function doAction():void {
         invokeEffect('shine', [_color]);
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有方法 ///////////////
-
-    ///////////////////////////////////////
-
 }
 }

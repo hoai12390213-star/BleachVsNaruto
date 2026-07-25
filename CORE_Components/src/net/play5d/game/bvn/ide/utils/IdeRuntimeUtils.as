@@ -23,8 +23,8 @@ import flash.utils.getQualifiedClassName;
 /**
  * Animate IDE 组件运行时解析工具。
  *
- * <p>当前约定聚焦 FighterMain 时间轴：沿显示树读取 <code>initFighter</code> 注入的动态属性。</p>
- * <p>因属性为动态类型，查找后应配合 <code>hasMethod</code> / <code>requireMethods</code> 做能力校验。</p>
+ * <p>聚焦 FighterMain 时间轴：沿显示树读取 <code>initFighter</code> 注入的动态属性。</p>
+ * <p>动态类型需配合 <code>hasMethod</code> / <code>requireMethods</code> 做能力校验。</p>
  *
  * @see #findEffectCtrler()
  * @see #hasMethod()
@@ -37,18 +37,21 @@ public class IdeRuntimeUtils {
      * @default $fighter_ctrler
      */
     public static const FIGHTER_CTRLER_PROP:String = '$fighter_ctrler';
+
     /**
      * MC / 动作控制器属性名。
      *
      * @default $mc_ctrler
      */
     public static const MC_CTRLER_PROP:String = '$mc_ctrler';
+
     /**
      * 效果控制器属性名。
      *
      * @default $effect_ctrler
      */
     public static const EFFECT_CTRLER_PROP:String = '$effect_ctrler';
+
     /**
      * 镜头控制器属性名。
      *
@@ -57,7 +60,7 @@ public class IdeRuntimeUtils {
     public static const CAMERA_CTRLER_PROP:String = '$camera_ctrler';
 
     /**
-     * 判断目标是否具备指定方法（动态属性鸭子检查）。
+     * 判断目标是否具备指定方法。
      *
      * @param target 控制器对象。
      * @param methodName 方法名。
@@ -88,7 +91,7 @@ public class IdeRuntimeUtils {
      *
      * @param target 控制器对象。
      * @param methodNames 方法名列表。
-     * @return 全部存在返回 <code>true</code>；否则返回 <code>false</code>。
+     * @return 全部存在返回 <code>true</code>。
      */
     public static function requireMethods(target:*, methodNames:Array):Boolean {
         if (!target || !methodNames) {
@@ -106,7 +109,7 @@ public class IdeRuntimeUtils {
     /**
      * 沿 parent 链查找已注入的角色主控制器。
      *
-     * @param from 起始显示对象（通常为组件自身）。
+     * @param from 起始显示对象。
      * @return 角色主控制器；未找到时返回 <code>null</code>。
      *
      * @see #FIGHTER_CTRLER_PROP
@@ -118,7 +121,7 @@ public class IdeRuntimeUtils {
     /**
      * 沿 parent 链查找已注入的 MC 控制器。
      *
-     * @param from 起始显示对象（通常为组件自身）。
+     * @param from 起始显示对象。
      * @return MC 控制器；未找到时返回 <code>null</code>。
      *
      * @see #MC_CTRLER_PROP
@@ -130,11 +133,11 @@ public class IdeRuntimeUtils {
     /**
      * 沿 parent 链查找已注入的效果控制器。
      *
-     * <p>对应时间轴用法 <code>parent.$effect_ctrler</code>（FighterMain）。</p>
+     * <p>对应 <code>parent.$effect_ctrler</code>（FighterMain）。</p>
      *
-     * @param from 起始显示对象（通常为组件自身）。
-     * @param requiredMethods 可选，需具备的方法名列表（如 <code>['shine']</code>）。
-     * @return 效果控制器；未找到或方法校验失败时返回 <code>null</code>。
+     * @param from 起始显示对象。
+     * @param requiredMethods 可选，需具备的方法名列表。
+     * @return 效果控制器；未找到或校验失败时返回 <code>null</code>。
      *
      * @example
      * <listing version="3.0">
@@ -161,9 +164,9 @@ public class IdeRuntimeUtils {
     /**
      * 沿 parent 链查找已注入的镜头控制器。
      *
-     * @param from 起始显示对象（通常为组件自身）。
+     * @param from 起始显示对象。
      * @param requiredMethods 可选，需具备的方法名列表。
-     * @return 镜头控制器；未找到或方法校验失败时返回 <code>null</code>。
+     * @return 镜头控制器；未找到或校验失败时返回 <code>null</code>。
      *
      * @see #CAMERA_CTRLER_PROP
      */
@@ -181,9 +184,7 @@ public class IdeRuntimeUtils {
         return ctrler;
     }
 
-    /**
-     * @private 沿 parent 链查找指定注入属性。
-     */
+    /** @private */
     private static function findInjected(from:DisplayObject, prop:String, warnIfMissing:Boolean):* {
         if (!from) {
             if (warnIfMissing) {
@@ -223,20 +224,16 @@ public class IdeRuntimeUtils {
         return null;
     }
 
-    /**
-     * @private 缺少注入属性时输出诊断信息。
-     */
+    /** @private */
     private static function warnMissing(from:DisplayObject, prop:String, detail:String):void {
         trace('[IdeRuntimeUtils] missing', prop, '-', detail, '-', describe(from));
     }
 
-    /**
-     * @private 方法能力校验失败时输出诊断信息。
-     */
+    /** @private */
     private static function warnInvalidMethods(
-        from          :DisplayObject,
-        prop          :String,
-        ctrler        :*,
+        from           :DisplayObject,
+        prop           :String,
+        ctrler         :*,
         requiredMethods:Array
     ):void {
         var missing:Array = [];
@@ -254,9 +251,7 @@ public class IdeRuntimeUtils {
         );
     }
 
-    /**
-     * @private 描述显示对象，便于定位时间轴组件。
-     */
+    /** @private */
     private static function describe(from:DisplayObject):String {
         if (!from) {
             return '(null)';

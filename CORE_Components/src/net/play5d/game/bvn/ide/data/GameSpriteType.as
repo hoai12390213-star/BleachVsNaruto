@@ -29,30 +29,33 @@ public class GameSpriteType {
      * @default FighterMain
      */
     public static const FIGHTER_MAIN:String = 'FighterMain';
+
     /**
      * 类型 Assister。
      *
      * @default Assister
      */
     public static const ASSISTER:String = 'Assister';
+
     /**
      * 类型 Bullet。
      *
      * @default Bullet
      */
     public static const BULLET:String = 'Bullet';
+
     /**
      * 类型 FighterAttacker。
      *
      * @default FighterAttacker
      */
     public static const FIGHTER_ATTACKER:String = 'FighterAttacker';
+
     /**
      * 未知类型。
      *
      * @default Unknown
      */
     public static const UNKNOWN:String = 'Unknown';
-
 }
 }

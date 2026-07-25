@@ -33,12 +33,17 @@ import net.play5d.game.bvn.interfaces.IComponents;
  */
 public class BaseComponent extends MovieClip implements IComponents {
 
-    /////////////// 静态方法 ///////////////
+    /** @private 游戏元件实体 */
+    protected var _gameSpriteEntity:GameSpriteEntity;
 
-    ///////////////////////////////////////
+    /** @private 自身类引用 */
+    protected var $self:* = null;
 
+    /** @private 对手主人类引用（FighterMain） */
+    protected var $target:* = null;
 
-    /////////////// 构造方法 ///////////////
+    /** @private 最顶主人类引用（FighterMain） */
+    protected var $owner:* = null;
 
     /**
      * 构造方法。
@@ -51,11 +56,6 @@ public class BaseComponent extends MovieClip implements IComponents {
         _gameSpriteEntity = new GameSpriteEntity(this);
         addFrameScript(0, init);
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 实现接口 ///////////////
 
     /**
      * @inheritDoc
@@ -78,36 +78,6 @@ public class BaseComponent extends MovieClip implements IComponents {
             _gameSpriteEntity = null;
         }
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有属性 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有属性 ///////////////
-
-    /** @private 游戏元件实体 */
-    protected var _gameSpriteEntity:GameSpriteEntity;
-
-    /** @private 自身类引用 */
-    protected var $self:* = null;
-    /** @private 对手主人类引用（FighterMain） */
-    protected var $target:* = null;
-    /** @private 最顶主人类引用（FighterMain） */
-    protected var $owner:* = null;
-
-    ///////////////////////////////////////
-
-
-    /////////// Getter & Setter ///////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有方法 ///////////////
 
     /**
      * 初始化。
@@ -132,11 +102,6 @@ public class BaseComponent extends MovieClip implements IComponents {
     public function doAction():void {
     }
 
-    ///////////////////////////////////////
-
-
-    /////////////// 私有方法 ///////////////
-
     /**
      * 绑定游戏上下文引用。
      *
@@ -158,7 +123,5 @@ public class BaseComponent extends MovieClip implements IComponents {
     protected function hidden():void {
         visible = false;
     }
-
-    ///////////////////////////////////////
 }
 }

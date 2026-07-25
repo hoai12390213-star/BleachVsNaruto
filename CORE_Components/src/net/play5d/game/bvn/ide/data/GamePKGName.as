@@ -27,6 +27,7 @@ public class GamePKGName {
 
     /** @private 包路径前缀 */
     private static const PREF:String = 'net.play5d.game.bvn.';
+
     /** @private 包路径后缀 */
     private static const SUF:String = '::';
 
@@ -34,10 +35,10 @@ public class GamePKGName {
      * fighter 包路径前缀。
      */
     public static const FIGHTER:String = PREF + 'fighter' + SUF;
+
     /**
      * ctrler.game_ctrls 包路径前缀。
      */
     public static const CTRLER_GAMECTRLS:String = PREF + 'ctrler.game_ctrls' + SUF;
-
 }
 }

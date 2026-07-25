@@ -31,12 +31,22 @@ import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
  */
 public class BaseEffect extends BaseComponent {
 
-    /////////////// 静态方法 ///////////////
+    /**
+     * 标题文本。
+     *
+     * @default null
+     */
+    public var titleTxt:TextField = getChildByName('titleTxt') as TextField;
 
-    ///////////////////////////////////////
+    /**
+     * 预览文字文本。
+     *
+     * @default null
+     */
+    public var textTxt:TextField = getChildByName('textTxt') as TextField;
 
-
-    /////////////// 构造方法 ///////////////
+    /** @private 特效控制器 */
+    protected var _effectCtrler:* = null;
 
     /**
      * 构造方法。
@@ -44,11 +54,6 @@ public class BaseEffect extends BaseComponent {
     public function BaseEffect() {
         super();
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 实现接口 ///////////////
 
     /**
      * @inheritDoc
@@ -62,37 +67,6 @@ public class BaseEffect extends BaseComponent {
         super.destroy();
     }
 
-    ///////////////////////////////////////
-
-
-    /////////////// 公有属性 ///////////////
-
-    /**
-     * 标题文本。
-     *
-     * @default null
-     */
-    public var titleTxt:TextField = getChildByName('titleTxt') as TextField;
-    /**
-     * 预览文字文本。
-     *
-     * @default null
-     */
-    public var textTxt:TextField = getChildByName('textTxt') as TextField;
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有属性 ///////////////
-
-    /** @private 特效控制器（$effect_ctrler） */
-    protected var _effectCtrler:* = null;
-
-    ///////////////////////////////////////
-
-
-    /////////// Getter & Setter ///////////
-
     /**
      * 标题文本内容。
      *
@@ -101,6 +75,7 @@ public class BaseEffect extends BaseComponent {
     public function get title():String {
         return titleTxt ? titleTxt.text : '';
     }
+
     /** @private */
     public function set title(v:String):void {
         if (titleTxt) {
@@ -116,15 +91,11 @@ public class BaseEffect extends BaseComponent {
     public function get text():String {
         return textTxt ? textTxt.text : '';
     }
+
     /** @private */
     public function set text(v:String):void {
         updatePreviewText(v);
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有方法 ///////////////
 
     /**
      * 第一帧要执行的代码。
@@ -146,11 +117,6 @@ public class BaseEffect extends BaseComponent {
         super.doAction();
     }
 
-    ///////////////////////////////////////
-
-
-    /////////////// 私有方法 ///////////////
-
     /**
      * 更新检查器预览文字。
      *
@@ -163,7 +129,7 @@ public class BaseEffect extends BaseComponent {
     }
 
     /**
-     * 安全调用效果控制器方法（动态属性能力检查）。
+     * 安全调用效果控制器方法。
      *
      * @param methodName 方法名。
      * @param args 参数列表。
@@ -195,13 +161,9 @@ public class BaseEffect extends BaseComponent {
         return false;
     }
 
-    /**
-     * @private 解析 FighterMain 的 $effect_ctrler。
-     */
+    /** @private */
     private function initEffectCtrler():void {
         _effectCtrler = IdeRuntimeUtils.findEffectCtrler(this);
     }
-
-    ///////////////////////////////////////
 }
 }

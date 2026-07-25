@@ -28,12 +28,11 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
  */
 public class ShakeEffect extends BaseEffect {
 
-    /////////////// 静态方法 ///////////////
+    /** @private X 轴震动幅度 */
+    private var _powX:Number = 0;
 
-    ///////////////////////////////////////
-
-
-    /////////////// 构造方法 ///////////////
+    /** @private Y 轴震动幅度 */
+    private var _powY:Number = 0;
 
     /**
      * 构造方法。
@@ -41,31 +40,6 @@ public class ShakeEffect extends BaseEffect {
     public function ShakeEffect() {
         super.title = '效果_震动';
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 实现接口 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有属性 ///////////////
-
-    ///////////////////////////////////////
-
-
-    /////////////// 私有属性 ///////////////
-
-    /** @private X 轴震动幅度 */
-    private var _powX:Number = 0;
-    /** @private Y 轴震动幅度 */
-    private var _powY:Number = 0;
-
-    ///////////////////////////////////////
-
-
-    /////////// Getter & Setter ///////////
 
     /**
      * X 轴震动幅度。
@@ -76,6 +50,7 @@ public class ShakeEffect extends BaseEffect {
     public function get powX():Number {
         return _powX;
     }
+
     /** @private */
     [Inspectable(name='powX', type='Number', defaultValue=0)]
     public function set powX(v:Number):void {
@@ -92,17 +67,13 @@ public class ShakeEffect extends BaseEffect {
     public function get powY():Number {
         return _powY;
     }
+
     /** @private */
     [Inspectable(name='powY', type='Number', defaultValue=0)]
     public function set powY(v:Number):void {
         _powY = v;
         refreshPreview();
     }
-
-    ///////////////////////////////////////
-
-
-    /////////////// 公有方法 ///////////////
 
     /**
      * @inheritDoc
@@ -111,17 +82,9 @@ public class ShakeEffect extends BaseEffect {
         invokeEffect('shake', [_powX, _powY]);
     }
 
-    ///////////////////////////////////////
-
-
-    /////////////// 私有方法 ///////////////
-
-    /** @private 刷新检查器预览文字 */
+    /** @private */
     private function refreshPreview():void {
         updatePreviewText('(' + _powX + ', ' + _powY + ')');
     }
-
-    ///////////////////////////////////////
-
 }
 }
