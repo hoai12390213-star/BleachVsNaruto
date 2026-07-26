@@ -84,7 +84,7 @@ public class BishaEffect extends BaseEffect {
      * @inheritDoc
      */
     override public function doAction():void {
-        if (!validateParam('face', _face)) {
+        if (!validateParam('必杀特写 id', _face)) {
             return;
         }
 
