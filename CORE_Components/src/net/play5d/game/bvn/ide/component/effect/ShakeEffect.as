@@ -52,7 +52,7 @@ public class ShakeEffect extends BaseEffect {
     }
 
     /** @private */
-    [Inspectable(name='powX', type='Number', defaultValue=0)]
+    [Inspectable(name='X 轴震动幅度', type='Number', defaultValue=0)]
     public function set powX(v:Number):void {
         _powX = v;
         refreshPreview();
@@ -69,7 +69,7 @@ public class ShakeEffect extends BaseEffect {
     }
 
     /** @private */
-    [Inspectable(name='powY', type='Number', defaultValue=0)]
+    [Inspectable(name='Y 轴震动幅度', type='Number', defaultValue=0)]
     public function set powY(v:Number):void {
         _powY = v;
         refreshPreview();
@@ -84,7 +84,7 @@ public class ShakeEffect extends BaseEffect {
 
     /** @private */
     private function refreshPreview():void {
-        updatePreviewText('(' + _powX + ', ' + _powY + ')');
+        updateCallPreview('shake', [_powX, _powY]);
     }
 }
 }
