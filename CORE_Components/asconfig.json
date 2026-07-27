@@ -47,7 +47,8 @@
 
         // Merged
         "library-path": [
-            "../out/production/CORE_Shared/CORE_Shared.swc"
+            "../out/production/CORE_Shared/CORE_Shared.swc",
+            "../out/production/LIB_KyoLib/LIB_KyoLib.swc"
         ],
         // External
         "external-library-path": [

@@ -36,6 +36,7 @@
 		<!-- Merged -->
 		<library-path append="true">
 			<path-element>../out/production/CORE_Shared/CORE_Shared.swc</path-element>
+			<path-element>../out/production/LIB_KyoLib/LIB_KyoLib.swc</path-element>
 		</library-path>
 		
 		<!-- External -->
