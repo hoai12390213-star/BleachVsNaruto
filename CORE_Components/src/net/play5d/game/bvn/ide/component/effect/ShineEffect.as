@@ -52,17 +52,10 @@ public class ShineEffect extends BaseEffect {
     }
 
     /** @private */
-    [Inspectable(name='color', type='Color', defaultValue='ffffff')]
+    [Inspectable(name='闪光颜色', type='Color', defaultValue='ffffff')]
     public function set color(v:uint):void {
         _color = v;
-
-        updatePreviewText(ColorUtils.dec2hex(_color));
-
-        if (textTxt) {
-            var textFormat:TextFormat = new TextFormat();
-            textFormat.color          = _color;
-            textTxt.setTextFormat(textFormat);
-        }
+        refreshPreview();
     }
 
     /**
@@ -70,6 +63,11 @@ public class ShineEffect extends BaseEffect {
      */
     override public function doAction():void {
         invokeEffect('shine', [_color]);
+    }
+
+    /** @private */
+    private function refreshPreview():void {
+        updateCallPreview('shine', [_color]);
     }
 }
 }
