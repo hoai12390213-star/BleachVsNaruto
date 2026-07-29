@@ -17,20 +17,35 @@
  */
 
 package net.play5d.game.bvn.ide.component.effect {
+import net.play5d.game.bvn.data.fighter.FighterHitFloorType;
 import net.play5d.game.bvn.ide.component.BaseEffect;
 
 /**
  * 击落地特效 IDE 组件。
  *
  * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.hitFloor</code>。</p>
- * <p><code>type</code>：0=弹，1=正常落地，2=重落地。</p>
+ * <p>检查器「落地类型」为中文枚举，运行时映射为 <code>FighterHitFloorType</code>。</p>
  *
+ * @see net.play5d.game.bvn.data.fighter.FighterHitFloorType
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
 public class HitFloorEffect extends BaseEffect {
 
-    /** @private 落地类型 */
-    private var _type:int = 1;
+    /** @private 检查器枚举文案（与 TYPES 下标对齐） */
+    private static const LABELS:Array = ['弹起', '正常', '重击'];
+
+    /** @private 落地类型常量（与 LABELS 下标对齐） */
+    private static const TYPES:Array = [
+        FighterHitFloorType.TAN,
+        FighterHitFloorType.NORMAL,
+        FighterHitFloorType.HEAVY
+    ];
+
+    /** @private 落地类型（FighterHitFloorType） */
+    private var _type:int = FighterHitFloorType.NORMAL;
+
+    /** @private 落地类型检查器文案 */
+    private var _typeLabel:String = '正常';
 
     /** @private 震动幅度 */
     private var _shakePow:Number = 0;
@@ -44,21 +59,28 @@ public class HitFloorEffect extends BaseEffect {
     }
 
     /**
-     * 落地类型。
+     * 落地类型（检查器文案）。
      *
-     * <p>0=弹，1=正常落地，2=重落地。</p>
+     * <p>可选：弹起 / 正常 / 重击，对应 <code>FighterHitFloorType</code> 的 0 / 1 / 2。</p>
      *
-     * @return 类型值。
-     * @default 1
+     * @return 当前文案。
+     * @default 正常
      */
-    public function get type():int {
-        return _type;
+    public function get type():String {
+        return _typeLabel;
     }
 
     /** @private */
-    [Inspectable(name='落地类型（0=弹，1=正常落地，2=重落地）', type='Number', defaultValue=1)]
-    public function set type(v:int):void {
-        _type = v;
+    [Inspectable(name='落地类型', type='String', enumeration='弹起,正常,重击', defaultValue='正常')]
+    public function set type(v:String):void {
+        var label:String = v ? v : '';
+        var idx:int      = LABELS.indexOf(label);
+
+        _typeLabel = label;
+        if (idx >= 0) {
+            _type = TYPES[idx];
+        }
+
         refreshPreview();
     }
 
@@ -83,7 +105,7 @@ public class HitFloorEffect extends BaseEffect {
      * @inheritDoc
      */
     override public function doAction():void {
-        if (!validateParam('落地类型', _type, [0, 1, 2])) {
+        if (!validateParam('落地类型', _typeLabel, LABELS)) {
             return;
         }
 
@@ -92,7 +114,7 @@ public class HitFloorEffect extends BaseEffect {
 
     /** @private */
     private function refreshPreview():void {
-        if (!validateParam('落地类型', _type, [0, 1, 2])) {
+        if (!validateParam('落地类型', _typeLabel, LABELS)) {
             return;
         }
 

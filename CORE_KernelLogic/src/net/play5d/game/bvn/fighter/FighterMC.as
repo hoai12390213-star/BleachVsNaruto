@@ -22,6 +22,7 @@ import flash.display.MovieClip;
 import flash.geom.Rectangle;
 
 import net.play5d.game.bvn.GameConfig;
+import net.play5d.game.bvn.data.fighter.FighterHitFloorType;
 import net.play5d.game.bvn.fighter.ctrler.FighterMcCtrler;
 import net.play5d.game.bvn.data.fighter.FighterActionState;
 import net.play5d.game.bvn.data.fighter.FighterHitRange;
@@ -345,7 +346,7 @@ public class FighterMC {
 
         goFrame(FighterSpecialFrame.HURT_TAN, false, 0, {call: playHurtDown2, delay: 2});
 
-        _mcCtrler.effectCtrler.hitFloor(1, 2);
+        _mcCtrler.effectCtrler.hitFloor(FighterHitFloorType.NORMAL, 2);
 
         _fighter.setDamping(GameConfig.HIT_FLOOR_DAMPING_X);
     }
@@ -536,7 +537,7 @@ public class FighterMC {
                     vecy = 5;
                 }
 
-                _mcCtrler.effectCtrler.hitFloor(2, vecy);
+                _mcCtrler.effectCtrler.hitFloor(FighterHitFloorType.HEAVY, vecy);
 
             }
             else {
@@ -565,7 +566,7 @@ public class FighterMC {
                     vecy = 3;
                 }
 
-                _mcCtrler.effectCtrler.hitFloor(0, vecy);
+                _mcCtrler.effectCtrler.hitFloor(FighterHitFloorType.TAN, vecy);
             }
             break;
         case 3: //弹起
@@ -581,7 +582,7 @@ public class FighterMC {
             _hurtDownFrame = GameConfig.HIT_DOWN_FRAME;
             _hurtFlyState  = 4;
 
-            _mcCtrler.effectCtrler.hitFloor(1, 1);
+            _mcCtrler.effectCtrler.hitFloor(FighterHitFloorType.NORMAL, 1);
 
             _fighter.actionState = FighterActionState.HURT_DOWN;
             FighterEventDispatcher.dispatchEvent(_fighter, FighterEvent.HURT_DOWN);

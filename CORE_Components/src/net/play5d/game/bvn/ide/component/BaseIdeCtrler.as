@@ -316,15 +316,15 @@ public class BaseIdeCtrler extends BaseComponent {
 
         if (expected == null) {
             ok  = !isBlankParam(value);
-            tip = '参数错误: ' + name + ' 不能为空';
+            tip = '参数错误: [' + name + '] 不能为空';
         }
         else if (expected is Array) {
             ok  = (expected as Array).indexOf(value) != -1;
-            tip = '参数错误: ' + name + ' 须为 ' + (expected as Array).join('/');
+            tip = '参数错误: [' + name + '] 须为 ' + (expected as Array).join('/');
         }
         else {
             ok  = value == expected;
-            tip = '参数错误: ' + name + ' 须为 ' + expected;
+            tip = '参数错误: [' + name + '] 须为 ' + expected;
         }
 
         if (ok) {
