@@ -57,6 +57,18 @@ function initFighter(param:Object):void {
 
 时间轴等价用法：`parent.$effect_ctrler.shine()`；组件侧：`IdeRuntimeUtils.findXxxCtrler(this)`。
 
+皮肤约定（Animate）：
+
+```
+ComponentRoot
+  └── mc        // 公用「模板」实例
+        ├── titleTxt
+        ├── textTxt
+        └── bg  // 「背景」元件实例；随预览文字自动拉宽
+```
+
+缺 `mc` 时基类回退到根节点查找同名子级。
+
 ---
 
 ## 类职责速查
@@ -69,7 +81,21 @@ function initFighter(param:Object):void {
 | `BaseFighter` | `$fighter_ctrler` + `invokeFighter` |
 | `BaseMc` | `$mc_ctrler` + `invokeMc` |
 | `BaseCamera` | `$camera_ctrler` + `invokeCamera` |
-| `ShineEffect` / `ShakeEffect` | Inspectable 参数 + 调用 shine/shake |
+| `ShineEffect` / `ShakeEffect` | Inspectable + shine/shake |
+| `DashEffect` | `dash(playSound)` |
+| `WalkEffect` / `JumpEffect` / `JumpAirEffect` / `TouchFloorEffect` | 无参一帧特效 |
+| `HitFloorEffect` | `hitFloor(type, shakePow)` |
+| `SlowDownEffect` | `slowDown(time)` |
+| `EnergyExplodeEffect` / `ReplaceSkillEffect` | 无参一帧特效 |
+| `StartShakeEffect` / `EndShakeEffect` | 持续震动成对 |
+| `ShadowEffect` / `EndShadowEffect` | 残影成对（r/g/b） |
+| `GlowEffect` / `EndGlowEffect` | 发光成对（color） |
+| `GhostStepEffect` / `EndGhostStepEffect` | 幽步成对（内部连带残影） |
+| `BishaEffect` / `EndBishaEffect` | 必杀特写成对（isSuper / face id） |
+| `WanKaiEffect` / `EndWanKaiEffect` | 万解成对（face id → `startWanKai`） |
+| `FollowEffect` | `addFollowEffect(mcName, isUnderBody)`；mcName=角色主 MC 子实例名 |
+| `BaseIdeCtrler.validateParam` | 校验非空 / 特定值 / 枚举之一；失败红色完整提示（随 bg 自动拉宽） |
+| `BaseIdeCtrler.updateCallPreview` | 参数正确时显示 `parent.$xxx_ctrler.method(...)` |
 | `IdeRuntimeUtils` | parent 链查找与动态方法校验 |
 | `GameSpriteEntity` | 通用 `$self/$target/$owner` 解析（ctrler 主路径不再依赖） |
 
