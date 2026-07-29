@@ -28,6 +28,7 @@
         // SHELL_Dev 依赖链（与 build.bat 最小链一致，不含 CORE_Components）：
         //   LIB_Other -> LIB_KyoLib(+embed) -> CORE_Shared(+embed)
         //   -> CORE_KernelLogic -> CORE_Utils -> SyncAssets -> SHELL_Dev
+        // CORE_Components 独立 task：LIB_KyoLib + CORE_Shared -> Components
 
         // SHELL_Dev
         {
@@ -59,6 +60,7 @@
             "problemMatcher": [],
             "dependsOrder"  : "sequence",
             "dependsOn"     :[
+                "ActionScript: compile debug - LIB_KyoLib/asconfig.json",
                 "ActionScript: compile debug - CORE_Shared/asconfig.json"
             ]
         },

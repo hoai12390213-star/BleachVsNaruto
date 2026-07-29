@@ -10,7 +10,7 @@
 |---|------|
 | 1 | **SHELL_* 最小编译链**（与 VSCode `SHELL_Dev` task 一致）：`LIB_Other → LIB_KyoLib → CORE_Shared → CORE_KernelLogic → CORE_Utils → sync → SHELL_*` |
 | 2 | `CORE_Shared` 与 `LIB_KyoLib` **无互相编译依赖**；链上先 KyoLib 再 Shared 仅为统一习惯 |
-| 3 | `CORE_Components` **仅依赖** `CORE_Shared`；**SHELL_* 不依赖**它。`build.bat` 仍编译它（供组件/XFL 消费） |
+| 3 | `CORE_Components` **依赖** `CORE_Shared` + `LIB_KyoLib`（Merged）；**SHELL_* 不依赖**它。`build.bat` 仍编译它（供组件/XFL 消费） |
 | 4 | ASDoc embed：`LIB_KyoLib`、`CORE_Shared` 各在 **本模块 compc 成功后**（`build.bat` / VSCode）；IDEA 在 **Make 之后** 一次跑 `embed_asdoc_libs.bat` |
 | 5 | 改依赖顺序时同步三处：`tools/script/build.bat` 的 `LIB_MODULES`、`.vscode/tasks.json`、本文 |
 
@@ -28,7 +28,7 @@
 LIB_Other
    └─► LIB_KyoLib ──► CORE_KernelLogic ──► CORE_Utils ──► SHELL_*
 CORE_Shared ──────────► CORE_KernelLogic ──┘                ▲
-   └─► CORE_Components（旁路，SHELL 不用）                  │
+   └─► CORE_Components ◄── LIB_KyoLib（旁路，SHELL 不用）   │
 sync.bat / shared assets ───────────────────────────────────┘
 ```
 
@@ -37,7 +37,7 @@ sync.bat / shared assets ──────────────────�
 | `LIB_Other` | （叶） |
 | `LIB_KyoLib` | include `LIB_Other.swc` |
 | `CORE_Shared` | （无其它工程库） |
-| `CORE_Components` | merge `CORE_Shared.swc` |
+| `CORE_Components` | merge `CORE_Shared.swc` + `LIB_KyoLib.swc` |
 | `CORE_KernelLogic` | merge `LIB_KyoLib` + `CORE_Shared` |
 | `CORE_Utils` | merge `LIB_KyoLib` + `CORE_KernelLogic` |
 | `SHELL_*` | merge KernelLogic + KyoLib + Utils + Shared（+ Dev 本地 `lib/swc`） |
@@ -51,7 +51,7 @@ sync.bat / shared assets ──────────────────�
 | LIB_Other | ✓ | ✓（经 KyoLib task） | ✓ Make |
 | LIB_KyoLib + embed | ✓ 紧随 compc | ✓ 紧随 compc | Embed **在 Make 后** |
 | CORE_Shared + embed | ✓ 紧随 compc | ✓ 紧随 compc | 同上（`EmbedLibsAsDoc`） |
-| CORE_Components | ✓ | ✗（SHELL 链跳过） | ✓ 若模块在工程内 |
+| CORE_Components | ✓（依赖 KyoLib+Shared） | ✓ 独立 task（depends KyoLib+Shared） | ✓ 若模块在工程内 |
 | KernelLogic / Utils | ✓ | ✓ | ✓ Make |
 | sync | 库后、壳前 | 壳 task 末依赖 | **Make 前** SyncAssets |
 | SHELL | amxmlc Dev | asconfig Dev | Make |
