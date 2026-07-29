@@ -10,7 +10,7 @@
 |----|------|
 | 角色 | Animate 可拖拽组件类，供 `BleachVsNaruto_FlashSrc/.../#swc/component`（`component.xfl`） |
 | 不是 | 游戏内 ECS / SHELL 运行时模块 |
-| 编译依赖 | 仅 Merged `CORE_Shared`（`IComponents`）；**禁止**编译期依赖 KernelLogic |
+| 编译依赖 | Merged `CORE_Shared` + `LIB_KyoLib`；**禁止**编译期依赖 KernelLogic |
 | 运行契约 | FighterMain `main_mc.initFighter` 注入动态属性；组件沿 parent 链读取 |
 
 ---
@@ -22,7 +22,7 @@
 | 1 | 效果/动作/镜头等组件聚焦 **FighterMain 时间轴**：只认对应 `$xxx_ctrler` |
 | 2 | 动态属性调用前做能力检查：`hasMethod` / `requireMethods`；缺注入或无方法须 `trace` 诊断，禁止静默空操作无日志 |
 | 3 | 调用走对应 Base：`invokeEffect` / `invokeFighter` / `invokeMc` / `invokeCamera`（均基于 `BaseIdeCtrler.invokeCtrler`） |
-| 4 | 新组件：继承对应 Base，`doAction` 里 invoke；保持 XFL linkage 类名稳定 |
+| 4 | 新组件：继承对应 Base；无参效果优先 `bindNoArgCall`；保持 XFL linkage 类名稳定 |
 | 5 | 注释仅标准 ASDoc（见 [`comment.md`](comment.md)）；无分区横幅、无复述式 `//` |
 | 6 | 注入属性名与 KernelLogic `initFighter` 参数对齐：`$fighter_ctrler` / `$mc_ctrler` / `$effect_ctrler` / `$camera_ctrler` |
 
@@ -75,29 +75,19 @@ ComponentRoot
 
 | 类 | 职责 |
 |----|------|
-| `BaseComponent` | 一帧生命周期：`init` → hide → `doAction` → `destroy` |
-| `BaseIdeCtrler` | 检查器预览 + `resolveCtrler` / `invokeCtrler` |
-| `BaseEffect` | `$effect_ctrler` + `invokeEffect` |
+| `BaseComponent` | 一帧生命周期；`GameSpriteEntity` 仅在 `bindContext` 惰性创建 |
+| `BaseIdeCtrler` | 皮肤预览 + `validateParam` / `updateCallPreview` / `invokeCtrler` |
+| `BaseEffect` | `$effect_ctrler`；无参用 `bindNoArgCall` |
 | `BaseFighter` | `$fighter_ctrler` + `invokeFighter` |
 | `BaseMc` | `$mc_ctrler` + `invokeMc` |
 | `BaseCamera` | `$camera_ctrler` + `invokeCamera` |
-| `ShineEffect` / `ShakeEffect` | Inspectable + shine/shake |
-| `DashEffect` | `dash(playSound)` |
-| `WalkEffect` / `JumpEffect` / `JumpAirEffect` / `TouchFloorEffect` | 无参一帧特效 |
-| `HitFloorEffect` | `hitFloor(type, shakePow)` |
-| `SlowDownEffect` | `slowDown(time)` |
-| `EnergyExplodeEffect` / `ReplaceSkillEffect` | 无参一帧特效 |
-| `StartShakeEffect` / `EndShakeEffect` | 持续震动成对 |
-| `ShadowEffect` / `EndShadowEffect` | 残影成对（r/g/b） |
-| `GlowEffect` / `EndGlowEffect` | 发光成对（color） |
-| `GhostStepEffect` / `EndGhostStepEffect` | 幽步成对（内部连带残影） |
-| `BishaEffect` / `EndBishaEffect` | 必杀特写成对（isSuper / face id） |
-| `WanKaiEffect` / `EndWanKaiEffect` | 万解成对（face id → `startWanKai`） |
-| `FollowEffect` | `addFollowEffect(mcName, isUnderBody)`；mcName=角色主 MC 子实例名 |
-| `BaseIdeCtrler.validateParam` | 校验非空 / 特定值 / 枚举之一；失败红色完整提示（随 bg 自动拉宽） |
-| `BaseIdeCtrler.updateCallPreview` | 参数正确时显示 `parent.$xxx_ctrler.method(...)` |
+| 无参效果（Walk/Jump/…/End*） | `bindNoArgCall(title, method)` |
+| 带参效果 | Inspectable + `refreshPreview` → `updateCallPreview`；颜色用 `ColorUtils.asLiteral` |
+| `BaseIdeCtrler.validateParam` | 校验非空 / 特定值 / 枚举；失败红色完整提示 |
+| `BaseIdeCtrler.updateCallPreview` | 显示 `parent.$xxx_ctrler.method(...)` |
 | `IdeRuntimeUtils` | parent 链查找与动态方法校验 |
-| `GameSpriteEntity` | 通用 `$self/$target/$owner` 解析（ctrler 主路径不再依赖） |
+| `GameSpriteEntity` | `$self/$target/$owner`（IdeCtrler 主路径不调用） |
+| `ColorUtils` | 预览用；`dec2hex`→`KyoColor.toHex`；`asLiteral`→`0x…` |
 
 ---
 
