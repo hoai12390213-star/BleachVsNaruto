@@ -17,9 +17,15 @@
  */
 
 package net.play5d.game.bvn.ide.utils {
+import net.play5d.kyo.utils.KyoColor;
 
 /**
- * 颜色相关实用工具。
+ * IDE 组件预览用颜色工具。
+ *
+ * <p><code>#RRGGBB</code> 委托 <code>KyoColor.toHex</code>；
+ * <code>asLiteral</code> 为时间轴预览专用（<code>0xrrggbb</code>）。</p>
+ *
+ * @see net.play5d.kyo.utils.KyoColor#toHex()
  */
 public class ColorUtils {
 
@@ -35,18 +41,14 @@ public class ColorUtils {
      * </listing>
      */
     public static function dec2hex(color:uint):String {
-        var hex:String = color.toString(16).toUpperCase();
-        while (hex.length < 6) {
-            hex = '0' + hex;
-        }
-        return '#' + hex;
+        return KyoColor.toHex(color);
     }
 
     /**
      * 颜色转 AS 十六进制字面量。
      *
      * @param color 颜色值。
-     * @return 形如 <code>0xffffff</code> 的字符串。
+     * @return 形如 <code>0xffffff</code> 的字符串（小写，无引号）。
      *
      * @example
      * <listing version="3.0">
@@ -54,11 +56,7 @@ public class ColorUtils {
      * </listing>
      */
     public static function asLiteral(color:uint):String {
-        var hex:String = color.toString(16);
-        while (hex.length < 6) {
-            hex = '0' + hex;
-        }
-        return '0x' + hex;
+        return '0x' + KyoColor.toHex(color).substring(1).toLowerCase();
     }
 }
 }
