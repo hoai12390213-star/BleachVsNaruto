@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 结束必杀特写 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.endBisha</code>。配对 <code>BishaEffect</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.endBisha</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.BishaEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -33,15 +33,7 @@ public class EndBishaEffect extends BaseEffect {
      * 构造方法。
      */
     public function EndBishaEffect() {
-        super.title = '效果_结束必杀';
-        updateCallPreview('endBisha');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('endBisha');
+        bindNoArgCall('效果_结束必杀', 'endBisha');
     }
 }
 }

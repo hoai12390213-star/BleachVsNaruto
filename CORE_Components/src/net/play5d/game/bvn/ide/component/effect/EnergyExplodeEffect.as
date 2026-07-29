@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 灵压爆发特效 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.energyExplode</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.energyExplode</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -32,15 +32,7 @@ public class EnergyExplodeEffect extends BaseEffect {
      * 构造方法。
      */
     public function EnergyExplodeEffect() {
-        super.title = '效果_灵压爆发';
-        updateCallPreview('energyExplode');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('energyExplode');
+        bindNoArgCall('效果_灵压爆发', 'energyExplode');
     }
 }
 }

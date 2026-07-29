@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 结束幽步 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.endGhostStep</code>。配对 <code>GhostStepEffect</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.endGhostStep</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.GhostStepEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -33,15 +33,7 @@ public class EndGhostStepEffect extends BaseEffect {
      * 构造方法。
      */
     public function EndGhostStepEffect() {
-        super.title = '效果_结束幽步';
-        updateCallPreview('endGhostStep');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('endGhostStep');
+        bindNoArgCall('效果_结束幽步', 'endGhostStep');
     }
 }
 }

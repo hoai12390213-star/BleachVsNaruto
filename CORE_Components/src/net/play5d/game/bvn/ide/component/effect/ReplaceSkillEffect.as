@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 替身术特效 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.replaceSkill</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.replaceSkill</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -32,15 +32,7 @@ public class ReplaceSkillEffect extends BaseEffect {
      * 构造方法。
      */
     public function ReplaceSkillEffect() {
-        super.title = '效果_替身术';
-        updateCallPreview('replaceSkill');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('replaceSkill');
+        bindNoArgCall('效果_替身术', 'replaceSkill');
     }
 }
 }

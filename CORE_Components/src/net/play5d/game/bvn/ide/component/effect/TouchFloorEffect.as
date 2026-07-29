@@ -20,9 +20,9 @@ package net.play5d.game.bvn.ide.component.effect {
 import net.play5d.game.bvn.ide.component.BaseEffect;
 
 /**
- * 落地特效 IDE 组件。
+ * 触地特效 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.touchFloor</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.touchFloor</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -32,15 +32,7 @@ public class TouchFloorEffect extends BaseEffect {
      * 构造方法。
      */
     public function TouchFloorEffect() {
-        super.title = '效果_落地';
-        updateCallPreview('touchFloor');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('touchFloor');
+        bindNoArgCall('效果_触地', 'touchFloor');
     }
 }
 }

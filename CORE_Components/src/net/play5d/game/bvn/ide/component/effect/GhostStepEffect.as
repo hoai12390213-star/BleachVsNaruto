@@ -22,8 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 开始幽步 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.ghostStep</code>。需配对 <code>EndGhostStepEffect</code>。</p>
- * <p>控制器内部会开启蓝色残影，结束时由 <code>endGhostStep</code> 一并关闭。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.ghostStep</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.EndGhostStepEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -34,15 +33,7 @@ public class GhostStepEffect extends BaseEffect {
      * 构造方法。
      */
     public function GhostStepEffect() {
-        super.title = '效果_幽步';
-        updateCallPreview('ghostStep');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('ghostStep');
+        bindNoArgCall('效果_幽步', 'ghostStep');
     }
 }
 }

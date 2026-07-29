@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 结束发光 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.endGlow</code>。配对 <code>GlowEffect</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.endGlow</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.GlowEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -33,15 +33,7 @@ public class EndGlowEffect extends BaseEffect {
      * 构造方法。
      */
     public function EndGlowEffect() {
-        super.title = '效果_结束发光';
-        updateCallPreview('endGlow');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('endGlow');
+        bindNoArgCall('效果_结束发光', 'endGlow');
     }
 }
 }

@@ -26,14 +26,14 @@ import net.play5d.game.bvn.interfaces.IComponents;
  * Animate IDE 组件基类（类，非 interface）。
  *
  * <p>生命周期：构造挂接第 0 帧，再执行 <code>init</code>（隐藏 → <code>doAction</code> → <code>destroy</code>）。</p>
- * <p><code>$self</code> / <code>$target</code> / <code>$owner</code> 在 <code>init</code> 时懒绑定。</p>
+ * <p><code>$self</code> / <code>$target</code> / <code>$owner</code> 在 <code>bindContext</code> 时惰性解析。</p>
  *
  * @see net.play5d.game.bvn.interfaces.IComponents
  * @see net.play5d.game.bvn.ide.entity.GameSpriteEntity
  */
 public class BaseComponent extends MovieClip implements IComponents {
 
-    /** @private 游戏元件实体 */
+    /** @private 游戏元件实体（惰性创建） */
     protected var _gameSpriteEntity:GameSpriteEntity;
 
     /** @private 自身类引用 */
@@ -53,7 +53,6 @@ public class BaseComponent extends MovieClip implements IComponents {
             return;
         }
 
-        _gameSpriteEntity = new GameSpriteEntity(this);
         addFrameScript(0, init);
     }
 
@@ -105,11 +104,13 @@ public class BaseComponent extends MovieClip implements IComponents {
     /**
      * 绑定游戏上下文引用。
      *
+     * <p>仅在需要 <code>$self</code> / <code>$target</code> / <code>$owner</code> 时创建实体。</p>
+     *
      * @see net.play5d.game.bvn.ide.entity.GameSpriteEntity
      */
     protected function bindContext():void {
         if (!_gameSpriteEntity) {
-            return;
+            _gameSpriteEntity = new GameSpriteEntity(this);
         }
 
         $self   = _gameSpriteEntity.self;

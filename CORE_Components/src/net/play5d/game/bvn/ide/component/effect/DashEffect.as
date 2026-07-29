@@ -36,7 +36,7 @@ public class DashEffect extends BaseEffect {
      */
     public function DashEffect() {
         super.title = '效果_瞬步';
-        updateCallPreview('dash', [_playSound]);
+        refreshPreview();
     }
 
     /**
@@ -53,7 +53,7 @@ public class DashEffect extends BaseEffect {
     [Inspectable(name='是否播放音效', type='Boolean', defaultValue=true)]
     public function set playSound(v:Boolean):void {
         _playSound = v;
-        updateCallPreview('dash', [_playSound]);
+        refreshPreview();
     }
 
     /**
@@ -61,6 +61,11 @@ public class DashEffect extends BaseEffect {
      */
     override public function doAction():void {
         invokeEffect('dash', [_playSound]);
+    }
+
+    /** @private */
+    private function refreshPreview():void {
+        updateCallPreview('dash', [_playSound]);
     }
 }
 }

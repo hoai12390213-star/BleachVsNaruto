@@ -17,8 +17,6 @@
  */
 
 package net.play5d.game.bvn.ide.component.effect {
-import flash.text.TextFormat;
-
 import net.play5d.game.bvn.ide.component.BaseEffect;
 import net.play5d.game.bvn.ide.utils.ColorUtils;
 
@@ -39,6 +37,7 @@ public class ShineEffect extends BaseEffect {
      */
     public function ShineEffect() {
         super.title = '效果_闪光';
+        refreshPreview();
     }
 
     /**
@@ -67,7 +66,7 @@ public class ShineEffect extends BaseEffect {
 
     /** @private */
     private function refreshPreview():void {
-        updateCallPreview('shine', [_color]);
+        updateCallPreview('shine', [ColorUtils.asLiteral(_color)], true);
     }
 }
 }

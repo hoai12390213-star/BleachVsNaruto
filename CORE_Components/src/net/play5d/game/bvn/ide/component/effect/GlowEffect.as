@@ -17,8 +17,6 @@
  */
 
 package net.play5d.game.bvn.ide.component.effect {
-import flash.text.TextFormat;
-
 import net.play5d.game.bvn.ide.component.BaseEffect;
 import net.play5d.game.bvn.ide.utils.ColorUtils;
 
@@ -40,6 +38,7 @@ public class GlowEffect extends BaseEffect {
      */
     public function GlowEffect() {
         super.title = '效果_发光';
+        refreshPreview();
     }
 
     /**
@@ -68,7 +67,7 @@ public class GlowEffect extends BaseEffect {
 
     /** @private */
     private function refreshPreview():void {
-        updateCallPreview('startGlow', [_color]);
+        updateCallPreview('startGlow', [ColorUtils.asLiteral(_color)], true);
     }
 }
 }

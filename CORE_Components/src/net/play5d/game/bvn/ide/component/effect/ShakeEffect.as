@@ -39,6 +39,7 @@ public class ShakeEffect extends BaseEffect {
      */
     public function ShakeEffect() {
         super.title = '效果_震动';
+        refreshPreview();
     }
 
     /**

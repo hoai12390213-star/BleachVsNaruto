@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 空中跳跃特效 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.jumpAir</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.jumpAir</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -32,15 +32,7 @@ public class JumpAirEffect extends BaseEffect {
      * 构造方法。
      */
     public function JumpAirEffect() {
-        super.title = '效果_空中跳跃';
-        updateCallPreview('jumpAir');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('jumpAir');
+        bindNoArgCall('效果_空中跳跃', 'jumpAir');
     }
 }
 }

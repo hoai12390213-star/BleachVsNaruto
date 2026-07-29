@@ -156,13 +156,6 @@ public class BaseIdeCtrler extends BaseComponent {
     }
 
     /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        super.doAction();
-    }
-
-    /**
      * 绑定模板皮肤子节点。
      *
      * <p>优先从 <code>mc</code> 取 <code>titleTxt</code> / <code>textTxt</code> / <code>bg</code>。</p>

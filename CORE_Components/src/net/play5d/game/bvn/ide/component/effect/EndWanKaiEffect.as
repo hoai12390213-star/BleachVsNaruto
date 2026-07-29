@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 结束万解 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.endWanKai</code>。配对 <code>WanKaiEffect</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.endWanKai</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.WanKaiEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -33,15 +33,7 @@ public class EndWanKaiEffect extends BaseEffect {
      * 构造方法。
      */
     public function EndWanKaiEffect() {
-        super.title = '效果_结束万解';
-        updateCallPreview('endWanKai');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('endWanKai');
+        bindNoArgCall('效果_结束万解', 'endWanKai');
     }
 }
 }

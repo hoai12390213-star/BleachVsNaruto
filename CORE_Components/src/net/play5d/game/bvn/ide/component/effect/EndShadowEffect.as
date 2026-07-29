@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 结束残影 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.endShadow</code>。配对 <code>ShadowEffect</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.endShadow</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.ShadowEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -33,15 +33,7 @@ public class EndShadowEffect extends BaseEffect {
      * 构造方法。
      */
     public function EndShadowEffect() {
-        super.title = '效果_结束残影';
-        updateCallPreview('endShadow');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('endShadow');
+        bindNoArgCall('效果_结束残影', 'endShadow');
     }
 }
 }

@@ -36,6 +36,7 @@ public class SlowDownEffect extends BaseEffect {
      */
     public function SlowDownEffect() {
         super.title = '效果_慢放';
+        refreshPreview();
     }
 
     /**
@@ -52,7 +53,7 @@ public class SlowDownEffect extends BaseEffect {
     [Inspectable(name='慢放时长（秒）', type='Number', defaultValue=0)]
     public function set time(v:Number):void {
         _time = v;
-        refreshPreview()
+        refreshPreview();
     }
 
     /**

@@ -23,11 +23,16 @@ import net.play5d.game.bvn.ide.utils.IdeRuntimeUtils;
  * 效果类 IDE 组件基类。
  *
  * <p>仅面向 FighterMain 时间轴：读取 <code>$effect_ctrler</code>。</p>
+ * <p>无参效果可用 <code>bindNoArgCall</code> 一次绑定标题、预览与调用。</p>
  *
  * @see net.play5d.game.bvn.ide.utils.IdeRuntimeUtils#findEffectCtrler()
  * @see #invokeEffect()
+ * @see #bindNoArgCall()
  */
 public class BaseEffect extends BaseIdeCtrler {
+
+    /** @private 无参效果方法名；有参子类勿设 */
+    private var _noArgMethod:String = null;
 
     /**
      * 构造方法。
@@ -35,6 +40,23 @@ public class BaseEffect extends BaseIdeCtrler {
     public function BaseEffect() {
         super();
         _ctrlerProp = IdeRuntimeUtils.EFFECT_CTRLER_PROP;
+    }
+
+    /**
+     * 绑定无参效果：标题 + 预览 + <code>doAction</code> 调用。
+     *
+     * @param titleLabel 标题（自动加 <code>// </code>）。
+     * @param methodName <code>$effect_ctrler</code> 方法名。
+     *
+     * @example
+     * <listing version="3.0">
+     * bindNoArgCall('效果_走路', 'walk');
+     * </listing>
+     */
+    protected function bindNoArgCall(titleLabel:String, methodName:String):void {
+        title        = titleLabel;
+        _noArgMethod = methodName;
+        updateCallPreview(methodName);
     }
 
     /**
@@ -51,6 +73,18 @@ public class BaseEffect extends BaseIdeCtrler {
      */
     protected function invokeEffect(methodName:String, args:Array = null):Boolean {
         return invokeCtrler(methodName, args);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    override public function doAction():void {
+        if (_noArgMethod) {
+            invokeEffect(_noArgMethod);
+            return;
+        }
+
+        super.doAction();
     }
 
     /**

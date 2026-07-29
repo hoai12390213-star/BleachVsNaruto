@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 走路特效 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.walk</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.walk</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -32,15 +32,7 @@ public class WalkEffect extends BaseEffect {
      * 构造方法。
      */
     public function WalkEffect() {
-        super.title = '效果_走路';
-        updateCallPreview('walk');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('walk');
+        bindNoArgCall('效果_走路', 'walk');
     }
 }
 }

@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 结束持续震动 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.endShake</code>。配对 <code>StartShakeEffect</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.endShake</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.effect.StartShakeEffect
  * @see net.play5d.game.bvn.ide.component.BaseEffect
@@ -33,15 +33,7 @@ public class EndShakeEffect extends BaseEffect {
      * 构造方法。
      */
     public function EndShakeEffect() {
-        super.title = '效果_结束持续震动';
-        updateCallPreview('endShake');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('endShake');
+        bindNoArgCall('效果_结束震动', 'endShake');
     }
 }
 }

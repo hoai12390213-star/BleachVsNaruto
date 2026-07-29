@@ -22,7 +22,7 @@ import net.play5d.game.bvn.ide.component.BaseEffect;
 /**
  * 跳跃特效 IDE 组件。
  *
- * <p>FighterMain 时间轴组件：调用 <code>$effect_ctrler.jump</code>。</p>
+ * <p>仅面向 FighterMain 时间轴组件：调用 <code>$effect_ctrler.jump</code>。</p>
  *
  * @see net.play5d.game.bvn.ide.component.BaseEffect
  */
@@ -32,15 +32,7 @@ public class JumpEffect extends BaseEffect {
      * 构造方法。
      */
     public function JumpEffect() {
-        super.title = '效果_跳跃';
-        updateCallPreview('jump');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    override public function doAction():void {
-        invokeEffect('jump');
+        bindNoArgCall('效果_跳跃', 'jump');
     }
 }
 }
