@@ -66,7 +66,7 @@ public class ShineEffect extends BaseEffect {
 
     /** @private */
     private function refreshPreview():void {
-        updateCallPreview('shine', [ColorUtils.asLiteral(_color)], true);
+        updateCallPreview('shine', [ColorUtils.asLiteral(_color)]);
     }
 }
 }

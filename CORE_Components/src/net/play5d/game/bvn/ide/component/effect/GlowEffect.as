@@ -67,7 +67,7 @@ public class GlowEffect extends BaseEffect {
 
     /** @private */
     private function refreshPreview():void {
-        updateCallPreview('startGlow', [ColorUtils.asLiteral(_color)], true);
+        updateCallPreview('startGlow', [ColorUtils.asLiteral(_color)]);
     }
 }
 }

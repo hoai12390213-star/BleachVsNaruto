@@ -260,7 +260,7 @@ public class BaseIdeCtrler extends BaseComponent {
      * @example
      * <listing version="3.0">
      * updateCallPreview('bisha', [false, 'ichigo1']);
-     * updateCallPreview('shine', [ColorUtils.asLiteral(0xffffff)], true);
+     * updateCallPreview('shine', [ColorUtils.asLiteral(0xffffff)]);
      * </listing>
      */
     protected function updateCallPreview(methodName:String, args:Array = null, rawArgs:Boolean = false):void {
@@ -394,12 +394,39 @@ public class BaseIdeCtrler extends BaseComponent {
             return 'null';
         }
         if (value is String) {
-            return "'" + String(value).split("'").join("\\'") + "'";
+            var s:String = String(value);
+            // 0x / # 色值字面量：原样输出，不加引号
+            if (isColorLiteral(s)) {
+                return normalizeColorLiteral(s);
+            }
+            return "'" + s.split("'").join("\\'") + "'";
         }
         if (value is Boolean) {
             return value ? 'true' : 'false';
         }
         return String(value);
+    }
+
+    /** @private 是否为色值字面量（0xRRGGBB / #RRGGBB） */
+    private function isColorLiteral(s:String):Boolean {
+        if (!s) {
+            return false;
+        }
+        if (s.indexOf('0x') == 0 || s.indexOf('0X') == 0) {
+            return s.length > 2;
+        }
+        if (s.charAt(0) == '#') {
+            return s.length > 1;
+        }
+        return false;
+    }
+
+    /** @private #RRGGBB → 0xrrggbb；已是 0x 则保持 */
+    private function normalizeColorLiteral(s:String):String {
+        if (s.charAt(0) == '#') {
+            return '0x' + s.substring(1).toLowerCase();
+        }
+        return s;
     }
 }
 }
