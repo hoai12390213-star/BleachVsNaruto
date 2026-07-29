@@ -25,7 +25,6 @@ import flash.utils.Dictionary;
  * 游戏渲染
  */
 public class GameRender {
-    include '../../../../../../include/_INCLUDE_.as';
 
     // 是否渲染
     public static var isRender:Boolean = true;

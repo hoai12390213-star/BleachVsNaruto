@@ -38,7 +38,6 @@ import net.play5d.kyo.stage.IStage;
 
 //import net.play5d.game.bvn.ctrl.KeyBoardCtrl;
 public class HowToPlayStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private var _ui:$how2play$MC_movieHow2Play;
 

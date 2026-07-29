@@ -24,7 +24,6 @@ import flash.display.DisplayObject;
 import net.play5d.game.bvn.ctrler.AssetManager;
 
 public class BitmapAssetLoader {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private var _queueLength:int;
     private var _urls:Array;

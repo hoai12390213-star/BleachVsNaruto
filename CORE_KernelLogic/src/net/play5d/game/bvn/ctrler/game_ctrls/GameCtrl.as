@@ -59,7 +59,6 @@ import net.play5d.game.bvn.utils.KeyBoarder;
  * 游戏控制类
  */
 public class GameCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public const gameRunData:GameRunDataVO = new GameRunDataVO();
     private static var _i:GameCtrl;

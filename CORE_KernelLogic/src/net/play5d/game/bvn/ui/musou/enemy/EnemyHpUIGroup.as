@@ -22,7 +22,6 @@ import flash.display.Sprite;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class EnemyHpUIGroup {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function EnemyHpUIGroup(ct:Sprite) {
         _ct  = ct;

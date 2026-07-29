@@ -44,7 +44,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
  * 作为人物模板基类使用
  */
 public class FighterMain extends BaseGameSprite {
-    include '../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public const fzqiMax:Number = 100;
 

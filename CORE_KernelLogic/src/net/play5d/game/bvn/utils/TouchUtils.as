@@ -28,7 +28,6 @@ import net.play5d.game.bvn.GameConfig;
 import net.play5d.kyo.utils.ArrayMap;
 
 public class TouchUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _i:TouchUtils;
 

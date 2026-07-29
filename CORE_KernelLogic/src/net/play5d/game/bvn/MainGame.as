@@ -52,7 +52,6 @@ import net.play5d.kyo.stage.KyoStageCtrl;
 import net.play5d.kyo.utils.KyoTimeout;
 
 public class MainGame {
-    include '../../../../../include/_INCLUDE_.as';
 
 //		public static const PUBLISH_VERSION_TYPE:int = PublishVersion.COM_4399;
     public static const VERSION:String     = GameVersion.VERSION;

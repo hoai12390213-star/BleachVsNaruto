@@ -39,7 +39,6 @@ import net.play5d.kyo.display.BitmapText;
  * @author weijian
  */
 public class SelectedFighterUI extends EventDispatcher {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function SelectedFighterUI(ui:Sprite) {
         this.ui = ui;

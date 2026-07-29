@@ -18,7 +18,6 @@
 
 package net.play5d.game.bvn {
 public class GameQuality {
-    include '../../../../../include/_INCLUDE_.as';
 
     public static const LOW:String    = 'low';
     public static const MEDIUM:String = 'medium';

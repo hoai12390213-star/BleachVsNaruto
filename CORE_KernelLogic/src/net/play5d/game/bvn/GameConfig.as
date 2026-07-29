@@ -23,7 +23,6 @@ import flash.geom.Point;
 import net.play5d.game.bvn.data.MapLogoState;
 
 public class GameConfig {
-    include '../../../../../include/_INCLUDE_.as';
 
     // 调试模式
     public static var DEBUG_MODE:Boolean = false;

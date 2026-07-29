@@ -21,7 +21,7 @@ import net.play5d.game.bvn.interfaces.ISaveData;
 import net.play5d.game.bvn.interfaces.IInstanceVO;
 
 public class MusouWorldMapAreaPlayerVO implements ISaveData, IInstanceVO {
-    include '../../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../../include/Clone.as';
 
     public function MusouWorldMapAreaPlayerVO() {

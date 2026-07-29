@@ -26,7 +26,6 @@ import flash.geom.Rectangle;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class ShadowEffectView {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function ShadowEffectView(target:DisplayObject, r:int = 0, g:int = 0, b:int = 0) {
         this.target = target;

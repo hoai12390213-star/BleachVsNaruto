@@ -25,7 +25,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.stage.IStage;
 
 public class LogoStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private var _ui:$common$MC_logo;
 

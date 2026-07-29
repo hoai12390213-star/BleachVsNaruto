@@ -21,7 +21,6 @@ import flash.display.Stage;
 import flash.events.KeyboardEvent;
 
 public class KeyBoarder {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _inited:Boolean;
 

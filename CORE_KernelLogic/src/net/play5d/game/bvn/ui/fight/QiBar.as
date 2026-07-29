@@ -30,7 +30,6 @@ import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class QiBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function QiBar(ui:$fight$MC_qiBar) {
         _ui        = ui;

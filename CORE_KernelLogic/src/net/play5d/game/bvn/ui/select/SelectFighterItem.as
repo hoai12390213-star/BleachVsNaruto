@@ -40,8 +40,6 @@ import net.play5d.kyo.display.BitmapText;
  *
  */
 public class SelectFighterItem extends EventDispatcher {
-    include '../../../../../../../include/_INCLUDE_.as';
-
 
     public static function getIdByPoint(X:int, Y:int):String {
         return X + ',' + Y;

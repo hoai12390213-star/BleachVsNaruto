@@ -37,7 +37,6 @@ import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.kyo.utils.KyoRandom;
 
 public class SelectIndexUIGroup extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function SelectIndexUIGroup() {
         super();

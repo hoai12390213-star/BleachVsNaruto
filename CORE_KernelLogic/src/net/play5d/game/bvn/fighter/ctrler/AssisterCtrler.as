@@ -33,7 +33,6 @@ import net.play5d.game.bvn.interfaces.IGameSpriteCntlr;
 import net.play5d.game.bvn.stage.GameCamera;
 
 public class AssisterCtrler implements IGameSpriteCntlr {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function AssisterCtrler() {
     }

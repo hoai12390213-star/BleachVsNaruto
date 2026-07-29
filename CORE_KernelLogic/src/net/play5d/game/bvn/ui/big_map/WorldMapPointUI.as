@@ -41,7 +41,6 @@ import net.play5d.game.bvn.ui.dialog.MusouStateDialog;
 import net.play5d.game.bvn.utils.BtnUtils;
 
 public class WorldMapPointUI extends EventDispatcher {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public static const EVENT_SELECT:String = 'EVENT_SELECT';
 

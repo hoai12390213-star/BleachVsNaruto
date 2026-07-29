@@ -29,7 +29,6 @@ import net.play5d.game.bvn.ctrler.SoundCtrl;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class BtnUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _btnMap:Dictionary = new Dictionary();
 

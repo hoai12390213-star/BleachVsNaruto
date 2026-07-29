@@ -22,7 +22,6 @@ import flash.display.MovieClip;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class CloudView {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function CloudView(X:Number, Y:Number) {
         mc       = ResUtils.I.createDisplayObject(ResUtils.swfLib.big_map, '$big_map$MC_cloud');

@@ -21,7 +21,6 @@ import flash.display.DisplayObject;
 import flash.geom.Rectangle;
 
 public class McAreaCacher {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function McAreaCacher(name:String) {
         this.name = name;

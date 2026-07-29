@@ -24,7 +24,6 @@ import net.play5d.game.bvn.ctrler.AssetManager;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class MusouMiniHpBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouMiniHpBar(ui:$musou$MC_miniHpBar) {
         _ui = ui;

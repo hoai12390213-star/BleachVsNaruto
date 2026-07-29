@@ -35,7 +35,6 @@ import net.play5d.game.bvn.utils.MCUtils;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class Bullet implements IGameSprite, IGameSpriteCntlr {
-    include '../../../../../../include/_INCLUDE_.as';
 
     /**
      * 子弹，波

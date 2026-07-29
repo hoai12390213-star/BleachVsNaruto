@@ -39,7 +39,6 @@ import net.play5d.kyo.utils.KyoColor;
  * 调试面
  */
 public class DebugMain {
-    include '../../../../../../include/_INCLUDE_.as';
 
     // 实例
     private static var _instance:DebugMain;

@@ -29,7 +29,6 @@ import net.play5d.game.bvn.ui.UIUtils;
 import net.play5d.kyo.display.BitmapText;
 
 public class Debugger {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static const DRAW_AREA:Boolean      = false;
     public static const SAFE_MODE:Boolean      = false;

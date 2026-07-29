@@ -33,7 +33,6 @@ import net.play5d.game.bvn.ui.fight.FightUI;
 import net.play5d.game.bvn.ui.musou.MusouUI;
 
 public class GameUI {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static var I:GameUI;
 

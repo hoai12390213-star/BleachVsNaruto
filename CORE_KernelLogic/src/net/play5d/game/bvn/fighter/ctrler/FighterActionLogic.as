@@ -24,7 +24,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.interfaces.IFighterActionCtrl;
 
 public class FighterActionLogic {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterActionLogic(fighter:FighterMain) {
         _fighter = fighter;

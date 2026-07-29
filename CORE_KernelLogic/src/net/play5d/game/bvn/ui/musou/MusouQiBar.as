@@ -26,7 +26,6 @@ import flash.geom.Point;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class MusouQiBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouQiBar(ui:Sprite) {
         _ui = ui;

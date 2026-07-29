@@ -37,7 +37,6 @@ import net.play5d.kyo.display.BitmapText;
 import net.play5d.kyo.utils.KyoRandom;
 
 public class SelectMapUI extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function SelectMapUI() {
         super();

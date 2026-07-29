@@ -39,7 +39,6 @@ import net.play5d.game.bvn.utils.TouchMoveEvent;
 import net.play5d.game.bvn.utils.TouchUtils;
 
 public class SetBtnGroup extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function SetBtnGroup() {
         super();

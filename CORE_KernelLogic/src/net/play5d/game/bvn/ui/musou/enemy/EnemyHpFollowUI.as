@@ -23,7 +23,6 @@ import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class EnemyHpFollowUI {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function EnemyHpFollowUI(fighter:FighterMain) {
         _ui        = new $musou$MC_enemyHpBarFollow();

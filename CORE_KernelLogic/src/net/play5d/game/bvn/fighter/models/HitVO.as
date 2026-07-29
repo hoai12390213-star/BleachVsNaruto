@@ -34,7 +34,7 @@ import net.play5d.kyo.utils.KyoUtils;
  * 攻击值对象
  */
 public class HitVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     /**

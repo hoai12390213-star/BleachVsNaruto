@@ -64,7 +64,6 @@ import net.play5d.kyo.utils.ArrayMap;
 import net.play5d.kyo.utils.KyoRandom;
 
 public class SelectFighterStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static const SELECT_STATE_FIGHTER:int = 0;
     private static const SELECT_STATE_ASSIST:int  = 1;

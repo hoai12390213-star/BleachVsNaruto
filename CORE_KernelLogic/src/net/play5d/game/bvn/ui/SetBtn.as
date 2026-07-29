@@ -26,7 +26,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.display.bitmap.BitmapFontText;
 
 public class SetBtn extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function SetBtn(label:String, cn:String) {
         super();

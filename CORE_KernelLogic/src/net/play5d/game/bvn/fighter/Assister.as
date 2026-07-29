@@ -33,7 +33,6 @@ import net.play5d.game.bvn.interfaces.BaseGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class Assister extends BaseGameSprite {
-    include '../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function Assister(mainmc:MovieClip) {
         super(mainmc);

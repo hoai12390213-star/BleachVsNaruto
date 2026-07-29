@@ -45,7 +45,6 @@ import net.play5d.kyo.stage.IStage;
 
 //import net.play5d.game.bvn.data.musou.MusouMissionModel;
 public class LoadingStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static var AUTO_START_GAME:Boolean = true;
 

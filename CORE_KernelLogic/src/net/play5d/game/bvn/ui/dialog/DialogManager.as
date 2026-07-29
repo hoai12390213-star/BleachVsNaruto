@@ -27,7 +27,6 @@ import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.MainGame;
 
 public class DialogManager {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     private static var _dialogBG:Sprite;
     private static var _showingDialogs:Vector.<BaseDialog> = new Vector.<BaseDialog>();

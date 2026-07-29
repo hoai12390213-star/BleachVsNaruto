@@ -25,7 +25,6 @@ import net.play5d.game.bvn.data.GameData;
 import net.play5d.kyo.utils.KyoRandom;
 
 public class FighterVoiceCtrler {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterVoiceCtrler() {
         _soundTransform        = new SoundTransform();

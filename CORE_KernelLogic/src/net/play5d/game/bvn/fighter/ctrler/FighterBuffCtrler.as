@@ -22,7 +22,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.fighter.vos.FighterBuffVO;
 
 public class FighterBuffCtrler {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterBuffCtrler(fighter:FighterMain) {
         _fighter = fighter;

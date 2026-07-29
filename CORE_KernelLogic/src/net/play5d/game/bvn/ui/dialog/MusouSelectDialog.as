@@ -38,7 +38,6 @@ import net.play5d.game.bvn.utils.BtnUtils;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class MusouSelectDialog extends BaseDialog {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function MusouSelectDialog(fighterIndex:int) {
         super();

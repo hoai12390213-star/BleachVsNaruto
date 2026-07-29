@@ -27,7 +27,6 @@ import net.play5d.game.bvn.utils.BtnUtils;
 import net.play5d.kyo.display.bitmap.BitmapFontText;
 
 public class BaseDialog {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function BaseDialog() {
         super();

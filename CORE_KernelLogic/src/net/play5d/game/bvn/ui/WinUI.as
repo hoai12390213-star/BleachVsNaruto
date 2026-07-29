@@ -24,7 +24,6 @@ import net.play5d.game.bvn.data.vos.FighterVO;
 import net.play5d.game.bvn.data.TeamID;
 
 public class WinUI {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function WinUI(ui:$fight$MC_win, team:int) {
         _ui   = ui;

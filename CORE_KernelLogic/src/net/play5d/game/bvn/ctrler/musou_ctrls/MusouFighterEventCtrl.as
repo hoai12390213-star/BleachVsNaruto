@@ -31,7 +31,6 @@ import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.game.bvn.ui.musou.MusouUI;
 
 public class MusouFighterEventCtrl extends BaseFighterEventCtrl {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public override function initlize():void {
         super.initlize();

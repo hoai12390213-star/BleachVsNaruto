@@ -27,7 +27,6 @@ import net.play5d.game.bvn.data.GameData;
 import net.play5d.game.bvn.interfaces.ISwfLib;
 
 public class ResUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static var SETTING:String         = '$setting$MC_stgSetUI';
     public static var CONGRATULATIONS:String = '$common$MC_congratulations';

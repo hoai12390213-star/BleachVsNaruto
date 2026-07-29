@@ -22,7 +22,6 @@ import flash.events.EventDispatcher;
 import net.play5d.game.bvn.interfaces.BaseGameSprite;
 
 public class FighterEventDispatcher {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     private static var _dispatcher:EventDispatcher = new EventDispatcher();
 

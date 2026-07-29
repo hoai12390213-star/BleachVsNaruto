@@ -28,7 +28,6 @@ import net.play5d.game.bvn.input.GameInputType;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class SelectIndexUI extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public static var SHOW_MODE:int = 0;
 

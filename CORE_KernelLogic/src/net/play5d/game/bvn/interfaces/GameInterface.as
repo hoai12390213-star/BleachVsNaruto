@@ -20,7 +20,6 @@ package net.play5d.game.bvn.interfaces {
 import flash.utils.ByteArray;
 
 public class GameInterface {
-    include '../../../../../../include/_INCLUDE_.as';
 
 //		private static var _i:GameInterface;
 //		public static function get I():GameInterface{

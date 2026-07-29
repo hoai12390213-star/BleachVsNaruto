@@ -21,7 +21,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.display.MCNumber;
 
 public class FightScoreUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FightScoreUI(ui:$fight$MC_score) {
         _ui = ui;

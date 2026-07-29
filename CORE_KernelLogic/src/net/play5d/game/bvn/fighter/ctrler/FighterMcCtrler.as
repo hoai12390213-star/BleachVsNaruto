@@ -42,7 +42,6 @@ import net.play5d.game.bvn.interfaces.IFighterActionCtrl;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class FighterMcCtrler {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterMcCtrler(fighter:FighterMain) {
 //			_mc = mc;

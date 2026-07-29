@@ -21,7 +21,6 @@ import flash.events.Event;
 import flash.events.EventDispatcher;
 
 public class GameEvent extends Event {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static const SCORE_UPDATE:String = 'SCORE_UPDATE';
 

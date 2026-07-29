@@ -37,7 +37,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
  * 地图图层
  */
 public class MapLayer extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     /**
      * 构造方法

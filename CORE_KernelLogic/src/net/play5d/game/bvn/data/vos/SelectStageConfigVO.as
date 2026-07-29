@@ -22,7 +22,7 @@ import flash.geom.Point;
 import net.play5d.game.bvn.interfaces.IInstanceVO;
 
 public class SelectStageConfigVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     public function SelectStageConfigVO() {

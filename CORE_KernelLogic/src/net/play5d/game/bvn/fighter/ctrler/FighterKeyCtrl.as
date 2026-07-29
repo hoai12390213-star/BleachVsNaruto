@@ -22,7 +22,6 @@ import net.play5d.game.bvn.input.GameInputer;
 import net.play5d.game.bvn.interfaces.IFighterActionCtrl;
 
 public class FighterKeyCtrl implements IFighterActionCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterKeyCtrl() {
     }

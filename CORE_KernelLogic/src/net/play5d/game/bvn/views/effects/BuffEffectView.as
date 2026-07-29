@@ -25,7 +25,6 @@ import net.play5d.game.bvn.fighter.vos.FighterBuffVO;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class BuffEffectView extends EffectView {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function BuffEffectView(data:EffectVO) {
         super(data);

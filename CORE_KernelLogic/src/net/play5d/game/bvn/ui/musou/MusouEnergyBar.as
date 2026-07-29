@@ -22,7 +22,6 @@ import flash.display.DisplayObject;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class MusouEnergyBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouEnergyBar(ui:$musou$MC_energyBar) {
         _ui = ui;

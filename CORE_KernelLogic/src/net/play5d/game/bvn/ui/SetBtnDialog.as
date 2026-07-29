@@ -25,7 +25,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.display.bitmap.BitmapFontText;
 
 public class SetBtnDialog {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function SetBtnDialog() {
         ui         = ResUtils.I.createDisplayObject(ResUtils.swfLib.setting, '$setting$SP_keySetDialog');

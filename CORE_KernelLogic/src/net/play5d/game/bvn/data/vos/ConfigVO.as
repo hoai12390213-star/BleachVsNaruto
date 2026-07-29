@@ -35,7 +35,7 @@ import net.play5d.kyo.utils.KyoUtils;
  * 配置值对象
  */
 public class ConfigVO implements ISaveData, IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     public const key_menu:KeyConfigVO = new KeyConfigVO(0);

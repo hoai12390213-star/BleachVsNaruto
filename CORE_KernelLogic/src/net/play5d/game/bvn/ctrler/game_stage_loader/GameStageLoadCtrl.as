@@ -34,7 +34,6 @@ import net.play5d.game.bvn.data.MapModel;
 import net.play5d.game.bvn.data.vos.MapVO;
 
 public class GameStageLoadCtrl extends EventDispatcher {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     // 是否忽略旧版角色
     public static var IGNORE_OLD_FIGHTER:Boolean = false;

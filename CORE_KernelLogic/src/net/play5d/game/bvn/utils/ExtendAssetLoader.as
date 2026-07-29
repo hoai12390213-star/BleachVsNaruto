@@ -20,7 +20,6 @@ package net.play5d.game.bvn.utils {
 import net.play5d.game.bvn.interfaces.IAssetLoader;
 
 public class ExtendAssetLoader implements IAssetLoader {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function ExtendAssetLoader(extend:*) {
         if (!extend) {

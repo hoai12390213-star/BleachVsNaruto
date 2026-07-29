@@ -29,7 +29,6 @@ import net.play5d.game.bvn.stage.GameCamera;
  * 游戏镜头控制器
  */
 public class GameCameraCtrler {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     // 游戏镜头实例
     private var _camera:GameCamera;

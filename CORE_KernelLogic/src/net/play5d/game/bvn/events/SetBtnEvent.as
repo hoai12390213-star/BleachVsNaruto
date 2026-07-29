@@ -20,7 +20,6 @@ package net.play5d.game.bvn.events {
 import flash.events.Event;
 
 public class SetBtnEvent extends Event {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static const SELECT:String        = 'SELECT';
     public static const OPTION_CHANGE:String = 'OPTION_CHANGE';

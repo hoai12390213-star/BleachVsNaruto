@@ -25,7 +25,6 @@ import net.play5d.game.bvn.ctrler.AssetManager;
  *
  */
 public class MusouModel {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     private static var _i:MusouModel;
 

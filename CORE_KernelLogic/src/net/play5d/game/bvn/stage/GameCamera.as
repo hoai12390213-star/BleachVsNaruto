@@ -27,7 +27,6 @@ import flash.geom.Rectangle;
  * @author kyo
  */
 public class GameCamera {
-    include '../../../../../../include/_INCLUDE_.as';
 
     /**
      * 2D摄像机 构造函数  ! 注意：需要调用render()函数才能生效

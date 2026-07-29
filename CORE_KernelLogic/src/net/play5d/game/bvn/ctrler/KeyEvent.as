@@ -20,7 +20,6 @@ package net.play5d.game.bvn.ctrler {
 import flash.events.Event;
 
 public class KeyEvent extends Event {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static const KEY_DOWN:String = 'KEY_DOWN';
     public static const KEY_UP:String   = 'KEY_UP';

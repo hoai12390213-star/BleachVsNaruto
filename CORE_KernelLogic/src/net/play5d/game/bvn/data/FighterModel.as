@@ -21,7 +21,6 @@ import net.play5d.game.bvn.data.vos.BgmVO;
 import net.play5d.game.bvn.data.vos.FighterVO;
 
 public class FighterModel {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _i:FighterModel;
 

@@ -25,7 +25,6 @@ import flash.utils.Dictionary;
 import net.play5d.game.bvn.utils.DebugSprite;
 
 public class DebugUtil {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static const map:Dictionary = new Dictionary();
 

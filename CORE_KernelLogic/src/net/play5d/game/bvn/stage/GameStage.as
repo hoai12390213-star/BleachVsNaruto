@@ -44,7 +44,6 @@ import net.play5d.game.bvn.utils.MCUtils;
 import net.play5d.kyo.stage.IStage;
 
 public class GameStage extends Sprite implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function GameStage() {
 //			this.scrollRect = new Rectangle(0,0,GameConfig.GAME_SIZE.x , GameConfig.GAME_SIZE.y);

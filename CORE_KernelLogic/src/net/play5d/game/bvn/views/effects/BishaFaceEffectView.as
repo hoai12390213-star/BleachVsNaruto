@@ -24,7 +24,6 @@ import flash.display.MovieClip;
 import net.play5d.game.bvn.ctrler.AssetManager;
 
 public class BishaFaceEffectView {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function BishaFaceEffectView() {
         mc = AssetManager.I.getEffect('bisha_face_mc');

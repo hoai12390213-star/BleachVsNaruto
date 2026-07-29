@@ -33,7 +33,6 @@ import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.game.bvn.ui.WinUI;
 
 public class FightBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FightBar(ui:$fight$MC_hpBar) {
         _ui = ui;

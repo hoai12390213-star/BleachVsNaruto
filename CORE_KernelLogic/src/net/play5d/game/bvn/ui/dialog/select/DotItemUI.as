@@ -22,7 +22,6 @@ import flash.display.MovieClip;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class DotItemUI {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function DotItemUI() {
         _ui               = ResUtils.I.createDisplayObject(ResUtils.swfLib.dialog, '$dialog$MC_dot');

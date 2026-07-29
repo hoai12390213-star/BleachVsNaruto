@@ -27,7 +27,6 @@ import net.play5d.game.bvn.events.GameEvent;
 import net.play5d.game.bvn.utils.WrapInteger;
 
 public class MusouPlayerData implements ISaveData {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function MusouPlayerData() {
 

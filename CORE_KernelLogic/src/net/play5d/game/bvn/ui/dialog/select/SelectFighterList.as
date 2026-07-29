@@ -33,7 +33,6 @@ import net.play5d.game.bvn.utils.TouchMoveEvent;
 import net.play5d.game.bvn.utils.TouchUtils;
 
 public class SelectFighterList extends Sprite {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function SelectFighterList() {
         super();

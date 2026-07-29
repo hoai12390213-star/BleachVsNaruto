@@ -43,7 +43,6 @@ import net.play5d.game.bvn.ui.PauseDialog;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class FightUI implements IGameUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public static var QI_BAR_MODE:int;
 

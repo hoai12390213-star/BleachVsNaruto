@@ -21,7 +21,7 @@ import net.play5d.game.bvn.interfaces.IInstanceVO;
 import net.play5d.game.bvn.utils.WrapInteger;
 
 public class MusouFighterSellVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     public function MusouFighterSellVO(fighterId:String, price:int) {

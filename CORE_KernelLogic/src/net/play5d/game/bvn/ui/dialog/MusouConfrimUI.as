@@ -26,7 +26,6 @@ import net.play5d.game.bvn.utils.BtnUtils;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class MusouConfrimUI extends BaseDialog {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
 //		private var _cnTxt:Text;
 

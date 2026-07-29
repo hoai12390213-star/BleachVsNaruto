@@ -30,7 +30,6 @@ import net.play5d.game.bvn.utils.MCUtils;
 import net.play5d.game.bvn.views.effects.FollowEffectView;
 
 public class BaseFighterEventCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function BaseFighterEventCtrl() {
     }

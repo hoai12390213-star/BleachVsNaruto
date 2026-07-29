@@ -27,7 +27,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.data.fighter.FighterActionState;
 
 public class BossHpUI {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function BossHpUI(mc:Sprite) {
         _ui = mc;

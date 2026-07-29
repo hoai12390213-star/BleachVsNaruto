@@ -27,7 +27,6 @@ import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.kyo.display.BitmapText;
 
 public class FighterHpBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterHpBar(ui:$fight$MC_hpBarMc) {
         _ui     = ui;

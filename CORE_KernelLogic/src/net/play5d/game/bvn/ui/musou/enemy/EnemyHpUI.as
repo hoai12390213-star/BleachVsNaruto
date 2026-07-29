@@ -24,7 +24,6 @@ import net.play5d.game.bvn.ctrler.AssetManager;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class EnemyHpUI {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function EnemyHpUI(fighter:FighterMain) {
         _ui      = new $musou$MC_enemyHpBar();

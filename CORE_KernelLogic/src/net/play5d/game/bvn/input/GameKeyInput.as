@@ -25,7 +25,6 @@ import net.play5d.game.bvn.data.vos.KeyConfigVO;
 import net.play5d.game.bvn.utils.KeyBoarder;
 
 public class GameKeyInput implements IGameInput {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function GameKeyInput() {
     }

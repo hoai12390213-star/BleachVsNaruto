@@ -34,7 +34,6 @@ import net.play5d.kyo.display.bitmap.BitmapFontText;
 import net.play5d.kyo.display.shapes.Box;
 
 public class ConfrimUI extends BaseDialog {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function ConfrimUI() {
         super();

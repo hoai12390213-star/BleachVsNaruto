@@ -27,7 +27,6 @@ import net.play5d.game.bvn.fighter.models.HitVO;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class FighterAILogicBase {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function FighterAILogicBase(AILevel:int, fighter:FighterMain) {
         this.AILevel = AILevel;

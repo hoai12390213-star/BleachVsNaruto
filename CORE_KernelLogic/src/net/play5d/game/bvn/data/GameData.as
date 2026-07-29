@@ -37,7 +37,6 @@ import net.play5d.game.bvn.interfaces.GameInterface;
 import net.play5d.kyo.loader.KyoURLoader;
 
 public class GameData {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private const SAVE_ID:String = 'bvn3.5A';
     // 是否启动无双模式的数据保存

@@ -31,7 +31,6 @@ import net.play5d.kyo.display.BitmapText;
 import net.play5d.kyo.display.bitmap.BitmapFontText;
 
 public class MenuBtn extends EventDispatcher {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function MenuBtn(label:String, cn:String = '', func:Function = null) {
         this.cn    = cn;

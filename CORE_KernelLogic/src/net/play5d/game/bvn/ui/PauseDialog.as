@@ -26,7 +26,6 @@ import net.play5d.game.bvn.events.GameEvent;
 import net.play5d.game.bvn.events.SetBtnEvent;
 
 public class PauseDialog extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function PauseDialog() {
         _bg = new Sprite();

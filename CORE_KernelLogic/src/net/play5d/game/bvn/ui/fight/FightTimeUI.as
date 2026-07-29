@@ -24,7 +24,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.display.MCNumber;
 
 public class FightTimeUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FightTimeUI(ui:$fight$MC_time) {
         _ui = ui;

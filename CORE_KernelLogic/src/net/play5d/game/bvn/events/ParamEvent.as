@@ -20,7 +20,6 @@ package net.play5d.game.bvn.events {
 import flash.events.Event;
 
 public class ParamEvent extends Event {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function ParamEvent(type:String, param:*, bubbles:Boolean = false, cancelable:Boolean = false) {
         this.param = param;

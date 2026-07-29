@@ -25,7 +25,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class SelecterItemUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function SelecterItemUI(playerType:int = 1) {
         _playerType     = playerType;

@@ -40,7 +40,6 @@ import net.play5d.kyo.stage.IStage;
 import net.play5d.kyo.utils.KyoTimeout;
 
 public class GameOverStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function GameOverStage() {
         StateCtrl.I.clearTrans();

@@ -45,7 +45,6 @@ import net.play5d.game.bvn.ui.select.SelectIndexUI;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class GameLogic {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _map:MapMain;
     private static var _camera:GameCamera;

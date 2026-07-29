@@ -24,7 +24,6 @@ import flash.display.Sprite;
 import net.play5d.game.bvn.data.vos.FighterVO;
 
 public class SelectedFighterGroup extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function SelectedFighterGroup(uiClass:Class) {
         _uiClass = uiClass;

@@ -22,7 +22,6 @@ import net.play5d.game.bvn.data.vos.MapVO;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class MapModel {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _i:MapModel;
 

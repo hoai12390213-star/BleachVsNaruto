@@ -52,7 +52,6 @@ import net.play5d.game.bvn.views.effects.SpecialEffectView;
 import net.play5d.kyo.utils.UUID;
 
 public class EffectCtrl {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private const SHAKE_POW_MAX:int = 10;
     public static var EFFECT_SMOOTHING:Boolean = true; //特效抗锯齿

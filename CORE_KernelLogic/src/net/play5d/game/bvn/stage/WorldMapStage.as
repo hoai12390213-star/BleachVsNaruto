@@ -46,7 +46,6 @@ import net.play5d.game.bvn.utils.TouchUtils;
 import net.play5d.kyo.stage.IStage;
 
 public class WorldMapStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function WorldMapStage() {
     }

@@ -31,7 +31,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.ui.GameUI;
 
 public class MusouLogic {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     private static var _i:MusouLogic;
 

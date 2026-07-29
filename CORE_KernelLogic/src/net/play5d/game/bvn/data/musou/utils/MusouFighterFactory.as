@@ -20,7 +20,6 @@ package net.play5d.game.bvn.data.musou.utils {
 import net.play5d.game.bvn.data.musou.player.MusouFighterVO;
 
 public class MusouFighterFactory {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public static function create(id:String):MusouFighterVO {
         var mv:MusouFighterVO = new MusouFighterVO();

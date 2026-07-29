@@ -25,7 +25,6 @@ import flash.events.TouchEvent;
 import net.play5d.game.bvn.GameConfig;
 
 public class DotsGroupUI extends Sprite {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public var onDotClick:Function;
     private var _dotArr:Array;

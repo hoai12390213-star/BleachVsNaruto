@@ -34,7 +34,6 @@ import net.play5d.game.bvn.fighter.events.FighterEventDispatcher;
 import net.play5d.game.bvn.interfaces.BaseGameSprite;
 
 public class FighterEffectCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterEffectCtrl(target:BaseGameSprite) {
         _target        = target;

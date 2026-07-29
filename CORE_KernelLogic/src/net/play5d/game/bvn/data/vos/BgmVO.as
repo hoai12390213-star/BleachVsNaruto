@@ -23,7 +23,7 @@ import net.play5d.game.bvn.interfaces.IInstanceVO;
  * BGM 值对象
  */
 public class BgmVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     // 音乐 ID

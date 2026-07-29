@@ -19,39 +19,26 @@
 package {
 
 /**
+ * 向实例动态写入属性。
  *
- * @param instance 实例
- * @param elementName 元素名，可以为 "prop" 或 "method()"
- * @param value 值
+ * @param instance 目标实例；为 <code>null</code> 时直接返回。
+ * @param elementName 属性名。
+ * @param value 要写入的值。
+ * @example
+ * <listing version="3.0">
+ * SetElement(fighter, 'hp', 100);
+ * </listing>
  */
 public function SetElement(instance:*, elementName:String, value:*):void {
     if (!instance) {
         return;
     }
 
-    /**
-     * 设置属性
-     *
-     * @param propName 属性名
-     * @param value 属性值
-     */
-    var setProperties:Function = null;
     try {
-        setProperties = instance['setProperties'] as Function;
+        instance[elementName] = value;
     }
     catch (e:Error) {
-        return;
-    }
-
-    if (setProperties == null) {
-        return;
-    }
-
-    try {
-        setProperties(elementName, value);
-    }
-    catch (e:Error) {
-        ThrowError(e, 'Error executing the specified method!');
+        ThrowError(e, 'Invalid property value!');
     }
 }
 }

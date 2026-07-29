@@ -23,8 +23,6 @@ import net.play5d.game.bvn.input.GameInputType;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class SelectUIFactory {
-    include '../../../../../../../include/_INCLUDE_.as';
-
 
     public static function createSelecter(playerType:int = 1):SelecterItemUI {
         var ui:SelecterItemUI = new SelecterItemUI(playerType);

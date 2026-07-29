@@ -39,7 +39,6 @@ import net.play5d.game.bvn.views.effects.FollowEffectView;
  * 影片剪辑实用工具
  */
 public class MCUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     /**
      * 影片剪辑是否具有指定名称帧

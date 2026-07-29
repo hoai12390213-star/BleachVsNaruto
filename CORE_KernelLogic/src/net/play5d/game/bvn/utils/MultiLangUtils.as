@@ -24,7 +24,6 @@ import net.play5d.alice.utils.ClassUtils;
  * 多语言工具集
  */
 public class MultiLangUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     // 分隔符
     private const SEPARATOR:String = '.';

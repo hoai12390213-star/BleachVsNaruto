@@ -26,7 +26,7 @@ import net.play5d.game.bvn.interfaces.IInstanceVO;
  * 记录运行游戏时需要的相关数据
  */
 public class GameRunDataVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     public const p1FighterGroup:GameRunFighterGroup = new GameRunFighterGroup();

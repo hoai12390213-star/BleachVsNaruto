@@ -28,7 +28,6 @@ import net.play5d.kyo.loader.KyoLoaderLite;
 import net.play5d.kyo.loader.KyoURLoader;
 
 public class AssetLoader implements IAssetLoader {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function loadXML(url:String, back:Function, fail:Function = null):void {
         url = getFullUrl(url);

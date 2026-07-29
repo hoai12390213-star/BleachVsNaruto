@@ -23,7 +23,6 @@ import net.play5d.game.bvn.GameConfig;
  * 角色状态及可执行动作定义
  */
 public class FighterAction {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function FighterAction() {
     }

@@ -24,7 +24,6 @@ import flash.text.TextField;
 import flash.text.TextFormatAlign;
 
 public class SetBtnLine extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function SetBtnLine() {
 

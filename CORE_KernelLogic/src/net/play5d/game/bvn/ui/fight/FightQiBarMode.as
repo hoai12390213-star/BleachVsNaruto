@@ -18,8 +18,6 @@
 
 package net.play5d.game.bvn.ui.fight {
 public class FightQiBarMode {
-    include '../../../../../../../include/_INCLUDE_.as';
-
 
     public static const AUTO:int   = 0;
     public static const TOP:int    = 1;

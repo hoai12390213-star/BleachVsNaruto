@@ -35,7 +35,6 @@ import net.play5d.kyo.utils.KyoUtils;
 import net.play5d.kyo.utils.UUID;
 
 public class BaseGameSprite extends EventDispatcher implements IGameSprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function BaseGameSprite(mainmc:MovieClip) {
         _mainMc = mainmc;

@@ -24,7 +24,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.data.fighter.FighterActionState;
 
 public class MusouHpBar {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouHpBar(bar:DisplayObject, bar2:DisplayObject) {
         _bar  = bar;

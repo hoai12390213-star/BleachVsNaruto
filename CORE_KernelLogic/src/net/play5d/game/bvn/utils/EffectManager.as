@@ -31,7 +31,6 @@ import net.play5d.game.bvn.views.effects.SpecialEffectView;
 import net.play5d.game.bvn.views.effects.SteelHitEffect;
 
 public class EffectManager {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function EffectManager() {
     }

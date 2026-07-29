@@ -22,7 +22,6 @@ import flash.filters.DropShadowFilter;
 import net.play5d.kyo.display.BitmapText;
 
 public class Text extends BitmapText {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function Text(color:uint = 0xffffff, size:int = 20) {
         super(true, color, [new DropShadowFilter()]);

@@ -25,7 +25,6 @@ import net.play5d.game.bvn.interfaces.IFighterActionCtrl;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class FighterAICtrl implements IFighterActionCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterAICtrl() {
     }

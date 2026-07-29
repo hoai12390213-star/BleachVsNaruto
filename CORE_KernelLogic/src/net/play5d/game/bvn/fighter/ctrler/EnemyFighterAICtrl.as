@@ -32,7 +32,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
  * 小兵AI逻辑
  */
 public class EnemyFighterAICtrl implements IFighterActionCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function EnemyFighterAICtrl() {
     }

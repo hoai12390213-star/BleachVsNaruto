@@ -37,7 +37,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.stage.IStage;
 
 public class LanguageStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     // 加载进度条
     private var _loadingBar:$language$MC_loadingBar;

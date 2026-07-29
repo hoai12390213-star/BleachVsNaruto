@@ -41,7 +41,6 @@ import net.play5d.kyo.display.shapes.Box;
 import net.play5d.kyo.stage.IStage;
 
 public class MenuStage extends Sprite implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static var MenuPosition:Point = new Point(470, 100);
     public static var MenuGap:Point      = new Point(-40, 5);

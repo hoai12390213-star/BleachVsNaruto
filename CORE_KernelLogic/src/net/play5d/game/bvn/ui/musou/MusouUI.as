@@ -39,7 +39,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.utils.KyoTimeout;
 
 public class MusouUI implements IGameUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouUI() {
         _ui    = ResUtils.I.createDisplayObject(ResUtils.swfLib.musou, '$musou$MC_ui');

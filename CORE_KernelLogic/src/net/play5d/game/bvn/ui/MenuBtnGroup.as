@@ -39,7 +39,6 @@ import net.play5d.game.bvn.utils.TouchUtils;
 
 //import net.play5d.game.bvn.data.musou.MusouMissionModel;
 public class MenuBtnGroup extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function MenuBtnGroup() {
         super();

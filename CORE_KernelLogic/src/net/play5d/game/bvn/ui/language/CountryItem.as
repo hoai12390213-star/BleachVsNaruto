@@ -29,7 +29,6 @@ import net.play5d.game.bvn.utils.ResUtils;
  * 语言项目
  */
 public class CountryItem extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     // 国旗与文本的间隔
     private const GAP:int                   = 25;

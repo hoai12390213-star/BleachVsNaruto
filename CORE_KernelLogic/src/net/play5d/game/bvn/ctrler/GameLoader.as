@@ -33,7 +33,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.map.MapMain;
 
 public class GameLoader {
-    include '../../../../../../include/_INCLUDE_.as';
 
     // 角色缓存{ String: <FighterCacheVO> }
     private static var _fighterCache:Object = {};

@@ -38,7 +38,6 @@ import net.play5d.kyo.display.bitmap.BitmapFontText;
 import net.play5d.kyo.stage.IStage;
 
 public class CongratulateStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function CongratulateStage() {
     }

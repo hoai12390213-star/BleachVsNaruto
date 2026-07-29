@@ -26,7 +26,6 @@ import net.play5d.game.bvn.ctrler.musou_ctrls.MusouCtrl;
 import net.play5d.kyo.utils.KyoDrawUtils;
 
 public class MusouWaveUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouWaveUI(ui:Sprite) {
         _ui = ui;

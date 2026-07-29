@@ -29,7 +29,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.stage.GameStage;
 
 public class MapMain {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function MapMain(mapmc:Sprite) {
         super();

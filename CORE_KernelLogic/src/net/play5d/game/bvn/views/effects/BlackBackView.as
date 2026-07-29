@@ -26,7 +26,6 @@ import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 
 public class BlackBackView extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function BlackBackView() {
         super();

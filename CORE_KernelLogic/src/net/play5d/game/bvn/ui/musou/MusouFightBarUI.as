@@ -26,7 +26,6 @@ import net.play5d.game.bvn.data.GameRunFighterGroup;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class MusouFightBarUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouFightBarUI(ui:$musou$MC_hpBarGroup) {
         _ui = ui;

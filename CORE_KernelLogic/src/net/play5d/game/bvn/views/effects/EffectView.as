@@ -28,7 +28,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.kyo.utils.KyoMath;
 
 public class EffectView {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function EffectView(data:EffectVO) {
         _data             = data;

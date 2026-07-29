@@ -23,7 +23,6 @@ import net.play5d.game.bvn.ctrler.AssetManager;
 import net.play5d.game.bvn.data.vos.FighterVO;
 
 public class FightFaceUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FightFaceUI(ui:$fight$MC_hpBarFace) {
         _ui = ui;

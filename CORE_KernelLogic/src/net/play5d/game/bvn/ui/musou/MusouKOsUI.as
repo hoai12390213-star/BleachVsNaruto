@@ -24,7 +24,6 @@ import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.kyo.display.bitmap.BitmapFontText;
 
 public class MusouKOsUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouKOsUI(ui:Sprite) {
         _text = new BitmapFontText(AssetManager.I.getFont('font1'));

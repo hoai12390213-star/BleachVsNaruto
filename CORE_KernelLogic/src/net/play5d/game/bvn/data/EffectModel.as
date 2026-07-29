@@ -24,7 +24,6 @@ import net.play5d.game.bvn.data.vos.EffectVO;
 import net.play5d.game.bvn.data.fighter.FighterDefenseType;
 
 public class EffectModel {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _i:EffectModel;
 

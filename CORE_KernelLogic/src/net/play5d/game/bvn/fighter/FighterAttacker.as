@@ -32,7 +32,6 @@ import net.play5d.game.bvn.interfaces.BaseGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class FighterAttacker extends BaseGameSprite {
-    include '../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function FighterAttacker(mainmc:MovieClip, params:Object = null) {
         super(mainmc);

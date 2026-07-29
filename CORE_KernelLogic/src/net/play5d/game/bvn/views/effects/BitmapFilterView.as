@@ -32,7 +32,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class BitmapFilterView implements IGameSprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function BitmapFilterView(target:BaseGameSprite, filter:BitmapFilter, filterOffset:Point = null) {
         _bitmap     = new Bitmap(null, 'auto', false);

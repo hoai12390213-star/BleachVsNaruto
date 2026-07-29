@@ -30,7 +30,6 @@ import net.play5d.game.bvn.data.musou.player.MusouFighterVO;
 import net.play5d.game.bvn.ui.Text;
 
 public class BigFaceUI {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function BigFaceUI(ui:Sprite) {
         _ui = ui;

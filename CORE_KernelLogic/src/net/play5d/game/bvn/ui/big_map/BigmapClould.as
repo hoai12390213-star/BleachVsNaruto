@@ -23,7 +23,6 @@ import flash.geom.Rectangle;
 import net.play5d.game.bvn.GameConfig;
 
 public class BigmapClould extends Sprite {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function BigmapClould(bounds:Rectangle) {
         super();

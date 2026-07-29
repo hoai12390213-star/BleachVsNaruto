@@ -22,7 +22,6 @@ import flash.display.DisplayObject;
 import net.play5d.game.bvn.data.GameRunFighterGroup;
 
 public class FightFaceGroup {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FightFaceGroup(ui:$fight$MC_hpBarFaceGroup) {
         _ui = ui;

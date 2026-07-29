@@ -23,7 +23,6 @@ import flash.text.TextFormat;
 import net.play5d.kyo.utils.KyoUtils;
 
 public class UIUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static var formatTextFunction:Function;
     public static var DEFAULT_FONT:String = '黑体';

@@ -18,7 +18,6 @@
 
 package net.play5d.game.bvn.data.musou {
 public class MusouFighterModel {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     private static var _i:MusouFighterModel;
 

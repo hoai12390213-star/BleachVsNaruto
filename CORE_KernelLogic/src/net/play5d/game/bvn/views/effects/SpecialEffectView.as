@@ -28,7 +28,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
  * 火、冰、雷 击中后续效果
  */
 public class SpecialEffectView extends EffectView {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function SpecialEffectView(data:EffectVO) {
         super(data);

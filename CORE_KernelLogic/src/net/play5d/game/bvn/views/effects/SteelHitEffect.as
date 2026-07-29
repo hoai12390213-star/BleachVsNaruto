@@ -25,7 +25,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class SteelHitEffect extends EffectView {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function SteelHitEffect(data:EffectVO) {
         super(data);

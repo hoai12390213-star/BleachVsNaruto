@@ -25,7 +25,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.ui.musou.enemy.EnemyHpFollowUI;
 
 public class MusouEnemyBarCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouEnemyBarCtrl() {
     }

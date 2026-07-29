@@ -25,7 +25,6 @@ import net.play5d.game.bvn.interfaces.BaseGameSprite;
  * 角色事件
  */
 public class FighterEvent extends Event {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     // 角色创建
     public static const BIRTH:String = 'BIRTH';

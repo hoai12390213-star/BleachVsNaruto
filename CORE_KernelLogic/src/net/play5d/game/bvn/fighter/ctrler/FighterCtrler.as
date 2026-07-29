@@ -38,7 +38,6 @@ import net.play5d.game.bvn.stage.GameCamera;
  * 角色控制类，提供共同方法给FLASH IDE调用
  */
 public class FighterCtrler implements IGameSpriteCntlr {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterCtrler() {
     }

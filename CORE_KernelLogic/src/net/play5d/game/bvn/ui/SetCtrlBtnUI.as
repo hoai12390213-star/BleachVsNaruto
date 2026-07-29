@@ -35,7 +35,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.input.KyoKeyCode;
 
 public class SetCtrlBtnUI extends EventDispatcher implements IInnerSetUI {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function SetCtrlBtnUI() {
 

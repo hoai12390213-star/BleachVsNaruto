@@ -18,7 +18,6 @@
 
 package net.play5d.game.bvn.utils {
 public class WrapInteger {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _rndArr:Array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

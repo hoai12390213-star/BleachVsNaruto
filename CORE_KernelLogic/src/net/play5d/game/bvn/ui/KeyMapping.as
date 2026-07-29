@@ -27,7 +27,6 @@ import net.play5d.kyo.display.bitmap.BitmapFontText;
 import net.play5d.kyo.input.KyoKeyCode;
 
 public class KeyMapping {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function KeyMapping(mc:Sprite, keyId:String, name:String, cn:String) {
         this.mc    = mc;

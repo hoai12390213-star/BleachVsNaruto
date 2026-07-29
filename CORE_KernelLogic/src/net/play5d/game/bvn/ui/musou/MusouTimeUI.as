@@ -25,7 +25,6 @@ import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.kyo.utils.KyoTimerFormat;
 
 public class MusouTimeUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function MusouTimeUI(ui:Sprite) {
         _ui  = ui;

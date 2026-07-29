@@ -21,8 +21,6 @@ import flash.display.DisplayObject;
 import flash.display.Sprite;
 
 public class DebugSprite extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
-
 
     public function DebugSprite(color:uint, target:DisplayObject = null) {
 

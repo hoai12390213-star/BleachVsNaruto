@@ -18,7 +18,6 @@
 
 package net.play5d.game.bvn.ctrler.game_stage_loader {
 public class GameStageLoadDefine {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public static const TYPE_MAP:int      = 0;
     public static const TYPE_FIGHTER:int  = 1;

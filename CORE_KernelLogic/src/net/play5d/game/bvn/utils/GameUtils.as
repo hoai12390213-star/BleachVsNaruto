@@ -22,7 +22,6 @@ import flash.display.DisplayObjectContainer;
 import flash.geom.Point;
 
 public class GameUtils {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static function isInTop(
             child:DisplayObject, container:DisplayObjectContainer = null, globalPoint:Point = null):Boolean {

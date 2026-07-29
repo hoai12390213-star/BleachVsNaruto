@@ -20,7 +20,6 @@ package net.play5d.game.bvn.fighter.models {
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class FighterHitModel {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterHitModel(fighter:IGameSprite) {
         _fighter = fighter;

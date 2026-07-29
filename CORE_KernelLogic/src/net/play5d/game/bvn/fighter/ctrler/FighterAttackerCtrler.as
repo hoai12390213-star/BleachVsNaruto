@@ -30,7 +30,6 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSpriteCntlr;
 
 public class FighterAttackerCtrler implements IGameSpriteCntlr {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function FighterAttackerCtrler(attacker:FighterAttacker) {
         _attacker = attacker;

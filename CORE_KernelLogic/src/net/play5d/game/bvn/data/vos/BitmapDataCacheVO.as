@@ -25,7 +25,7 @@ import net.play5d.game.bvn.interfaces.IInstanceVO;
  * 位图数据缓存值对象
  */
 public class BitmapDataCacheVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     // 位图数据

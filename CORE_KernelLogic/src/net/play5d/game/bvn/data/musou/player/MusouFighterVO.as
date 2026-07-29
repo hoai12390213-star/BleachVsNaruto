@@ -24,7 +24,7 @@ import net.play5d.game.bvn.interfaces.IInstanceVO;
 import net.play5d.game.bvn.utils.WrapInteger;
 
 public class MusouFighterVO implements ISaveData, IInstanceVO {
-    include '../../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../../include/Clone.as';
 
     public static var LEVEL_MAX:WrapInteger = new WrapInteger(80);

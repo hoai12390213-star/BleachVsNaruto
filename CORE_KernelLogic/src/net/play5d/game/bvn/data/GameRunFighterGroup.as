@@ -28,7 +28,6 @@ import net.play5d.game.bvn.fighter.Assister;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class GameRunFighterGroup {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function GameRunFighterGroup() {
     }

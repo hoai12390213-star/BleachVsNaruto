@@ -18,7 +18,6 @@
 
 package net.play5d.game.bvn.data.musou {
 public class LevelModel {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     /**
      * 角色升级需要的经验值

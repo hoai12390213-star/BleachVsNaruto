@@ -25,7 +25,6 @@ import net.play5d.game.bvn.GameConfig;
 import net.play5d.kyo.display.shapes.Box;
 
 public class QuickTransUI extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function QuickTransUI() {
         super();

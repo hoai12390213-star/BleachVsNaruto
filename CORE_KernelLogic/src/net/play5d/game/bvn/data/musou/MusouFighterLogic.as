@@ -21,7 +21,6 @@ import net.play5d.game.bvn.data.musou.player.MusouFighterVO;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 public class MusouFighterLogic {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public static const LV_DASH_AIR:int   = 0;
     public static const LV_GHOST_STEP:int = 0;

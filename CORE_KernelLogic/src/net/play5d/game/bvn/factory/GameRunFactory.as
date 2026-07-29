@@ -31,7 +31,6 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.map.MapMain;
 
 public class GameRunFactory {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _fighterCache:Dictionary = new Dictionary();
 

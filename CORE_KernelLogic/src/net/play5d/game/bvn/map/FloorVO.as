@@ -20,7 +20,7 @@ package net.play5d.game.bvn.map {
 import net.play5d.game.bvn.interfaces.IInstanceVO;
 
 public class FloorVO implements IInstanceVO {
-    include '../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../include/Clone.as';
 
     public var y:Number     = 0;

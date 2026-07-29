@@ -24,7 +24,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.display.MCNumber;
 
 public class HitsUI {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public function HitsUI(mc:MovieClip) {
         _mc           = mc;

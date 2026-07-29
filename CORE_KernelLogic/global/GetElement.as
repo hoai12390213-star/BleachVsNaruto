@@ -19,31 +19,21 @@
 package {
 
 /**
+ * 从实例动态读取属性，或调用无参方法。
  *
- * @param instance 实例
- * @param elementName 元素名，可以为 "prop" 或 "method()"
- * @return
+ * <p><code>elementName</code> 以 <code>()</code> 结尾时视为方法名并调用；否则按属性名读取。</p>
+ *
+ * @param instance 目标实例；为 <code>null</code> 时返回 <code>null</code>。
+ * @param elementName 属性名，或带括号的方法名（如 <code>toString()</code>）。
+ * @return 属性值或方法返回值；失败时返回 <code>null</code>。
+ * @example
+ * <listing version="3.0">
+ * GetElement(fighter, 'hp');
+ * GetElement(vo, 'toString()');
+ * </listing>
  */
 public function GetElement(instance:*, elementName:String):* {
     if (!instance) {
-        return null;
-    }
-
-    /**
-     * 获取属性
-     *
-     * @param propName 属性名
-     * @return 属性值
-     */
-    var getProperties:Function = null;
-    try {
-        getProperties = instance['getProperties'] as Function;
-    }
-    catch (e:Error) {
-        return null;
-    }
-
-    if (getProperties == null) {
         return null;
     }
 
@@ -53,14 +43,16 @@ public function GetElement(instance:*, elementName:String):* {
         const BRACKET:String = '()';
 
         if (elementName.indexOf(BRACKET) != -1) {
-            // 是方法则消除括号
+            // 方法：去掉括号后调用
             elementName = elementName.substr(0, elementName.length - BRACKET.length);
+            result      = instance[elementName]();
         }
-
-        result = getProperties(elementName);
+        else {
+            result = instance[elementName];
+        }
     }
     catch (e:Error) {
-        ThrowError(e, 'Error executing the specified method!');
+        ThrowError(e, 'Invalid property value!');
     }
 
     return result;

@@ -36,7 +36,6 @@ import net.play5d.game.bvn.utils.BtnUtils;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class MusouStateDialog extends BaseDialog {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function MusouStateDialog() {
         super();

@@ -30,7 +30,6 @@ import net.play5d.game.bvn.data.fighter.FighterSpecialFrame;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 
 public class FighterAILogic extends FighterAILogicBase {
-    include '../../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     public function FighterAILogic(AILevel:int, fighter:FighterMain) {
         super(AILevel, fighter);

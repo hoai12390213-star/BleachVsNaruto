@@ -26,7 +26,6 @@ import flash.utils.getTimer;
 import net.play5d.game.bvn.GameConfig;
 
 public class ShineEffectView extends Bitmap {
-    include '../../../../../../../include/_INCLUDE_.as';
 
 //		private static var _source:BitmapData = new BitmapData(GameConfig.GAME_SIZE.x / 10 , GameConfig.GAME_SIZE.y /
 // 10,false,0xffffff);

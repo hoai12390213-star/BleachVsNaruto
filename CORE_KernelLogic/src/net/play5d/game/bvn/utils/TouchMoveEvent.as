@@ -20,7 +20,6 @@ package net.play5d.game.bvn.utils {
 import flash.events.Event;
 
 public class TouchMoveEvent extends Event {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public static const TOUCH_BEGIN:String = 'EVENT_TOUCH_BEGIN';
     public static const TOUCH_MOVE:String  = 'EVENT_TOUCH_MOVE';

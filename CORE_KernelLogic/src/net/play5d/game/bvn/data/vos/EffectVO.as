@@ -31,7 +31,7 @@ import net.play5d.kyo.utils.KyoUtils;
  * 效果值对象
  */
 public class EffectVO implements IInstanceVO {
-    include '../../../../../../../include/_INCLUDE_.as';
+
     include '../../../../../../../include/Clone.as';
 
     public function EffectVO(className:String, param:Object = null) {

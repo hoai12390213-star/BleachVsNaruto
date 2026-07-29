@@ -24,7 +24,6 @@ import net.play5d.game.bvn.data.vos.MessionVO;
 import net.play5d.game.bvn.data.vos.SelectVO;
 
 public class MessionModel {
-    include '../../../../../../include/_INCLUDE_.as';
 
     private static var _i:MessionModel;
 

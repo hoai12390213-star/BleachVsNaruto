@@ -26,7 +26,6 @@ import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.events.SetBtnEvent;
 
 public class MoveListSp extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function MoveListSp() {
         super();

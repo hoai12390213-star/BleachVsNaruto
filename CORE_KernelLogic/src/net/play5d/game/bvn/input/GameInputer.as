@@ -29,7 +29,6 @@ import net.play5d.game.bvn.interfaces.GameInterface;
  * 游戏输入(针对菜单类操作)
  */
 public class GameInputer {
-    include '../../../../../../include/_INCLUDE_.as';
 
     //按键持续延时，秒
     private static const JUST_DOWN_DELAY:Number = 0.1;

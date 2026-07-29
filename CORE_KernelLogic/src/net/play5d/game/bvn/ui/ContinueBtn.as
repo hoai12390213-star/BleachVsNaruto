@@ -22,7 +22,6 @@ import flash.display.Sprite;
 import net.play5d.game.bvn.events.SetBtnEvent;
 
 public class ContinueBtn extends Sprite {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function ContinueBtn() {
         super();

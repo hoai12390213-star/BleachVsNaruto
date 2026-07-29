@@ -9,6 +9,7 @@
 | KernelLogic 内模糊定位 | [`.agents/map.md`](.agents/map.md) |
 | 写/改 `CORE_Components`（Animate 组件） | [`.agents/components.md`](.agents/components.md) |
 | 写/改代码格式 | [`.agents/code_style.md`](.agents/code_style.md) |
+| 写/改文件完成后 | 复查是否误加空行 → [`.agents/code_style.md`](.agents/code_style.md) |
 | 写/补 ASDoc 与逻辑注释 | [`.agents/comment.md`](.agents/comment.md) |
 | 单例/命名/类型/复用/任务方式 | [`.agents/codegen.md`](.agents/codegen.md) |
 | 写/改 `tools/script` bat / lang / func | [`.agents/bat_script.md`](.agents/bat_script.md) |

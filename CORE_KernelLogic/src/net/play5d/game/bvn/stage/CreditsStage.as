@@ -36,7 +36,6 @@ import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.stage.IStage;
 
 public class CreditsStage implements IStage {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function CreditsStage() {
     }

@@ -50,7 +50,6 @@ import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.game.bvn.ui.musou.MusouUI;
 
 public class MusouCtrl {
-    include '../../../../../../../include/_INCLUDE_.as';
 
     public const gameRunData:MusouGameRunDataVO = new MusouGameRunDataVO();
 

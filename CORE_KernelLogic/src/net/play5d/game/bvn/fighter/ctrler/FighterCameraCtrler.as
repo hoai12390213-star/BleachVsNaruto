@@ -29,7 +29,6 @@ import net.play5d.game.bvn.stage.GameCamera;
  * 角色镜头控制器
  */
 public class FighterCameraCtrler extends GameCameraCtrler {
-    include '../../../../../../../include/_INCLUDE_OVERRIDE_.as';
 
     // 绑定目标
     private var _target:IGameSprite;

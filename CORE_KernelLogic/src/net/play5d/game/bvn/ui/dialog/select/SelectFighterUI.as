@@ -31,7 +31,6 @@ import net.play5d.game.bvn.ui.Text;
 import net.play5d.game.bvn.utils.ResUtils;
 
 public class SelectFighterUI {
-    include '../../../../../../../../include/_INCLUDE_.as';
 
     public function SelectFighterUI(sellData:MusouFighterSellVO) {
         ui            = ResUtils.I.createDisplayObject(ResUtils.swfLib.dialog, '$dialog$SP_faceUI');

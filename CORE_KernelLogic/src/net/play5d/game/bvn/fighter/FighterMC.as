@@ -35,7 +35,6 @@ import net.play5d.game.bvn.fighter.utils.McAreaCacher;
 import net.play5d.game.bvn.utils.MCUtils;
 
 public class FighterMC {
-    include '../../../../../../include/_INCLUDE_.as';
 
     public function FighterMC() {
         super();
