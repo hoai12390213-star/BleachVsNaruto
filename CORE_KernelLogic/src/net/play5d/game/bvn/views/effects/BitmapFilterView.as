@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 
 package net.play5d.game.bvn.views.effects {
 import flash.display.Bitmap;
+import flash.display.BitmapData;
 import flash.display.DisplayObject;
 import flash.filters.BitmapFilter;
 import flash.geom.ColorTransform;
@@ -29,8 +30,16 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.fighter.models.HitVO;
 import net.play5d.game.bvn.interfaces.BaseGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSprite;
-import net.play5d.kyo.utils.KyoUtils;
+import net.play5d.game.bvn.utils.DisplayFrameBitmapCache;
 
+/**
+ * 角色发光等持续滤镜的位图覆盖层。
+ *
+ * <p>仅在角色动画帧变化时重绘；结果优先写入
+ * <code>DisplayFrameBitmapCache</code>，中间缓冲走 <code>BitmapDataPool</code>。</p>
+ *
+ * @see DisplayFrameBitmapCache
+ */
 public class BitmapFilterView implements IGameSprite {
 
     public function BitmapFilterView(target:BaseGameSprite, filter:BitmapFilter, filterOffset:Point = null) {
@@ -55,6 +64,10 @@ public class BitmapFilterView implements IGameSprite {
     private var _targetBounds:Rectangle;
     private var _targetFighter:FighterMain;
     private var _isActive:Boolean;
+    /** @private 当前 bitmapData 是否由帧缓存持有 */
+    private var _bdCached:Boolean;
+    /** @private 最近一次绘制使用的缓存键 */
+    private var _cacheKey:String;
 
     /**
      * 颜色变换通道
@@ -63,6 +76,7 @@ public class BitmapFilterView implements IGameSprite {
         return null;
     }
 
+    /** @private */
     public function set colorTransform(ct:ColorTransform):void {
     }
 
@@ -70,6 +84,7 @@ public class BitmapFilterView implements IGameSprite {
         return target.direct;
     }
 
+    /** @private */
     public function set direct(value:int):void {
 
     }
@@ -78,6 +93,7 @@ public class BitmapFilterView implements IGameSprite {
         return _bitmap.x;
     }
 
+    /** @private */
     public function set x(v:Number):void {
         _bitmap.x = v;
     }
@@ -86,6 +102,7 @@ public class BitmapFilterView implements IGameSprite {
         return _bitmap.y;
     }
 
+    /** @private */
     public function set y(v:Number):void {
         _bitmap.y = v;
     }
@@ -94,6 +111,7 @@ public class BitmapFilterView implements IGameSprite {
         return null;
     }
 
+    /** @private */
     public function set team(v:TeamVO):void {
 
     }
@@ -112,20 +130,10 @@ public class BitmapFilterView implements IGameSprite {
     public function update(filter:BitmapFilter, filterOffset:Point = null):void {
         _filter       = filter;
         _filterOffset = filterOffset;
+        _bitmapFrame  = -1;
     }
 
     public function renderAnimate():void {
-//			if(!target) return;
-
-//			if(_bitmap.bitmapData){
-//				_bitmap.bitmapData.dispose();
-//				_bitmap.bitmapData = null;
-//			}
-//			_bitmap.bitmapData = KyoUtils.drawBitmapFilter(target.getDisplay(), _filter, true, _filterOffset);
-//
-//			var display:DisplayObject = target.getDisplay();
-//
-//			_targetBounds = display.getBounds(display);
     }
 
     public function render():void {
@@ -136,7 +144,6 @@ public class BitmapFilterView implements IGameSprite {
             return;
         }
         renderBitmapData();
-
 
         _bitmap.scaleX = _targetDisplay.scaleX;
         _bitmap.scaleY = _targetDisplay.scaleY;
@@ -201,10 +208,7 @@ public class BitmapFilterView implements IGameSprite {
 
     public function destroy(dispose:Boolean = true):void {
         if (dispose) {
-            if (_bitmap.bitmapData) {
-                _bitmap.bitmapData.dispose();
-                _bitmap.bitmapData = null;
-            }
+            clearBitmapData();
             _isDestroyed   = true;
             this.target    = null;
             _filter        = null;
@@ -212,6 +216,7 @@ public class BitmapFilterView implements IGameSprite {
             _targetFighter = null;
             _targetBounds  = null;
             _targetDisplay = null;
+            _cacheKey      = null;
         }
     }
 
@@ -224,13 +229,44 @@ public class BitmapFilterView implements IGameSprite {
             _bitmapFrame = curFrame;
         }
 
-        if (_bitmap.bitmapData) {
-            _bitmap.bitmapData.dispose();
-            _bitmap.bitmapData = null;
-        }
-        _bitmap.bitmapData = KyoUtils.drawBitmapFilter(_targetDisplay, _filter, true, _filterOffset);
+        var cache:DisplayFrameBitmapCache = DisplayFrameBitmapCache.I;
+        var key:String                    = buildCacheKey();
+        var bd:BitmapData                 = cache.drawFilter(_targetDisplay, _filter, _filterOffset, key);
+
+        clearBitmapData();
+        _bitmap.bitmapData = bd;
+        _cacheKey          = key;
+        _bdCached          = cache.isFilterCached(key, bd);
 
         _targetBounds = _targetDisplay.getBounds(_targetDisplay);
+    }
+
+    private function buildCacheKey():String {
+        if (!_targetFighter || !_targetFighter.data || !_targetFighter.data.id) {
+            return null;
+        }
+        var pose:String = DisplayFrameBitmapCache.I.buildPoseKey(_targetFighter);
+        if (!pose) {
+            return null;
+        }
+        return DisplayFrameBitmapCache.I.buildFilterKey(
+                _targetFighter.data.id, pose, _filter, _filterOffset
+        );
+    }
+
+    private function clearBitmapData():void {
+        if (!_bitmap || !_bitmap.bitmapData) {
+            return;
+        }
+        if (!_bdCached) {
+            try {
+                _bitmap.bitmapData.dispose();
+            }
+            catch (e:Error) {
+            }
+        }
+        _bitmap.bitmapData = null;
+        _bdCached          = false;
     }
 
 }

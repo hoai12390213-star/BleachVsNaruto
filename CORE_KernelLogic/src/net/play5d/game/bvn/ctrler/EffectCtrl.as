@@ -41,6 +41,7 @@ import net.play5d.game.bvn.interfaces.BaseGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.map.MapMain;
 import net.play5d.game.bvn.stage.GameStage;
+import net.play5d.game.bvn.utils.DisplayFrameBitmapCache;
 import net.play5d.game.bvn.utils.EffectManager;
 import net.play5d.game.bvn.views.effects.BitmapFilterView;
 import net.play5d.game.bvn.views.effects.BlackBackView;
@@ -164,9 +165,13 @@ public class EffectCtrl {
         _gameStage                = null;
         _effectLayer              = null;
 
+        DisplayFrameBitmapCache.I.clear();
+
     }
 
     public function initlize(gameStage:GameStage, effectLayer:Sprite):void {
+        DisplayFrameBitmapCache.I.clear();
+
         _manager = new EffectManager();
 
         _gameStage   = gameStage;
@@ -560,7 +565,9 @@ public class EffectCtrl {
         }
     }
 
-    public function startShadow(target:DisplayObject, r:int = 0, g:int = 0, b:int = 0):void {
+    public function startShadow(
+            target:DisplayObject, r:int = 0, g:int = 0, b:int = 0, owner:BaseGameSprite = null
+    ):void {
 
         if (!SHADOW_ENABLED) {
             return;
@@ -572,11 +579,12 @@ public class EffectCtrl {
             sv.r          = r;
             sv.g          = g;
             sv.b          = b;
+            sv.owner      = owner;
             sv.stopShadow = false;
             return;
         }
 
-        sv           = new ShadowEffectView(target, r, g, b);
+        sv           = new ShadowEffectView(target, r, g, b, owner);
         sv.onRemove  = removeShadow;
         sv.container = _effectLayer;
 

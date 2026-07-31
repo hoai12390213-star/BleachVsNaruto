@@ -89,7 +89,7 @@ public class FighterEffectCtrl {
     //SAMPLE: parent.$effect_ctrler.shadow(-200,-200,-200);
     public function shadow(r:int = 0, g:int = 0, b:int = 0):void {
         _isShadowIng = true;
-        EffectCtrl.I.startShadow(_targetDisplay, r, g, b);
+        EffectCtrl.I.startShadow(_targetDisplay, r, g, b, _target);
     }
 
     //MC调用：parent.$effect_ctrler.endShadow();
