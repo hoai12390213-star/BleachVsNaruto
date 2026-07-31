@@ -127,9 +127,7 @@ public class AssetLoader implements IAssetLoader {
     }
 
     //		private function loadAssetBytes(url:String, back:Function, fail:Function, process:Function = null):void{
-    ////			KyoLoaderLite.loadBytes("ALL MAN/assets/" + url , back , fail, process);
-    //			KyoLoaderLite.loadBytes("assets/" + url , back , fail, process);
-    ////			KyoLoaderLite.loadBytes(url , back , fail, process);
+    //			KyoURLoader.load('assets/' + url, back, fail, {dataFormat: URLLoaderDataFormat.BINARY}, process);
     //		}
 
 

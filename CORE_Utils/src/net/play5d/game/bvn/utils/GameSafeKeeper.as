@@ -17,9 +17,10 @@
  */
 
 package net.play5d.game.bvn.utils {
+import flash.net.URLLoaderDataFormat;
 import flash.utils.ByteArray;
 
-import net.play5d.kyo.loader.KyoLoaderLite;
+import net.play5d.kyo.loader.KyoURLoader;
 
 public class GameSafeKeeper {
     private const KEY:String = 'Wo&Ye@bu!Neng(889^Yang%a!Po!xO!bB)_(';
@@ -65,7 +66,7 @@ public class GameSafeKeeper {
             }
         }
 
-        KyoLoaderLite.loadBytes('assets/.md5', succBack, failBack);
+        KyoURLoader.load('assets/.md5', succBack, failBack, {dataFormat: URLLoaderDataFormat.BINARY});
     }
 
     public function getConfigFailed():Boolean {
