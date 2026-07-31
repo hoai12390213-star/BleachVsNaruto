@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,15 +19,18 @@
 package {
 
 /**
- * 所有的 全局函数/变量
- * <br/>
- * 该变量仅作为中间变量，
- * 用于引入所有其他 全局函数/变量 的引用。
- * <br/>
- * <b>不允许<b/>在实际工程中使用此变量
+ * 强制链接全部全局符号的占位入口；禁止业务代码调用。
+ *
+ * <p>通过返回数组字面量引用各全局函数/变量，避免被 DCE 剥离。
+ * 运行期一律抛错。条件使用 <code>Math.random()</code>，防止编译器将
+ * <code>return</code> 标为不可达并优化掉引用列表。</p>
+ *
+ * @private
+ * @throws Error 任何实际调用均抛出。
  */
 public function get _ALL_GLOBALS_():* {
-    if (Math.random() > 0) {
+    // Math.random 防 DCE：保持下方 return 对编译器“可达”
+    if (Math.random() >= 0) {
         throw new Error('This variable is not allowed to be used!');
     }
 

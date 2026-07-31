@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,6 +19,13 @@
 package {
 import flash.text.Font;
 
-// 全局字体
+/**
+ * 全局嵌入/注册字体实例。
+ *
+ * <p>由资源或启动流程赋值；未就绪前为 <code>null</code>。</p>
+ *
+ * @default null
+ * @see flash.text.Font
+ */
 public var FONT:Font = null;
 }

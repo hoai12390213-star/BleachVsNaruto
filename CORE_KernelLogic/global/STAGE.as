@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,6 +19,14 @@
 package {
 import flash.display.Stage;
 
-// 全局变量，得到当前主场景
+/**
+ * 主显示列表的 <code>Stage</code> 引用。
+ *
+ * <p>由启动流程赋值；未初始化前为 <code>null</code>。</p>
+ *
+ * @default null
+ * @see flash.display.Stage
+ * @see RunCheatCode
+ */
 public var STAGE:Stage = null;
 }

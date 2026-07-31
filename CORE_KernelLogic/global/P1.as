@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,20 +18,26 @@
 
 package {
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
-import net.play5d.game.bvn.data.vos.GameRunDataVO;
+import net.play5d.game.bvn.data.GameRunFighterGroup;
 import net.play5d.game.bvn.fighter.FighterMain;
 
 /**
- * 获取 P1 引用
- * @return P1 引用
+ * 当前对局中 P1 出战角色。
+ *
+ * <p>队伍组或出战角色尚未就绪时返回 <code>null</code>。</p>
+ *
+ * @return P1 当前 <code>FighterMain</code>；不可用时为 <code>null</code>。
+ * @example
+ * <listing version="3.0">
+ * if (P1) {
+ *     trace(P1.hp);
+ * }
+ * </listing>
+ * @see P2
+ * @see net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl#gameRunData
  */
 public function get P1():FighterMain {
-    var runData:GameRunDataVO = GameCtrl.I.gameRunData;
-    if (!runData) {
-        return null;
-    }
-
-    var p1:FighterMain = runData.p1FighterGroup.currentFighter;
-    return p1;
+    var group:GameRunFighterGroup = GameCtrl.I.gameRunData.p1FighterGroup;
+    return group ? group.currentFighter : null;
 }
 }
