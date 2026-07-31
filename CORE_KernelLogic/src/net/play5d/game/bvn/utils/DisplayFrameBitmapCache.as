@@ -31,6 +31,7 @@ import flash.utils.getQualifiedClassName;
 import net.play5d.game.bvn.data.vos.BitmapDataCacheVO;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.fighter.FighterMC;
+import net.play5d.kyo.utils.BitmapDataPool;
 
 /**
  * 角色显示帧位图缓存（残影 / 发光滤镜）。
@@ -39,7 +40,7 @@ import net.play5d.game.bvn.fighter.FighterMC;
  * <code>draw</code> / <code>applyFilter</code>。位图显示对象亦做轻量池化。
  * 战斗结束应调用 <code>clear</code>。</p>
  *
- * @see BitmapDataPool
+ * @see net.play5d.kyo.utils.BitmapDataPool
  * @see net.play5d.game.bvn.views.effects.ShadowEffectView
  * @see net.play5d.game.bvn.views.effects.BitmapFilterView
  * @example

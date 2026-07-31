@@ -21,6 +21,7 @@ import flash.net.URLLoaderDataFormat;
 import flash.utils.ByteArray;
 
 import net.play5d.kyo.loader.KyoURLoader;
+import net.play5d.kyo.utils.EncriptUtils;
 
 public class GameSafeKeeper {
     private const KEY:String = 'Wo&Ye@bu!Neng(889^Yang%a!Po!xO!bB)_(';
@@ -44,7 +45,7 @@ public class GameSafeKeeper {
 
         function succBack(data:ByteArray):void {
             try {
-                var json:String    = GameEncriptUtils.decryptAES(data, KEY, IV);
+                var json:String    = EncriptUtils.decryptAES(data, KEY, IV);
                 var jsonObj:Object = JSON.parse(json);
                 _fileSaveMap       = jsonObj;
                 if (succ != null) {
@@ -103,7 +104,7 @@ public class GameSafeKeeper {
             return false;
         }
 
-        var fileMd5:String = GameEncriptUtils.getFileMD5(fileBytes);
+        var fileMd5:String = EncriptUtils.md5(fileBytes);
 
         if (md5 == fileMd5) {
             return true;

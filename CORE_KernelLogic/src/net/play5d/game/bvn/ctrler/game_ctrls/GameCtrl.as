@@ -53,7 +53,7 @@ import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.map.MapMain;
 import net.play5d.game.bvn.stage.GameStage;
 import net.play5d.game.bvn.ui.GameUI;
-import net.play5d.game.bvn.utils.KeyBoarder;
+import net.play5d.kyo.utils.KeyBoarder;
 
 /**
  * 游戏控制类

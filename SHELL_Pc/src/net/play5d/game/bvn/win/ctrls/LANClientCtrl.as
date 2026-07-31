@@ -40,7 +40,7 @@ import net.play5d.game.bvn.win.sockets.SocketClient;
 import net.play5d.game.bvn.win.sockets.events.SocketEvent;
 import net.play5d.game.bvn.win.sockets.udp.UDPDataVO;
 import net.play5d.game.bvn.win.sockets.udp.UDPSocket;
-import net.play5d.game.bvn.win.utils.JsonUtils;
+import net.play5d.kyo.utils.JsonUtils;
 import net.play5d.game.bvn.win.utils.LANUtils;
 import net.play5d.game.bvn.win.utils.LanSyncType;
 import net.play5d.game.bvn.win.utils.LockFrameLogic;

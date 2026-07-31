@@ -18,7 +18,7 @@ import net.play5d.game.bvn.mob.sockets.SocketClient;
 import net.play5d.game.bvn.mob.sockets.events.SocketEvent;
 import net.play5d.game.bvn.mob.sockets.udp.UDPDataVO;
 import net.play5d.game.bvn.mob.sockets.udp.UDPSocket;
-import net.play5d.game.bvn.mob.utils.JsonUtils;
+import net.play5d.kyo.utils.JsonUtils;
 import net.play5d.game.bvn.mob.utils.LanSyncType;
 import net.play5d.game.bvn.mob.utils.LockFrameLogic;
 import net.play5d.game.bvn.mob.utils.MsgType;

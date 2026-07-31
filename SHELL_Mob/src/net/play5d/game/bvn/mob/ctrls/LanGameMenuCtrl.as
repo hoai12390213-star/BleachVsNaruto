@@ -4,7 +4,7 @@ import flash.ui.Keyboard;
 
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.mob.views.lan.LANExitDialog;
-import net.play5d.game.bvn.utils.KeyBoarder;
+import net.play5d.kyo.utils.KeyBoarder;
 
 public class LanGameMenuCtrl {
 

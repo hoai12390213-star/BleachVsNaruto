@@ -21,7 +21,7 @@ import net.play5d.game.bvn.interfaces.ISaveData;
 import net.play5d.game.bvn.data.musou.LevelModel;
 import net.play5d.game.bvn.events.GameEvent;
 import net.play5d.game.bvn.interfaces.IInstanceVO;
-import net.play5d.game.bvn.utils.WrapInteger;
+import net.play5d.kyo.utils.WrapInteger;
 
 public class MusouFighterVO implements ISaveData, IInstanceVO {
 

@@ -18,7 +18,7 @@
 
 package net.play5d.game.bvn.data.musou {
 import net.play5d.game.bvn.interfaces.IInstanceVO;
-import net.play5d.game.bvn.utils.WrapInteger;
+import net.play5d.kyo.utils.WrapInteger;
 
 public class MusouFighterSellVO implements IInstanceVO {
 

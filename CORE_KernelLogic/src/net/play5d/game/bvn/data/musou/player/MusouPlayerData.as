@@ -24,7 +24,7 @@ import net.play5d.game.bvn.data.musou.MusouWorldMapAreaVO;
 import net.play5d.game.bvn.data.musou.MusouWorldMapVO;
 import net.play5d.game.bvn.data.musou.utils.MusouFighterFactory;
 import net.play5d.game.bvn.events.GameEvent;
-import net.play5d.game.bvn.utils.WrapInteger;
+import net.play5d.kyo.utils.WrapInteger;
 
 public class MusouPlayerData implements ISaveData {
 

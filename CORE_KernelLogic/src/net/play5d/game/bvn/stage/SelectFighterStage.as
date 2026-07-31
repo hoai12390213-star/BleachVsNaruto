@@ -57,7 +57,7 @@ import net.play5d.game.bvn.ui.select.SelectFighterItem;
 import net.play5d.game.bvn.ui.select.SelectUIFactory;
 import net.play5d.game.bvn.ui.select.SelectedFighterGroup;
 import net.play5d.game.bvn.ui.select.SelecterItemUI;
-import net.play5d.game.bvn.utils.KeyBoarder;
+import net.play5d.kyo.utils.KeyBoarder;
 import net.play5d.game.bvn.utils.ResUtils;
 import net.play5d.kyo.stage.IStage;
 import net.play5d.kyo.utils.ArrayMap;

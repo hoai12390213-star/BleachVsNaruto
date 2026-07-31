@@ -18,9 +18,7 @@
 
 package net.play5d.game.bvn.utils {
 import flash.display.DisplayObject;
-import flash.display.FrameLabel;
 import flash.display.MovieClip;
-import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
@@ -29,35 +27,33 @@ import net.play5d.game.bvn.fighter.Assister;
 import net.play5d.game.bvn.fighter.Bullet;
 import net.play5d.game.bvn.fighter.FighterAttacker;
 import net.play5d.game.bvn.fighter.FighterMain;
-import net.play5d.game.bvn.interfaces.BaseGameSprite;
-
 import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.stage.GameStage;
 import net.play5d.game.bvn.views.effects.FollowEffectView;
+import net.play5d.kyo.utils.KyoUtils;
 
 /**
- * 影片剪辑实用工具
+ * 影片剪辑与游戏 Sprite 实用工具。
+ *
+ * <p>通用 MC 能力委托 <code>KyoUtils</code>；染色与遍历依赖游戏运行时。</p>
+ *
+ * @see net.play5d.kyo.utils.KyoUtils#hasFrameLabel()
+ * @see net.play5d.kyo.utils.KyoUtils#setHue()
+ * @see net.play5d.kyo.utils.KyoUtils#stopAllMovieClips()
  */
 public class MCUtils {
 
     /**
-     * 影片剪辑是否具有指定名称帧
+     * 影片剪辑是否具有指定名称帧。
      *
      * @param mc 指定影片剪辑
      * @param label 帧名称
      *
      * @return 影片剪辑是否具有某个帧
+     * @see net.play5d.kyo.utils.KyoUtils#hasFrameLabel()
      */
     public static function hasFrameLabel(mc:MovieClip, label:String):Boolean {
-        var labels:Array = mc.currentLabels;
-
-        for each(var i:FrameLabel in labels) {
-            if (i.name == label) {
-                return true;
-            }
-        }
-
-        return false;
+        return KyoUtils.hasFrameLabel(mc, label);
     }
 
     /**
@@ -65,75 +61,20 @@ public class MCUtils {
      *
      * @param display
      * @param hue 色相值（-180 - 180）
-     *
+     * @see net.play5d.kyo.utils.KyoUtils#setHue()
      */
     public static function setHue(display:DisplayObject, hue:Number = 0):void {
-        if (hue == 0) {
-            display.filters = null;
-
-            return;
-        }
-
-        var filter:ColorMatrixFilter = createHueFilter(hue);
-        display.filters              = [filter];
-    }
-
-    /**
-     * 创建一个色相滤镜
-     *
-     * @param n 色相值（-180 - 180）
-     *
-     * @return 创建完成一个色相滤镜
-     */
-    private static function createHueFilter(n:Number):ColorMatrixFilter {
-        const p1:Number = Math.cos(n * Math.PI / 180);
-        const p2:Number = Math.sin(n * Math.PI / 180);
-        const p4:Number = 0.213;
-        const p5:Number = 0.715;
-        const p6:Number = 0.072;
-
-        const matrix:Array = [
-            p4 + p1 * (1 - p4) + p2 * (0 - p4),
-            p5 + p1 * (0 - p5) + p2 * (0 - p5),
-            p6 + p1 * (0 - p6) + p2 * (1 - p6),
-            0,
-            0,
-            p4 + p1 * (0 - p4) + p2 * 0.143,
-            p5 + p1 * (1 - p5) + p2 * 0.14,
-            p6 + p1 * (0 - p6) + p2 * -0.283,
-            0,
-            0,
-            p4 + p1 * (0 - p4) + p2 * (0 - (1 - p4)),
-            p5 + p1 * (0 - p5) + p2 * p5,
-            p6 + p1 * (1 - p6) + p2 * p6,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0
-        ];
-
-        return new ColorMatrixFilter(matrix);
+        KyoUtils.setHue(display, hue);
     }
 
     /**
      * 停止指定影片剪辑以及其子影片剪辑的播放
      *
      * @param mc 指定影片剪辑
+     * @see net.play5d.kyo.utils.KyoUtils#stopAllMovieClips()
      */
     public static function stopAllMovieClips(mc:MovieClip):void {
-        for(var i:int = 0; i < mc.numChildren; i++) {
-            var d:DisplayObject = mc.getChildAt(i);
-
-            if (d && d is MovieClip){
-                var m:MovieClip = d as MovieClip;
-
-                m.stop();
-                stopAllMovieClips(m);
-            }
-        }
+        KyoUtils.stopAllMovieClips(mc);
     }
 
     /**
