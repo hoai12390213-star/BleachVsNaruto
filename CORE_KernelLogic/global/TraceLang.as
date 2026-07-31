@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,26 +19,20 @@
 package {
 
 /**
- * 全局函数，输出带前缀的、基于语言包且支持命名占位符的调试信息。
- * <p/>
- * 下列代码演示如何使用全局方法 <code>TraceLang()</code> 输出带前缀的、基于语言包且支持命名占位符的调试信息：
+ * 按语言包路径取文案（可带命名占位符），再带调试前缀输出。
+ *
+ * <p>等价于 <code>Trace(GetLang(tree, params))</code>。</p>
+ *
+ * @param tree 点分树形路径。
+ * @param params 占位符名到替换值的映射；可为 <code>null</code>。
+ * @throws ArgumentError 由 <code>Format</code> 在缺键时抛出。
+ * @example
  * <listing version="3.0">
- // 无占位符 → “* 跟踪 : ”
- TraceLang('debug.trace.prefix');
-
- // 有占位符 → “* 跟踪 : 当前模式： …”
- TraceLang('debug.trace.data.game_ctrl.current_mode', {mode: GameMode.currentMode});
+ * TraceLang('debug.trace.prefix');
+ * TraceLang('debug.trace.data.game_ctrl.current_mode', {mode: GameMode.currentMode});
  * </listing>
- *
- * @param           tree   文本的树形路径
- * @param           params 占位符名到替换值的映射，可为 null
- * 
- * @see             String
- * @see             Object
- * @throws          ArgumentError
- *
- * @langversion     3.0
- * @playerversion   Flash 9, Lite 4
+ * @see GetLang
+ * @see Trace
  */
 public function TraceLang(tree:String, params:Object = null):void {
     Trace(GetLang(tree, params));
