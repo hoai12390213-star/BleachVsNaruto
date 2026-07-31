@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,28 +19,26 @@
 package {
 
 /**
- * 全局函数，判断当前运行时是否为 <b>Harman</b> 的运行时<br>
- * 当主版本号高于等于 <b>33</b> 的运行时均为 <b>Harman</b> 运行时
- * <p/>
- * 下列代码演示如何使用全局方法 <code>IsHarmanRuntime()</code> 进行判断版本：
+ * 判断当前是否为 Harman 运行时。
+ *
+ * <p>主版本号 &gt;= 33 视为 Harman 运行时；结果进程内缓存于函数对象。</p>
+ *
+ * @return 主版本号 &gt;= 33 时为 <code>true</code>，否则为 <code>false</code>。
+ * @example
  * <listing version="3.0">
- var isHarmanRt:Boolean = IsHarmanRuntime();
- trace(isHarmanRt);
+ * if (IsHarmanRuntime()) {
+ *     // Harman AIR / Flash Player 33+
+ * }
  * </listing>
- *
- * @see           Boolean
- * @return        若主版本号高于等于 33 ，返回 <code>true</code>，否则返回 <code>false</code>
- *
- * @langversion   3.0
- * @playerversion Flash 9, Lite 4
+ * @see GetRuntimeType
  */
 public function IsHarmanRuntime():Boolean {
-    var t:Object = GetRuntimeType();
-    if (!t) {
-        return false;
+    // 缓存挂在函数对象上，避免包级第二外部可见定义
+    if (IsHarmanRuntime['_c'] != null) {
+        return IsHarmanRuntime['_c'];
     }
-
-    var mv:int = int(t.majorVersion);
-    return mv >= 33;
+    var t:Object = GetRuntimeType();
+    IsHarmanRuntime['_c'] = t != null && int(t.majorVersion) >= 33;
+    return IsHarmanRuntime['_c'];
 }
 }

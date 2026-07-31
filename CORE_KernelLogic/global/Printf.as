@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,27 +19,20 @@
 package {
 
 /**
- * 全局函数，使用命名占位符格式化字符串并 trace 输出（无调试前缀）。
- * 始终调用 <code>Format(format, params)</code>；模板含 <code>{name}</code> 而 <code>params</code> 缺键时将抛出 <code>ArgumentError</code>。
- * <p/>
- * 下列代码演示如何使用全局方法 <code>Printf()</code> 输出格式化字符串：
- * <listing version="3.0">  
- var format:String = "今天是星期{weekday}，天气：{weather}";
- var params:Object = {weekday: 1, weather: "晴"};
-
- // 输出结果：“今天是星期1，天气：晴”
- Printf(format, params);
+ * 使用命名占位符格式化字符串并 <code>trace</code> 输出（无调试前缀）。
+ *
+ * <p>始终调用 <code>Format(format, params)</code>；缺键时抛出 <code>ArgumentError</code>。</p>
+ *
+ * @param format 源字符串。
+ * @param params 占位符名到替换值的映射；可为 <code>null</code>。
+ * @throws ArgumentError 由 <code>Format</code> 在缺键时抛出。
+ * @example
+ * <listing version="3.0">
+ * Printf('今天是星期{weekday}，天气：{weather}', {weekday: 1, weather: '晴'});
+ * // 输出：今天是星期1，天气：晴
  * </listing>
- *
- * @param           format  源字符串
- * @param           params  占位符名到替换值的映射，可为 null
- * 
- * @see             String
- * @see             Object
- * @throws          ArgumentError
- *
- * @langversion     3.0
- * @playerversion   Flash 9, Lite 4
+ * @see Format
+ * @see Trace
  */
 public function Printf(format:String, params:Object = null):void {
     trace(Format(format, params));

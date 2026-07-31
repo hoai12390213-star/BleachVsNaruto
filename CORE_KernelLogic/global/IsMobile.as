@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,18 @@ package {
 import net.play5d.game.bvn.GameConfig;
 
 /**
- * 全局函数，判断当前运行版本是否为 <b>移动端</b> <br>
- * 当 <code>GameConfig.TOUCH_MODE</code> 为 <code>true</code> 时，
- * 当前版本为 <b>移动端</b>。
- * <p/>
- * 下列代码演示如何使用全局方法 <code>IsMobile()</code> 进行判断版本：
+ * 判断当前构建是否按移动端（触控）模式运行。
+ *
+ * <p>以 <code>GameConfig.TOUCH_MODE</code> 为准，而非设备能力探测。</p>
+ *
+ * @return 触控模式开启时为 <code>true</code>，否则为 <code>false</code>。
+ * @example
  * <listing version="3.0">
- var isMobile:Boolean = IsMobile();
- trace(isMobile);
+ * if (IsMobile()) {
+ *     // 触控 UI / 输入分支
+ * }
  * </listing>
- *
- * @see           Boolean
- * @return        若当前运行版本为 <b>移动端</b>，返回 <code>true</code>，否则返回 <code>false</code>
- *
- * @langversion   3.0
- * @playerversion Flash 9, Lite 4
+ * @see net.play5d.game.bvn.GameConfig#TOUCH_MODE
  */
 public function IsMobile():Boolean {
     return GameConfig.TOUCH_MODE;

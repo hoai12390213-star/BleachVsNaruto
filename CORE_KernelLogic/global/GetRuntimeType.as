@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,56 +20,47 @@ package {
 import flash.system.Capabilities;
 
 /**
- * 全局函数，获取运行时类型详细数据
- * <p/>
- * 下列代码演示如何使用全局方法 <code>GetRuntimeType()</code> 获取运行时详细数据：
- * <listing version="3.0">
- var type:Object = GetRuntimeType();
- trace("平台          ：" + type.platform);
- trace("主版本号      ：" + type.majorVersion);
- trace("次版本号      ：" + type.minorVersion);
- trace("生成版本号    ：" + type.buildNumber);
- trace("内部生成版本号：" + type.internalBuildNumber);
- * </listing>
+ * 解析当前播放器/运行时版本字符串。
  *
- * @see           Object
- * @return        Objetct，包含如下属性：<br/>
+ * <p>结果在首次调用后缓存于函数对象。解析失败（版本串不符合预期格式）时返回
+ * <code>null</code>。</p>
+ *
+ * @return 含下列字段的对象；失败时为 <code>null</code>：
  * <ul>
- * <li>platform            平台，返回如下字符串：
- *   <ul>
- *   <li>WIN - Windows平台</li>
- *   <li>MAC - MacOS平台</li>
- *   <li>LNX - Linux平台</li>
- *   <li>AND - Android平台</li>
- *   </ul>
- * </li>
- * <li>majorVersion        主版本号</li>
- * <li>minorVersion        次版本号</li>
- * <li>buildNumber         生成版本号</li>
- * <li>internalBuildNumber 内部生成版本号</li>
+ *   <li><code>platform</code> — <code>WIN</code> / <code>MAC</code> / <code>LNX</code> / <code>AND</code></li>
+ *   <li><code>majorVersion</code> — 主版本号字符串</li>
+ *   <li><code>minorVersion</code> — 次版本号字符串</li>
+ *   <li><code>buildNumber</code> — 生成版本号</li>
+ *   <li><code>internalBuildNumber</code> — 内部生成版本号</li>
  * </ul>
- *
- * @langversion   3.0
- * @playerversion Flash 9, Lite 4
+ * @example
+ * <listing version="3.0">
+ * var t:Object = GetRuntimeType();
+ * if (t) {
+ *     trace(t.platform, t.majorVersion);
+ * }
+ * </listing>
+ * @see IsHarmanRuntime
+ * @see flash.system.Capabilities#version
  */
 public function GetRuntimeType():Object {
-    // 版本正则表达式
-    var reg:RegExp = /^(\w*) (\d*),(\d*),(\d*),(\d*)$/;
+    // 缓存挂在函数对象上，避免包级第二外部可见定义
+    if (GetRuntimeType['_c'] != null) {
+        return GetRuntimeType['_c'];
+    }
 
-    // 按照正则表达式规则取出数据并存入数组
-    var tmp:Array = reg.exec(Capabilities.version) as Array;
+    var tmp:Array = /^(\w*) (\d*),(\d*),(\d*),(\d*)$/.exec(Capabilities.version) as Array;
     if (!tmp) {
         return null;
     }
 
-    // 赋值
-    var obj:Object          = {};
-    obj.platform            = tmp[1];
-    obj.majorVersion        = tmp[2];
-    obj.minorVersion        = tmp[3];
-    obj.buildNumber         = tmp[4];
-    obj.internalBuildNumber = tmp[5];
-
-    return obj;
+    GetRuntimeType['_c'] = {
+        platform           : tmp[1],
+        majorVersion       : tmp[2],
+        minorVersion       : tmp[3],
+        buildNumber        : tmp[4],
+        internalBuildNumber: tmp[5]
+    };
+    return GetRuntimeType['_c'];
 }
 }
