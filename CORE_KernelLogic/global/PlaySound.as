@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2025, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,28 +22,25 @@ import flash.media.Sound;
 import net.play5d.game.bvn.ctrler.SoundCtrl;
 
 /**
- * 全局函数，播放声音
- * <p/>
- * 下列代码演示如何使用全局方法 <code>PlaySound()</code>
- * 进行声音播放：
+ * 播放音效（<code>Sound</code> 实例或 SWC 声音类）。
+ *
+ * <p>委托 <code>SoundCtrl</code>；类型不匹配时静默忽略。</p>
+ *
+ * @param obj <code>Sound</code> 实例，或可实例化为声音的 <code>Class</code>。
+ * @example
  * <listing version="3.0">
- PlaySound(snd_cls);
- PlaySound(snd);
+ * PlaySound(hitSnd);
+ * PlaySound(Snd_Hit);
  * </listing>
- *
- * @param obj 声音对象，可为 Class 类型或 Sound 类型
- *
- * @see           Class
- * @see           Sound
- *
- * @langversion   3.0
- * @playerversion Flash 9, Lite 4
+ * @see flash.media.Sound
+ * @see net.play5d.game.bvn.ctrler.SoundCtrl
  */
 public function PlaySound(obj:Object):void {
     if (obj is Sound) {
         SoundCtrl.I.playSound(obj as Sound);
+        return;
     }
-    else if (obj is Class) {
+    if (obj is Class) {
         SoundCtrl.I.playSwcSound(obj as Class);
     }
 }

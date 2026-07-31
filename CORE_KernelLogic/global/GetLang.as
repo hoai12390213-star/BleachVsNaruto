@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,27 +19,22 @@
 package {
 
 /**
- * 全局函数，得到基于树形路径、并按命名占位符格式化后的当前语言文本。
- * <p/>
- * 下列代码演示如何使用全局方法 <code>GetLang()</code> 输出格式化后的当前语言：
- * <listing version="3.0">
- // 无占位符
- trace(GetLang('debug.trace.prefix'));
-
- // 命名占位符（各语言 JSON 可自行排列 {amount} 顺序）
- trace(GetLang('alert.musou_ctrl.need_more_money', {amount: 100}));
- * </listing>
+ * 按点分树形路径取当前语言文案，并用命名占位符格式化。
  *
- * @param           tree    树形路径
- * @param           params  占位符名到替换值的映射，可为 null
- * 
- * @see             String
- * @see             Object
- * @throws          ArgumentError
- * @return          基于树形路径、并按命名占位符格式化后的当前语言文本
- * 
- * @langversion     3.0
- * @playerversion   Flash 9, Lite 4
+ * <p>等价于 <code>Format(GetLangText(tree), params)</code>。</p>
+ *
+ * @param tree 点分树形路径（如 <code>alert.musou_ctrl.need_more_money</code>）。
+ * @param params 占位符名到替换值的映射；可为 <code>null</code>。
+ * @return 格式化后的当前语言文本。
+ * @throws ArgumentError 由 <code>Format</code> 在缺键时抛出。
+ * @example
+ * <listing version="3.0">
+ * GetLang('debug.trace.prefix');
+ * GetLang('alert.musou_ctrl.need_more_money', {amount: 100});
+ * </listing>
+ * @see GetLangText
+ * @see Format
+ * @see LANGUAGE
  */
 public function GetLang(tree:String, params:Object = null):String {
     return Format(GetLangText(tree), params);

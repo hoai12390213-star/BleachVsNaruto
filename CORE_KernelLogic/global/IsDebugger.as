@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024, 5DPLAY Game Studio
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,22 +22,23 @@ import flash.system.Capabilities;
 import net.play5d.game.bvn.GameConfig;
 
 /**
- * 全局函数，判断当前运行时是否为<b>调试版</b>
- * <p/>
- * 下列代码演示如何使用全局方法 <code>IsDebugger()</code> 获取当前运行时是否为<b>调试版</b>：
+ * 判断当前是否处于调试环境。
+ *
+ * <p>播放器调试版（<code>Capabilities.isDebugger</code>）或
+ * <code>GameConfig.DEBUG_MODE</code> 任一为真即返回 <code>true</code>。
+ * 不缓存，以便运行期切换 <code>DEBUG_MODE</code> 仍生效。</p>
+ *
+ * @return 调试环境为 <code>true</code>，否则为 <code>false</code>。
+ * @example
  * <listing version="3.0">
- var isDebugger:Boolean = IsDebugger();
- trace(isDebugger);
+ * if (IsDebugger()) {
+ *     Trace('debug only');
+ * }
  * </listing>
- *
- * @see           Boolean
- * @return        若前运行时为<b>调试版</b>，返回 <code>true</code>，否则返回 <code>false</code>
- *
- * @langversion   3.0
- * @playerversion Flash 9, Lite 4
+ * @see ThrowError
+ * @see net.play5d.game.bvn.GameConfig#DEBUG_MODE
  */
 public function IsDebugger():Boolean {
-    // 先判断运行时是否是调试版，如果不是再判断内部是否为调试模式
     return Capabilities.isDebugger || GameConfig.DEBUG_MODE;
 }
 }
