@@ -106,6 +106,41 @@ public class FighterMC {
         return _curFrameCount;
     }
 
+    /**
+     * 生成当前动画姿态键（主帧 + 与 <code>renderChildren</code> 一致的子 MC 帧）。
+     *
+     * <p>供残影/发光位图缓存区分视觉状态，避免父帧停住而子件仍在播时误命中。</p>
+     *
+     * @return 姿态键；MC 未就绪时为空串。
+     * @example
+     * <listing version="3.0">
+     * var key:String = fighter.getMC().getPoseKey();
+     * </listing>
+     */
+    public function getPoseKey():String {
+        if (!_mc) {
+            return '';
+        }
+        var key:String = String(_mc.currentFrame);
+        var i:int;
+        var length:int = _mc.numChildren;
+        for (i = 0; i < length; i++) {
+            var child:MovieClip = _mc.getChildAt(i) as MovieClip;
+            if (!child) {
+                continue;
+            }
+            var mcName:String = child.name;
+            if (mcName == 'AImain' || mcName == 'bdmn' || mcName.indexOf('atm') != -1) {
+                continue;
+            }
+            if (child.totalFrames < 2) {
+                continue;
+            }
+            key += '_' + child.currentFrame;
+        }
+        return key;
+    }
+
     public function initlize(mc:MovieClip, fighter:FighterMain, mcCtrler:FighterMcCtrler):void {
         _mc             = mc;
         _fighter        = fighter;

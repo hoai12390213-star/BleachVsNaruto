@@ -20,7 +20,6 @@ package net.play5d.game.bvn.utils {
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.DisplayObject;
-import flash.display.MovieClip;
 import flash.filters.BitmapFilter;
 import flash.filters.GlowFilter;
 import flash.geom.ColorTransform;
@@ -104,11 +103,7 @@ public class DisplayFrameBitmapCache {
         if (!fmc) {
             return '';
         }
-        var mc:MovieClip = fighter.getDisplay() as MovieClip;
-        if (!mc) {
-            return String(fmc.getCurrentFrame());
-        }
-        return appendChildFrames(String(fmc.getCurrentFrame()), mc);
+        return fmc.getPoseKey();
     }
 
     /**
@@ -381,23 +376,6 @@ public class DisplayFrameBitmapCache {
         disposeFilterAll();
         _bitmapPool.length = 0;
         BitmapDataPool.I.clear();
-    }
-
-    /** @private */
-    private function appendChildFrames(base:String, mc:MovieClip):String {
-        var i:int;
-        var n:int = mc.numChildren;
-        for (i = 0; i < n; i++) {
-            var child:MovieClip = mc.getChildAt(i) as MovieClip;
-            if (!child) {
-                continue;
-            }
-            if (child.totalFrames < 2) {
-                continue;
-            }
-            base += '_' + child.currentFrame;
-        }
-        return base;
     }
 
     /** @private */
