@@ -18,6 +18,7 @@
 
 package net.play5d.game.bvn.win.utils {
 import net.play5d.game.bvn.GameConfig;
+import net.play5d.kyo.utils.KyoTimerFormat;
 
 public class LANUtils {
     /**
@@ -44,15 +45,8 @@ public class LANUtils {
     }
 
     public static function getTimeStr(date:Date):String {
-        return formatNum(date.month + 1) + '/' + formatNum(date.date) + ' ' + formatNum(date.hours) + ':' +
-               formatNum(date.minutes);
-    }
-
-    private static function formatNum(num:int):String {
-        if (num < 10) {
-            return '0' + num;
-        }
-        return num.toString();
+        return KyoTimerFormat.formatNum(date.month + 1) + '/' + KyoTimerFormat.formatNum(date.date) + ' ' +
+               KyoTimerFormat.formatNum(date.hours) + ':' + KyoTimerFormat.formatNum(date.minutes);
     }
 
     public function LANUtils() {
