@@ -34,7 +34,6 @@ public function get _ALL_GLOBALS_():* {
     return ([
         FONT,
         Format,
-        GetElement,
         GetGameSprites,
         GetLang,
         GetLangText,
@@ -49,7 +48,6 @@ public function get _ALL_GLOBALS_():* {
         PlaySound,
         Printf,
         RunCheatCode,
-        SetElement,
         STAGE,
         ThrowError,
         Trace,
