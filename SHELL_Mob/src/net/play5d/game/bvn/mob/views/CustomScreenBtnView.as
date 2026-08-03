@@ -14,7 +14,7 @@ import net.play5d.game.bvn.mob.events.ScreenPadEvent;
 import net.play5d.game.bvn.mob.screenpad.ScreenPadBtnBase;
 import net.play5d.game.bvn.mob.screenpad.ScreenPadGame;
 import net.play5d.game.bvn.mob.screenpad.ScreenPadManager;
-import net.play5d.game.bvn.mob.screenpad.ScreenPadUtils;
+import net.play5d.kyo.utils.KyoDisplayUtils;
 import net.play5d.game.bvn.mob.utils.UIAssetUtil;
 
 public class CustomScreenBtnView {
@@ -26,7 +26,7 @@ public class CustomScreenBtnView {
         _ui.graphics.endFill();
 
         _width  = RootSprite.FULL_SCREEN_SIZE.x;
-        _height = ScreenPadUtils.cm2pixel(0.8);
+        _height = KyoDisplayUtils.cm2pixel(0.8);
         _scale  = _height / 55;
 
         _btnItemSetUI = new CustomSetBtnItemUI(_scale);

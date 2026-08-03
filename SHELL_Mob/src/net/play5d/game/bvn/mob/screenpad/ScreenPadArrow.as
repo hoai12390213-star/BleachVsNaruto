@@ -6,6 +6,8 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.utils.Timer;
 
+import net.play5d.kyo.utils.KyoDisplayUtils;
+
 public class ScreenPadArrow extends ScreenPadBtnBase {
 
     public function ScreenPadArrow() {
@@ -233,7 +235,7 @@ public class ScreenPadArrow extends ScreenPadBtnBase {
 
         if (!_touchMoving) {
             _startTouchPoint ||= new Point(X, Y);
-            if (Math.abs(X - _startTouchPoint.x) + Math.abs(Y - _startTouchPoint.y) > ScreenPadUtils.cm2pixel(0.3)) {
+            if (Math.abs(X - _startTouchPoint.x) + Math.abs(Y - _startTouchPoint.y) > KyoDisplayUtils.cm2pixel(0.3)) {
                 _touchMoving = true;
             }
             return;

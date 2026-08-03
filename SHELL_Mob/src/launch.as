@@ -43,7 +43,7 @@ import net.play5d.game.bvn.mob.ctrls.GamePolyCtrl;
 import net.play5d.game.bvn.mob.ctrls.MobileCtrler;
 import net.play5d.game.bvn.mob.ctrls.UpdateCtrl;
 import net.play5d.game.bvn.mob.screenpad.ScreenPadManager;
-import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+import net.play5d.kyo.utils.KyoTimerUtils;
 import net.play5d.game.bvn.mob.utils.UIAssetUtil;
 import net.play5d.game.bvn.ui.GameUI;
 import net.play5d.game.bvn.ui.fight.FightQiBarMode;
@@ -139,7 +139,7 @@ public class launch extends Sprite {
 
         sdkBack();
         adBack();
-        _sdkTimer = TimerOutUtils.setTimeout(initGame, 10000);
+        _sdkTimer = KyoTimerUtils.setTimeout(initGame, 10000);
 
         //竞技版删除广告
 
@@ -147,17 +147,17 @@ public class launch extends Sprite {
 
     private function sdkBack():void {
         trace('sdkBack');
-        TimerOutUtils.clearTimeout(_sdkTimer);
+        KyoTimerUtils.clearTimeout(_sdkTimer);
     }
 
     private function adBack():void {
 //			AdManager.toast("adBack");
 
-        TimerOutUtils.clearTimeout(_sdkTimer);
+        KyoTimerUtils.clearTimeout(_sdkTimer);
         preInitGame();
 
         if (AdCtrler.SHOW_OPENAD_ON_START) {
-            TimerOutUtils.setTimeout(initGame, 500);
+            KyoTimerUtils.setTimeout(initGame, 500);
         }
         else {
             initGame();
@@ -196,8 +196,8 @@ public class launch extends Sprite {
     }
 
     private function initGame():void {
-        TimerOutUtils.clearTimeout(_sdkTimer);
-//			TimerOutUtils.clearTimeout(_initTimer);
+        KyoTimerUtils.clearTimeout(_sdkTimer);
+//			KyoTimerUtils.clearTimeout(_initTimer);
 
         preInitGame();
         removeStartBitmap();
@@ -335,7 +335,7 @@ public class launch extends Sprite {
 //
 //			AdManager.I.initAD(sdkBack, adBack);
 //
-//			_sdkTimer = TimerOutUtils.setTimeout(initGame , 10000);
+//			_sdkTimer = KyoTimerUtils.setTimeout(initGame , 10000);
     }
 
     private function activeHandler(e:Event):void {
@@ -346,7 +346,7 @@ public class launch extends Sprite {
 
             _isActive = false;
             trace('pause');
-            TimerOutUtils.pauseAllTimer();
+            KyoTimerUtils.pauseAllTimer();
             MobileCtrler.I.pause();
 //				UMengAneManager.I.onDeactive();
             AdManager.I.onDeactive();
@@ -358,7 +358,7 @@ public class launch extends Sprite {
 
             _isActive = true;
             trace('resume');
-            TimerOutUtils.resumeAllTimer();
+            KyoTimerUtils.resumeAllTimer();
             MobileCtrler.I.resume();
 //				UMengAneManager.I.onActive();
             AdManager.I.onActive();

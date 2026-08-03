@@ -11,7 +11,7 @@
 //	import net.play5d.game.bvn.mob.ads.utils.AdEventListener;
 //	import net.play5d.game.bvn.mob.ads.utils.AdType;
 //	import net.play5d.game.bvn.mob.ads.utils.IAd;
-//	import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+//	import net.play5d.kyo.utils.KyoTimerUtils;
 //
 //	public class AdGroup extends EventDispatcher
 //	{
@@ -77,7 +77,7 @@
 //
 //		private function initNext():void{
 //
-//			TimerOutUtils.clearTimeout(_initTimer);
+//			KyoTimerUtils.clearTimeout(_initTimer);
 //
 //			if(_initAdQueue.length < 1){
 //				adInitComplete();
@@ -86,7 +86,7 @@
 //
 //			var d:IAd = _initAdQueue.shift();
 //
-//			_initTimer = TimerOutUtils.setTimeout(initTimeout, 5000, d);
+//			_initTimer = KyoTimerUtils.setTimeout(initTimeout, 5000, d);
 //
 //			trace('init ::', d, ' - ', _initAdCount - _initAdQueue.length, '/', _initAdCount);
 //			d.initalize(_listener);
@@ -147,7 +147,7 @@ import net.play5d.game.bvn.mob.ads.AdManager;
 import net.play5d.game.bvn.mob.ads.utils.AdEvent;
 import net.play5d.game.bvn.mob.ads.utils.AdEventListener;
 import net.play5d.game.bvn.mob.ads.utils.IAd;
-import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+import net.play5d.kyo.utils.KyoTimerUtils;
 
 public class AdGroup extends EventDispatcher {
 
@@ -307,13 +307,13 @@ public class AdGroup extends EventDispatcher {
     }
 
     private function initNext():void {
-        TimerOutUtils.clearTimeout(_initTimer);
+        KyoTimerUtils.clearTimeout(_initTimer);
         if (_initAdQueue.length < 1) {
             adInitComplete();
             return;
         }
         var _loc1_:IAd = _initAdQueue.shift();
-        _initTimer     = TimerOutUtils.setTimeout(initTimeout, 5000, _loc1_);
+        _initTimer     = KyoTimerUtils.setTimeout(initTimeout, 5000, _loc1_);
         trace('init ::', _loc1_, ' - ', _initAdCount - _initAdQueue.length, '/', _initAdCount);
         _loc1_.initalize(_listener);
     }

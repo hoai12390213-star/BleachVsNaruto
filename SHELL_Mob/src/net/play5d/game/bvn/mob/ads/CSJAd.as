@@ -12,7 +12,7 @@ package net.play5d.game.bvn.mob.ads {
 import flash.events.StatusEvent;
 
 import net.play5d.game.bvn.mob.ads.utils.AdEventListener;
-import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+import net.play5d.kyo.utils.KyoTimerUtils;
 
 public class CSJAd extends BaseAd {
 
@@ -52,7 +52,7 @@ public class CSJAd extends BaseAd {
     override public function showOpen():void {
 //			TTAdManager.Instance.showSplash(this.splashid);
         _listener.onShow(this, 'OPEN');
-        TimerOutUtils.setTimeout(openFinish, 1000);
+        KyoTimerUtils.setTimeout(openFinish, 1000);
     }
 
     override public function cacheInter():void {

@@ -5,6 +5,7 @@ import flash.geom.Point;
 
 import net.play5d.game.bvn.mob.RootSprite;
 import net.play5d.game.bvn.mob.input.ScreenPadInput;
+import net.play5d.kyo.utils.KyoDisplayUtils;
 
 public class ScreenPadSelectFighter {
 
@@ -70,24 +71,24 @@ public class ScreenPadSelectFighter {
             areaAdd:Number                                                                              = 0, btnSize:Number = 0
     ):ScreenPadBtn {
         var size:Point = new Point();
-        size.x         = ScreenPadUtils.cm2pixel(btnSize);
+        size.x         = KyoDisplayUtils.cm2pixel(btnSize);
 
         var btn:ScreenPadBtn = ScreenPadUtils.getButton(asset, size);
         btn.moveAble         = false;
         btn.keyId            = keyId;
-        btn.areaAdd          = ScreenPadUtils.cm2pixel(areaAdd);
+        btn.areaAdd          = KyoDisplayUtils.cm2pixel(areaAdd);
 
         if (left != 0) {
-            btn.display.x = ScreenPadUtils.cm2pixel(left);
+            btn.display.x = KyoDisplayUtils.cm2pixel(left);
         }
         if (top != 0) {
-            btn.display.y = ScreenPadUtils.cm2pixel(top);
+            btn.display.y = KyoDisplayUtils.cm2pixel(top);
         }
         if (right != 0) {
-            btn.display.x = W - btn.display.width - ScreenPadUtils.cm2pixel(right);
+            btn.display.x = W - btn.display.width - KyoDisplayUtils.cm2pixel(right);
         }
         if (bottom != 0) {
-            btn.display.y = H - btn.display.height - ScreenPadUtils.cm2pixel(bottom);
+            btn.display.y = H - btn.display.height - KyoDisplayUtils.cm2pixel(bottom);
         }
 
         _btns.push(btn);

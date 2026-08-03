@@ -3,6 +3,7 @@ import flash.display.Stage;
 import flash.events.TouchEvent;
 
 import net.play5d.game.bvn.mob.input.ScreenPadInput;
+import net.play5d.kyo.utils.KyoDisplayUtils;
 
 public class ScreenPadMenu {
 
@@ -75,19 +76,19 @@ public class ScreenPadMenu {
         var arrow:ScreenPadArrow = ScreenPadUtils.getArrow(asset);
         arrow.moveAble           = false;
         arrow.setKeyIds(keyIds[0], keyIds[1], keyIds[2], keyIds[3]);
-        arrow.areaAdd = ScreenPadUtils.cm2pixel(areaAdd);
+        arrow.areaAdd = KyoDisplayUtils.cm2pixel(areaAdd);
 
         if (left != 0) {
-            arrow.display.x = ScreenPadUtils.cm2pixel(left);
+            arrow.display.x = KyoDisplayUtils.cm2pixel(left);
         }
         if (top != 0) {
-            arrow.display.y = ScreenPadUtils.cm2pixel(top);
+            arrow.display.y = KyoDisplayUtils.cm2pixel(top);
         }
         if (right != 0) {
-            arrow.display.x = W - arrow.display.width - ScreenPadUtils.cm2pixel(right);
+            arrow.display.x = W - arrow.display.width - KyoDisplayUtils.cm2pixel(right);
         }
         if (bottom != 0) {
-            arrow.display.y = H - arrow.display.height - ScreenPadUtils.cm2pixel(bottom);
+            arrow.display.y = H - arrow.display.height - KyoDisplayUtils.cm2pixel(bottom);
         }
 
         _btns.push(arrow);
@@ -101,19 +102,19 @@ public class ScreenPadMenu {
         var btn:ScreenPadBtn = ScreenPadUtils.getButton(asset);
         btn.moveAble         = false;
         btn.keyId            = keyId;
-        btn.areaAdd          = ScreenPadUtils.cm2pixel(areaAdd);
+        btn.areaAdd          = KyoDisplayUtils.cm2pixel(areaAdd);
 
         if (left != 0) {
-            btn.display.x = ScreenPadUtils.cm2pixel(left);
+            btn.display.x = KyoDisplayUtils.cm2pixel(left);
         }
         if (top != 0) {
-            btn.display.y = ScreenPadUtils.cm2pixel(top);
+            btn.display.y = KyoDisplayUtils.cm2pixel(top);
         }
         if (right != 0) {
-            btn.display.x = W - btn.display.width - ScreenPadUtils.cm2pixel(right);
+            btn.display.x = W - btn.display.width - KyoDisplayUtils.cm2pixel(right);
         }
         if (bottom != 0) {
-            btn.display.y = H - btn.display.height - ScreenPadUtils.cm2pixel(bottom);
+            btn.display.y = H - btn.display.height - KyoDisplayUtils.cm2pixel(bottom);
         }
 
         _btns.push(btn);

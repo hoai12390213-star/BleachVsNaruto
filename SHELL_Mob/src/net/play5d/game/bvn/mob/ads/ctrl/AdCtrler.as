@@ -27,7 +27,7 @@ import net.play5d.game.bvn.mob.ads.utils.AdEvent;
 import net.play5d.game.bvn.mob.ads.utils.AdType;
 import net.play5d.game.bvn.mob.ads.utils.IAd;
 import net.play5d.game.bvn.mob.data.AdConfVO;
-import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+import net.play5d.kyo.utils.KyoTimerUtils;
 
 public class AdCtrler extends EventDispatcher {
     private const _showAdTimesTotal:int = 1;
@@ -258,7 +258,7 @@ public class AdCtrler extends EventDispatcher {
 
             if (SHOW_OPENAD_ON_START) {
                 if (_openCloseBack != null) {
-                    _showOpenAdTimer = TimerOutUtils.setTimeout(openCloseBack, 8000);
+                    _showOpenAdTimer = KyoTimerUtils.setTimeout(openCloseBack, 8000);
                 }
 
                 AdManager.I.showAd(AdType.OPEN);

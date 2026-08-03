@@ -7,7 +7,7 @@ import net.play5d.game.bvn.mob.ads.utils.AdType;
 import net.play5d.game.bvn.mob.ads.utils.IAd;
 import net.play5d.game.bvn.mob.ctrls.GamePolyCtrl;
 import net.play5d.game.bvn.mob.ctrls.MobileCtrler;
-import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+import net.play5d.kyo.utils.KyoTimerUtils;
 
 public class AdManager {
 
@@ -89,7 +89,7 @@ public class AdManager {
 
         _adCtrler.cacheInterAd();
 
-        TimerOutUtils.setTimeout(_adCtrler.cacheVideoAd, 2000);
+        KyoTimerUtils.setTimeout(_adCtrler.cacheVideoAd, 2000);
     }
 
     public function isShowingAd(type:*):Boolean {

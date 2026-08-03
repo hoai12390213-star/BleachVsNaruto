@@ -12,7 +12,7 @@ package net.play5d.game.bvn.mob.ads {
 import flash.events.StatusEvent;
 
 import net.play5d.game.bvn.mob.ads.utils.AdEventListener;
-import net.play5d.game.bvn.mob.utils.TimerOutUtils;
+import net.play5d.kyo.utils.KyoTimerUtils;
 
 public class GDTAd extends BaseAd {
 
@@ -140,8 +140,8 @@ public class GDTAd extends BaseAd {
                 switch (param1.code) {
                 case 'init':
                     if (param1.level == 'success') {
-                        TimerOutUtils.clearTimeout(_initTimer);
-                        _initTimer = TimerOutUtils.setTimeout(initSucc, 2000);
+                        KyoTimerUtils.clearTimeout(_initTimer);
+                        _initTimer = KyoTimerUtils.setTimeout(initSucc, 2000);
                         break;
                     }
                     break;
