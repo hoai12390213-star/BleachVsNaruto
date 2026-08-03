@@ -12,7 +12,7 @@
 | 2 | 显示对象加载 | `KyoLoaderLite` | `load` / `loadLoader`；二进制可再委托 URLoader |
 | 3 | 游戏内延时 | `KyoTimeout` | 须先 `init`；帧同步（`setFrameout` / 毫秒转帧） |
 | 4 | 广告/可暂停延时 | `KyoTimerUtils` | 真实 `Timer`；支持 `pauseAllTimer` / `resumeAllTimer` |
-| 5 | AIR 本地文件 | `FileUtils` | **仅 AIR**（`flash.filesystem`）；壳存档读写 |
+| 5 | AIR 本地文件 | `net.play5d.kyo.air.utils.FileUtils` | **仅 AIR**（`kyo.air.*`）；壳存档读写 |
 | 6 | SharedObject 快照 | `net.play5d.kyo.storage.KyoSharedObject` | 简单 load/save |
 | 7 | 媒体容器播放 | `net.play5d.kyo.media.SuperPlayer` | ppt/页内播放器 |
 
@@ -22,6 +22,7 @@
 - 合并 `KyoURLoader` 与 `KyoLoaderLite`（URLLoader ≠ Display Loader）
 - 合并游戏 `BtnUtils` 与库 `KyoBtnUtils`（见下节）
 - 新代码依赖 `AJAX`、未标注用途的根包杂类
+- 在非 AIR 目标中引用 `net.play5d.kyo.air.*`（仅 AIR：`FileUtils` / `ProcessUtils` 等）
 
 ---
 
@@ -32,6 +33,17 @@
 | 驱动 | `ENTER_FRAME` | `flash.utils.Timer` |
 | 典型 | 战斗/UI/关卡节奏 | Mob 广告 SDK、应用暂停需冻结 |
 | 本仓 | `MainGame`、`MusouUI`、`GameOverStage`、`LANClientCtrl` | `launch`、ads |
+
+---
+
+## AIR 包
+
+`net.play5d.kyo` 之后插入 `.air`，其后路径与原包一致，表示该树下类依赖 AIR API。
+
+| 类 | 包 |
+|----|-----|
+| `FileUtils` | `net.play5d.kyo.air.utils` |
+| `ProcessUtils` | `net.play5d.kyo.air.utils` |
 
 ---
 
@@ -51,8 +63,9 @@
 
 | 包 | 放什么 |
 |----|--------|
+| `kyo.air.*` | **仅 AIR**（如 `air.utils.FileUtils` / `ProcessUtils`） |
 | `kyo.loader` | URLoader / LoaderLite 等 |
-| `kyo.utils` | 静态工具（含 AIR `FileUtils`） |
+| `kyo.utils` | 跨运行时静态工具（非 AIR 专用） |
 | `kyo.storage` | SharedObject 相关 |
 | `kyo.media` | `SuperPlayer` |
 | `kyo.cache` | `KyoCacheManager` |

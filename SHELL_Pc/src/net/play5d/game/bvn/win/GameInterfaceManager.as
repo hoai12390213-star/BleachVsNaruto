@@ -51,7 +51,7 @@ import net.play5d.game.bvn.win.ctrls.LANGameCtrl;
 import net.play5d.game.bvn.win.ctrls.LANServerCtrl;
 import net.play5d.game.bvn.win.data.ExtendConfig;
 import net.play5d.game.bvn.win.input.InputManager;
-import net.play5d.kyo.utils.FileUtils;
+import net.play5d.kyo.air.utils.FileUtils;
 import net.play5d.game.bvn.win.views.ViewManager;
 
 public class GameInterfaceManager implements IGameInterface {

@@ -5,7 +5,7 @@ import flash.filesystem.File;
 
 import net.play5d.game.bvn.mob.data.AdConfVO;
 import net.play5d.game.bvn.mob.data.VersionInfoVO;
-import net.play5d.kyo.utils.FileUtils;
+import net.play5d.kyo.air.utils.FileUtils;
 import net.play5d.kyo.loader.KyoURLoader;
 
 public class GamePolyCtrl {
