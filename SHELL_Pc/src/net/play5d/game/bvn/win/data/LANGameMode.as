@@ -22,7 +22,5 @@ public class LANGameMode {
     public static const SINGLE_VS:int = 1;
     public static const TEAM_VS:int   = 2;
 
-    public function LANGameMode() {
-    }
 }
 }

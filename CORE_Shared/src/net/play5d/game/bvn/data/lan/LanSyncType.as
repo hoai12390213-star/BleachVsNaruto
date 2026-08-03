@@ -34,10 +34,5 @@ public class LanSyncType {
     /** 回合结束 */
     public static const ROUND_FINISH:int = 7;
 
-    /**
-     * 构造函数（本类以静态常量使用，通常无需实例化）。
-     */
-    public function LanSyncType() {
-    }
 }
 }

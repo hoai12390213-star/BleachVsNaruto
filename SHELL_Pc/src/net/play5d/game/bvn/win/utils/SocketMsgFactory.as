@@ -111,8 +111,5 @@ public class SocketMsgFactory {
         return o;
     }
 
-    public function SocketMsgFactory() {
-    }
-
 }
 }

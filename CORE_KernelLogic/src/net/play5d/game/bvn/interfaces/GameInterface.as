@@ -90,12 +90,8 @@ public class GameInterface {
         addMoneyBack(100 + Math.random() * 500);
     }
 
-    public function GameInterface() {
-    }
-
 //		public var moreGames:Function;
 //		public var
-
 
 }
 }

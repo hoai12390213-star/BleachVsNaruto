@@ -5,7 +5,5 @@ public class UdpDataType {
     public static const STRING:int    = 2;
     public static const OBJECT:int    = 3;
 
-    public function UdpDataType() {
-    }
 }
 }

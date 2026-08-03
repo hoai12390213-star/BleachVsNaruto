@@ -56,8 +56,5 @@ public class UIUtils {
         }
     }
 
-    public function UIUtils() {
-    }
-
 }
 }

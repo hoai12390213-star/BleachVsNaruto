@@ -239,9 +239,6 @@ public class JoySticker {
 
     }
 
-    public function JoySticker() {
-    }
-
 //		public static function justDownKey(deviceID:String):JoyStickSetVO{
 //			var id:String =
 //		}

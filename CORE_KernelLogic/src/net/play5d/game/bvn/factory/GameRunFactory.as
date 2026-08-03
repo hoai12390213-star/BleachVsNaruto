@@ -91,8 +91,5 @@ public class GameRunFactory {
         return assister;
     }
 
-    public function GameRunFactory() {
-    }
-
 }
 }

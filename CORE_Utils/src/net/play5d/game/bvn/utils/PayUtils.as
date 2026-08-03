@@ -36,9 +36,6 @@ public class PayUtils {
         return sp;
     }
 
-    public function PayUtils() {
-    }
-
     private static function payMouseHandler(e:MouseEvent):void {
 
         e.stopImmediatePropagation();

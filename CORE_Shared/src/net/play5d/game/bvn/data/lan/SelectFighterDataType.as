@@ -38,10 +38,5 @@ public class SelectFighterDataType {
     /** 出战顺序完成 */
     public static const INDEX_FINISH:int   = 5;
 
-    /**
-     * 构造函数（本类以静态常量使用，通常无需实例化）。
-     */
-    public function SelectFighterDataType() {
-    }
 }
 }

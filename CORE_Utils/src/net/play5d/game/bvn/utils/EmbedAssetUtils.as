@@ -33,7 +33,6 @@ public class EmbedAssetUtils {
     [Embed(source='/../assets/android.png')]
     private static var androidPNG:Class;
 
-
     private static var _alipay:Bitmap;
     private static var _weixin:Bitmap;
     private static var _patreon:Bitmap;
@@ -69,9 +68,6 @@ public class EmbedAssetUtils {
             _patreon.smoothing = true;
         }
         return _patreon;
-    }
-
-    public function EmbedAssetUtils() {
     }
 
 }

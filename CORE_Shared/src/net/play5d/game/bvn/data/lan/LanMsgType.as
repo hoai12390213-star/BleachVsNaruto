@@ -53,10 +53,5 @@ public class LanMsgType {
     /** 输入同步 */
     public static const INPUT_SYNC:int   = 10;
 
-    /**
-     * 构造函数（本类以静态常量使用，通常无需实例化）。
-     */
-    public function LanMsgType() {
-    }
 }
 }

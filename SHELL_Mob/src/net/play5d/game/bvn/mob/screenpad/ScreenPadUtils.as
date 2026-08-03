@@ -28,8 +28,5 @@ public class ScreenPadUtils {
         return btn;
     }
 
-    public function ScreenPadUtils() {
-    }
-
 }
 }

@@ -43,7 +43,5 @@ public class ScreenPadAsset {
     [Embed(source='/../drawable/joy/light.png')]
     public static var light:Class;
 
-    public function ScreenPadAsset() {
-    }
 }
 }

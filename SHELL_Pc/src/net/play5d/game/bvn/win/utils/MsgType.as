@@ -46,7 +46,5 @@ public class MsgType {
     public static const INPUT_UPDATE:int = LanMsgType.INPUT_UPDATE;
     public static const INPUT_SYNC:int   = LanMsgType.INPUT_SYNC;
 
-    public function MsgType() {
-    }
 }
 }

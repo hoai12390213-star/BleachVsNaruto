@@ -34,7 +34,6 @@ public class URL {
     // GitHub发布页面链接
     public static const GITHUB:String           = "https://github.com/5DPLAY-Game-Studio/BleachVsNaruto";
 
-
     public static function go(url:String, isAddMark:Boolean = true):void {
         if (isAddMark) {
             var newurl:String = markURL(url);
@@ -73,9 +72,6 @@ public class URL {
 
     public static function download_android(...params):void {
         go(DOWNLOAD_ANDROID);
-    }
-
-    public function URL() {
     }
 
 }
