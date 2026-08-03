@@ -33,6 +33,7 @@
 - 为凑章节给简单工具类灌水
 - 复述显而易见代码的 `//`
 - 公开文档 `@see`/主描述指向 private
+- `CORE_Shared` / `LIB_KyoLib` 的 `@see` 指向其它工程模块（独立 ASDoc 无法链接）
 
 ## 详略
 
@@ -91,6 +92,8 @@
 | `@see flash.events.Event#type` | 他类属性 |
 | `@see flash.events.Event#clone()` | 他类方法 |
 | `@see http://... Label` | URL |
+
+**对外共享模块**（`CORE_Shared`、`LIB_KyoLib`）：`@see` **仅**可指向本模块内符号或 Flash/AIR 运行时 API；**禁止**链到其它工程模块（如 `SHELL_*` / `CORE_KernelLogic` / `CORE_Components`），独立生成 ASDoc 时无法解析。说明实现归属用正文叙述，勿用跨模块 `@see`。
 
 ---
 
