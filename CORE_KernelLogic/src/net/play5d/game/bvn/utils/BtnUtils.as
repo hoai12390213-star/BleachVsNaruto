@@ -27,6 +27,12 @@ import flash.utils.Dictionary;
 import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.ctrler.SoundCtrl;
 import net.play5d.kyo.utils.KyoDisplayUtils;
+
+/**
+ * 游戏 UI 按钮：触控/鼠标、点击音效与按下色变。
+ *
+ * <p>玩法界面首选本类。壳 LAN 的 Tween 按钮用库 <code>KyoBtnUtils</code>；两套依赖不同，勿合并。</p>
+ */
 public class BtnUtils {
 
     private static var _btnMap:Dictionary = new Dictionary();

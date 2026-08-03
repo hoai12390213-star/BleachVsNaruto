@@ -55,7 +55,7 @@ import net.play5d.game.bvn.ui.UIUtils;
 import net.play5d.game.bvn.utils.AssetLoader;
 import net.play5d.game.bvn.utils.GithubUtils;
 import net.play5d.game.bvn.utils.ResUtils;
-import net.play5d.kyo.KyoSharedObject;
+import net.play5d.kyo.storage.KyoSharedObject;
 
 //	import flash.text.TextFormat;
 

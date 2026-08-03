@@ -23,7 +23,7 @@
 | `CORE_KernelLogic` | 核心玩法逻辑 | 入口速查 → [`map.md`](map.md) |
 | `CORE_Shared` | 对外共享 API / 版本 | 编译资源时进 `shared` SWC |
 | `CORE_Utils` | 工程内公用工具 | |
-| `LIB_KyoLib` | 通用显示/输入/加载等库 | git 子模块，单独维护 |
+| `LIB_KyoLib` | 通用显示/输入/加载等库 | git 子模块；首选 API → [`kyolib.md`](kyolib.md) |
 | `LIB_Other` | 其它第三方/附属库 | |
 | `CORE_Components` | Animate 可交互组件类 | 供 `component.xfl`；约定 → [`components.md`](components.md) |
 | `BleachVsNaruto_FlashSrc` | Flash/美术源 | 非代码主战场 |
