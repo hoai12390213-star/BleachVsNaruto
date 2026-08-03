@@ -34,11 +34,11 @@ import net.play5d.kyo.utils.KyoDisplayUtils;
 /**
  * 影片剪辑与游戏 Sprite 实用工具。
  *
- * <p>通用 MC 能力委托 <code>KyoUtils</code>；染色与遍历依赖游戏运行时。</p>
+ * <p>通用 MC 能力委托 <code>KyoDisplayUtils</code>；染色与遍历依赖游戏运行时。</p>
  *
- * @see net.play5d.kyo.utils.KyoUtils#hasFrameLabel()
- * @see net.play5d.kyo.utils.KyoUtils#setHue()
- * @see net.play5d.kyo.utils.KyoUtils#stopAllMovieClips()
+ * @see net.play5d.kyo.utils.KyoDisplayUtils#hasFrameLabel()
+ * @see net.play5d.kyo.utils.KyoDisplayUtils#setHue()
+ * @see net.play5d.kyo.utils.KyoDisplayUtils#stopAllMovieClips()
  */
 public class MCUtils {
 
@@ -49,7 +49,7 @@ public class MCUtils {
      * @param label 帧名称
      *
      * @return 影片剪辑是否具有某个帧
-     * @see net.play5d.kyo.utils.KyoUtils#hasFrameLabel()
+     * @see net.play5d.kyo.utils.KyoDisplayUtils#hasFrameLabel()
      */
     public static function hasFrameLabel(mc:MovieClip, label:String):Boolean {
         return KyoDisplayUtils.hasFrameLabel(mc, label);
@@ -60,7 +60,7 @@ public class MCUtils {
      *
      * @param display
      * @param hue 色相值（-180 - 180）
-     * @see net.play5d.kyo.utils.KyoUtils#setHue()
+     * @see net.play5d.kyo.utils.KyoDisplayUtils#setHue()
      */
     public static function setHue(display:DisplayObject, hue:Number = 0):void {
         KyoDisplayUtils.setHue(display, hue);
@@ -70,7 +70,7 @@ public class MCUtils {
      * 停止指定影片剪辑以及其子影片剪辑的播放
      *
      * @param mc 指定影片剪辑
-     * @see net.play5d.kyo.utils.KyoUtils#stopAllMovieClips()
+     * @see net.play5d.kyo.utils.KyoDisplayUtils#stopAllMovieClips()
      */
     public static function stopAllMovieClips(mc:MovieClip):void {
         KyoDisplayUtils.stopAllMovieClips(mc);
