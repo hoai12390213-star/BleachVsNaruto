@@ -41,9 +41,9 @@ import net.play5d.game.bvn.win.sockets.events.SocketEvent;
 import net.play5d.game.bvn.win.sockets.udp.UDPDataVO;
 import net.play5d.game.bvn.win.sockets.udp.UDPSocket;
 import net.play5d.kyo.utils.JsonUtils;
-import net.play5d.game.bvn.win.utils.LANUtils;
-import net.play5d.game.bvn.win.utils.LanSyncType;
-import net.play5d.game.bvn.win.utils.LockFrameLogic;
+import net.play5d.game.bvn.data.lan.LanSyncType;
+import net.play5d.game.bvn.utils.LANUtils;
+import net.play5d.game.bvn.utils.LockFrameLogic;
 import net.play5d.game.bvn.win.utils.MsgType;
 import net.play5d.game.bvn.win.utils.SocketMsgFactory;
 import net.play5d.game.bvn.win.views.lan.LANGameState;
@@ -216,7 +216,9 @@ public class LANClientCtrl {
 
         GameInterface.instance.updateInputConfig();
 
-        LockFrameLogic.I.initClient();
+        LockFrameLogic.I.initClient(function ():Boolean {
+            return LANClientCtrl.I.renderGame();
+        });
 
         LanGameMenuCtrl.I.init();
 

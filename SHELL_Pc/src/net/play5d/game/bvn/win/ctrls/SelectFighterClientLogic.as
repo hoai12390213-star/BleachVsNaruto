@@ -22,7 +22,7 @@ import net.play5d.game.bvn.data.GameData;
 import net.play5d.game.bvn.events.GameEvent;
 import net.play5d.game.bvn.stage.LoadingStage;
 import net.play5d.game.bvn.stage.SelectFighterStage;
-import net.play5d.game.bvn.win.utils.SelectFighterDataType;
+import net.play5d.game.bvn.data.lan.SelectFighterDataType;
 
 public class SelectFighterClientLogic {
     public function SelectFighterClientLogic() {

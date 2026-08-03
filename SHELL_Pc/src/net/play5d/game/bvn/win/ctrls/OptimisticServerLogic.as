@@ -23,7 +23,7 @@ import net.play5d.game.bvn.data.vos.GameRunDataVO;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.stage.GameStage;
 import net.play5d.game.bvn.win.input.InputManager;
-import net.play5d.game.bvn.win.utils.LANUtils;
+import net.play5d.game.bvn.utils.LANUtils;
 import net.play5d.kyo.stage.IStage;
 
 /**

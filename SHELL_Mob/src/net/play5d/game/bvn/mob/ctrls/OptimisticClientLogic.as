@@ -5,7 +5,7 @@ import flash.utils.getTimer;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.mob.input.InputManager;
-import net.play5d.game.bvn.mob.utils.LANUtils;
+import net.play5d.game.bvn.utils.LANUtils;
 
 /**
  * 乐观锁帧算法，客户端

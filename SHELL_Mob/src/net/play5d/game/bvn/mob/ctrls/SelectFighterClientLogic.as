@@ -2,7 +2,7 @@ package net.play5d.game.bvn.mob.ctrls {
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.data.GameData;
 import net.play5d.game.bvn.events.GameEvent;
-import net.play5d.game.bvn.mob.utils.SelectFighterDataType;
+import net.play5d.game.bvn.data.lan.SelectFighterDataType;
 
 public class SelectFighterClientLogic {
     public function SelectFighterClientLogic() {

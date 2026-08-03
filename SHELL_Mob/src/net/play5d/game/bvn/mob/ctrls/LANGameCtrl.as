@@ -5,7 +5,7 @@ import net.play5d.game.bvn.data.GameData;
 import net.play5d.game.bvn.data.GameMode;
 import net.play5d.game.bvn.mob.data.HostVO;
 import net.play5d.game.bvn.mob.sockets.SocketClient;
-import net.play5d.game.bvn.mob.utils.LANUtils;
+import net.play5d.game.bvn.utils.LANUtils;
 import net.play5d.game.bvn.mob.views.lan.LANGameState;
 
 public class LANGameCtrl {
@@ -41,6 +41,7 @@ public class LANGameCtrl {
         GameConfig.setGameFps(30);
         GameData.I.config.keyInputMode = 1;
 
+        LANUtils.configure(30 * 5, 8);
         LANUtils.updateParams();
 
         switch (host.gameMode) {

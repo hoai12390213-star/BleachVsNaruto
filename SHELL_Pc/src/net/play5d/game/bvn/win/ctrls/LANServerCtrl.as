@@ -37,9 +37,9 @@ import net.play5d.game.bvn.win.sockets.events.SocketEvent;
 import net.play5d.game.bvn.win.sockets.udp.UDPDataVO;
 import net.play5d.game.bvn.win.sockets.udp.UDPSocket;
 import net.play5d.kyo.utils.JsonUtils;
-import net.play5d.game.bvn.win.utils.LANUtils;
-import net.play5d.game.bvn.win.utils.LanSyncType;
-import net.play5d.game.bvn.win.utils.LockFrameLogic;
+import net.play5d.game.bvn.data.lan.LanSyncType;
+import net.play5d.game.bvn.utils.LANUtils;
+import net.play5d.game.bvn.utils.LockFrameLogic;
 import net.play5d.game.bvn.win.utils.MsgType;
 import net.play5d.game.bvn.win.utils.SocketMsgFactory;
 import net.play5d.game.bvn.win.views.lan.LANGameState;
@@ -188,7 +188,9 @@ public class LANServerCtrl {
     public function gameStart():void {
         active = true;
         GameInterface.instance.updateInputConfig();
-        LockFrameLogic.I.initServer();
+        LockFrameLogic.I.initServer(function ():Boolean {
+            return LANServerCtrl.I.renderGame();
+        });
         _renderFrame = 1;
         LANUtils.updateParams();
         _room = null;

@@ -20,12 +20,12 @@ package net.play5d.game.bvn.utils {
 import flash.display.DisplayObject;
 import flash.display.Stage;
 import flash.events.TouchEvent;
-import flash.system.Capabilities;
 import flash.utils.Dictionary;
 import flash.utils.setTimeout;
 
 import net.play5d.game.bvn.GameConfig;
 import net.play5d.kyo.utils.ArrayMap;
+import net.play5d.kyo.utils.KyoDisplayUtils;
 
 public class TouchUtils {
 
@@ -50,7 +50,7 @@ public class TouchUtils {
 
     public function init(stage:Stage):void {
         _stage        = stage;
-        _checkDragDis = cm2pixel(0.1);
+        _checkDragDis = KyoDisplayUtils.cm2pixel(0.1);
     }
 
     public function isDraging():Boolean {
@@ -87,13 +87,6 @@ public class TouchUtils {
 
     // 两点触摸
     // =======================================================================================================================
-
-    private function cm2pixel(cm:Number):Number {
-        var dpi:Number = Capabilities.screenDPI;
-        return (
-                       cm * dpi
-               ) / 2.54;
-    }
 
     private function oneFingerHandler(e:TouchEvent):void {
         if (_oneFingerPoint) {

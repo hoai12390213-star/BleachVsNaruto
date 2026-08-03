@@ -1,6 +1,6 @@
 package net.play5d.game.bvn.mob.ctrls {
 import net.play5d.game.bvn.mob.input.InputManager;
-import net.play5d.game.bvn.mob.utils.LANUtils;
+import net.play5d.game.bvn.utils.LANUtils;
 
 public class SimpleLockFrameServerLogic {
 
