@@ -36,8 +36,7 @@ import net.play5d.game.bvn.win.data.LanGameModel;
 import net.play5d.game.bvn.win.utils.UIAssetUtil;
 import net.play5d.kyo.stage.IStage;
 import net.play5d.kyo.utils.KyoBtnUtils;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoDisplayUtils;
 //import net.play5d.game.bvn.win.ctrls.LANUDPCtrler;
 public class LANRoomState implements IStage {
     public function LANRoomState() {
@@ -75,7 +74,7 @@ public class LANRoomState implements IStage {
             (
                     _ui.btn_start as SimpleButton
             ).mouseEnabled = v;
-            KyoUtils.grayMC(_ui.btn_start, v);
+            KyoDisplayUtils.grayMC(_ui.btn_start, v);
         }
     }
 
@@ -197,13 +196,13 @@ public class LANRoomState implements IStage {
             (
                     _ui.btn_start as SimpleButton
             ).mouseEnabled = false;
-            KyoUtils.grayMC(_ui.btn_start);
+            KyoDisplayUtils.grayMC(_ui.btn_start);
         }
         if (_ui.btn_exit && _ui.btn_exit.visible) {
             (
                     _ui.btn_exit as SimpleButton
             ).mouseEnabled = false;
-            KyoUtils.grayMC(_ui.btn_exit);
+            KyoDisplayUtils.grayMC(_ui.btn_exit);
         }
     }
 

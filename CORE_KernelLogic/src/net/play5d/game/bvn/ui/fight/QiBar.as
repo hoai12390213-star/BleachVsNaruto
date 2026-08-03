@@ -27,8 +27,6 @@ import net.play5d.game.bvn.ctrler.AssetManager;
 import net.play5d.game.bvn.fighter.Assister;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.ui.GameUI;
-import net.play5d.kyo.utils.KyoUtils;
-
 public class QiBar {
 
     public function QiBar(ui:$fight$MC_qiBar) {
@@ -87,7 +85,7 @@ public class QiBar {
         }
 
         if (GameUI.BITMAP_UI) {
-            _faceBp = KyoUtils.drawDisplay(_ui.facemc);
+            _faceBp = KyoDisplayUtils.drawDisplay(_ui.facemc);
             _ui.addChild(_faceBp);
             _faceBp.x = _ui.facemc.x;
             _faceBp.y = _ui.facemc.y;
@@ -273,6 +271,7 @@ public class QiBar {
 import flash.display.DisplayObject;
 import flash.geom.Rectangle;
 
+import net.play5d.kyo.utils.KyoDisplayUtils;
 internal class InsBar {
     public function InsBar(ui:$fight$MC_qiBarMc) {
         _ui = ui;

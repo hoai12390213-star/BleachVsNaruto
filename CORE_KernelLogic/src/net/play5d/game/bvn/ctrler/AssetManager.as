@@ -34,8 +34,7 @@ import net.play5d.kyo.display.bitmap.BitmapFont;
 import net.play5d.kyo.display.bitmap.BitmapFontLoader;
 import net.play5d.kyo.loader.KyoClassLoader;
 import net.play5d.kyo.loader.KyoSoundLoader;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoArrayUtils;
 //import net.play5d.utils;
 public class AssetManager {
 
@@ -368,7 +367,7 @@ public class AssetManager {
         bps           = bps.concat(getFighterFaceUrls(AssisterModel.I.getAllAssisters()));
         bps           = bps.concat(getMapPicUrls(MapModel.I.getAllMaps()));
 
-        KyoUtils.array_deleteSames(bps);
+        KyoArrayUtils.deleteDuplicates(bps);
 
         _bitmapLoader.loadQueue(bps, back, process);
     }

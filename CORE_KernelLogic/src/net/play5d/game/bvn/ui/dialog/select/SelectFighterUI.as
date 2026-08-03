@@ -30,6 +30,7 @@ import net.play5d.game.bvn.data.musou.player.MusouFighterVO;
 import net.play5d.game.bvn.ui.Text;
 import net.play5d.game.bvn.utils.ResUtils;
 
+import net.play5d.kyo.utils.KyoDisplayUtils;
 public class SelectFighterUI {
 
     public function SelectFighterUI(sellData:MusouFighterSellVO) {
@@ -81,12 +82,12 @@ public class SelectFighterUI {
         if (_playerData) {
             _lvTxt.visible = true;
             _lvTxt.text    = 'Lv.' + _playerData.getLevel();
-//				KyoUtils.grayMC(_faceImg, true);
+//				KyoDisplayUtils.grayMC(_faceImg, true);
             ui.alpha       = 1;
         }
         else {
             _lvTxt.visible = false;
-//				KyoUtils.grayMC(_faceImg);
+//				KyoDisplayUtils.grayMC(_faceImg);
             ui.alpha       = .5;
         }
     }

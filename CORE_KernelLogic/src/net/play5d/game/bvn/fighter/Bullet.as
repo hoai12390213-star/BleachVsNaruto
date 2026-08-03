@@ -32,8 +32,7 @@ import net.play5d.game.bvn.interfaces.BaseGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSpriteCntlr;
 import net.play5d.game.bvn.utils.MCUtils;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoDisplayUtils;
 public class Bullet implements IGameSprite, IGameSpriteCntlr {
 
     /**
@@ -261,7 +260,7 @@ public class Bullet implements IGameSprite, IGameSpriteCntlr {
     }
 
     public function setVolume(v:Number):void {
-        KyoUtils.setMcVolume(mc, v);
+        KyoDisplayUtils.setMcVolume(mc, v);
     }
 
     public function setHitVO(v:HitVO):void {

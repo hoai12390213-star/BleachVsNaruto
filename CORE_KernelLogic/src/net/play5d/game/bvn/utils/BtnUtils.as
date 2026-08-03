@@ -26,8 +26,7 @@ import flash.utils.Dictionary;
 
 import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.ctrler.SoundCtrl;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoDisplayUtils;
 public class BtnUtils {
 
     private static var _btnMap:Dictionary = new Dictionary();
@@ -50,7 +49,7 @@ public class BtnUtils {
         target ||= btn;
 
         _btnMap[btn] = {
-            handler: handler, target: target, transform: KyoUtils.cloneColorTransform(btn.transform.colorTransform)
+            handler: handler, target: target, transform: KyoDisplayUtils.cloneColorTransform(btn.transform.colorTransform)
         };
 
         if (GameConfig.TOUCH_MODE) {
@@ -84,7 +83,7 @@ public class BtnUtils {
         var orgCT:ColorTransform = obj.transform;
 
         if (v) {
-            var ct:ColorTransform        = KyoUtils.cloneColorTransform(orgCT);
+            var ct:ColorTransform        = KyoDisplayUtils.cloneColorTransform(orgCT);
             ct.redOffset += 30;
             ct.greenOffset += 30;
             ct.blueOffset += 30;

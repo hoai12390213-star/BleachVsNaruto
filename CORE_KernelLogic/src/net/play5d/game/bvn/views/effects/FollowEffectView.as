@@ -31,8 +31,7 @@ import net.play5d.game.bvn.fighter.models.HitVO;
 import net.play5d.game.bvn.interfaces.BaseGameSprite;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.utils.MCUtils;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoDisplayUtils;
 /**
  * 跟随效果视图
  */
@@ -330,7 +329,7 @@ public class FollowEffectView implements IGameSprite {
      * @param v 音量 0-1
      */
     public function setVolume(v:Number):void {
-        KyoUtils.setMcVolume(mc, v);
+        KyoDisplayUtils.setMcVolume(mc, v);
     }
 
     /**

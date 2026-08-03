@@ -22,8 +22,7 @@ import net.play5d.game.bvn.data.FighterModel;
 import net.play5d.game.bvn.data.vos.FighterVO;
 import net.play5d.game.bvn.data.vos.SelectVO;
 import net.play5d.game.bvn.utils.ResUtils;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoDisplayUtils;
 public class SelecterItemUI {
 
     public function SelecterItemUI(playerType:int = 1) {
@@ -177,7 +176,7 @@ public class SelecterItemUI {
 
         updateRandom();
 
-        KyoUtils.addFrameScript(ui, function ():void {
+        KyoDisplayUtils.addFrameScript(ui, function ():void {
             if (!selectFinish()) {
                 enabled = true;
             }

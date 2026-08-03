@@ -30,8 +30,7 @@ import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.interfaces.IGameSprite;
 import net.play5d.game.bvn.stage.GameStage;
 import net.play5d.game.bvn.views.effects.FollowEffectView;
-import net.play5d.kyo.utils.KyoUtils;
-
+import net.play5d.kyo.utils.KyoDisplayUtils;
 /**
  * 影片剪辑与游戏 Sprite 实用工具。
  *
@@ -53,7 +52,7 @@ public class MCUtils {
      * @see net.play5d.kyo.utils.KyoUtils#hasFrameLabel()
      */
     public static function hasFrameLabel(mc:MovieClip, label:String):Boolean {
-        return KyoUtils.hasFrameLabel(mc, label);
+        return KyoDisplayUtils.hasFrameLabel(mc, label);
     }
 
     /**
@@ -64,7 +63,7 @@ public class MCUtils {
      * @see net.play5d.kyo.utils.KyoUtils#setHue()
      */
     public static function setHue(display:DisplayObject, hue:Number = 0):void {
-        KyoUtils.setHue(display, hue);
+        KyoDisplayUtils.setHue(display, hue);
     }
 
     /**
@@ -74,7 +73,7 @@ public class MCUtils {
      * @see net.play5d.kyo.utils.KyoUtils#stopAllMovieClips()
      */
     public static function stopAllMovieClips(mc:MovieClip):void {
-        KyoUtils.stopAllMovieClips(mc);
+        KyoDisplayUtils.stopAllMovieClips(mc);
     }
 
     /**

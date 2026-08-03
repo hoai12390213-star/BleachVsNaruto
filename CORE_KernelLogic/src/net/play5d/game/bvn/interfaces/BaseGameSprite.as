@@ -31,9 +31,9 @@ import net.play5d.game.bvn.ctrler.GameRender;
 import net.play5d.game.bvn.data.vos.TeamVO;
 import net.play5d.game.bvn.debug.Debugger;
 import net.play5d.game.bvn.fighter.models.HitVO;
-import net.play5d.kyo.utils.KyoUtils;
 import net.play5d.kyo.utils.UUID;
 
+import net.play5d.kyo.utils.KyoMath;
 public class BaseGameSprite extends EventDispatcher implements IGameSprite {
 
     public function BaseGameSprite(mainmc:MovieClip) {
@@ -530,25 +530,25 @@ public class BaseGameSprite extends EventDispatcher implements IGameSprite {
         if (_velocity.x != 0) {
             resultX += _velocity.x;
             if (_damping.x > 0) {
-                _velocity.x = KyoUtils.num_wake(_velocity.x, _damping.x * _dampingRate);
+                _velocity.x = KyoMath.wake(_velocity.x, _damping.x * _dampingRate);
             }
         }
         if (_velocity.y != 0) {
             resultY += _velocity.y;
             if (_damping.y > 0) {
-                _velocity.y = KyoUtils.num_wake(_velocity.y, _damping.y * _dampingRate);
+                _velocity.y = KyoMath.wake(_velocity.y, _damping.y * _dampingRate);
             }
         }
         if (_velocity2.x != 0) {
             resultX += _velocity2.x;
             if (_damping2.x > 0) {
-                _velocity2.x = KyoUtils.num_wake(_velocity2.x, _damping2.x * _dampingRate);
+                _velocity2.x = KyoMath.wake(_velocity2.x, _damping2.x * _dampingRate);
             }
         }
         if (_velocity2.y != 0) {
             resultY += _velocity2.y;
             if (_damping2.y > 0) {
-                _velocity2.y = KyoUtils.num_wake(_velocity2.y, _damping2.y * _dampingRate);
+                _velocity2.y = KyoMath.wake(_velocity2.y, _damping2.y * _dampingRate);
             }
         }
         if (resultX != 0 || resultY != 0) {
