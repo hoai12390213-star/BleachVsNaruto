@@ -21,6 +21,8 @@ import flash.display.BitmapData;
 import flash.utils.Dictionary;
 import flash.utils.describeType;
 
+import net.play5d.game.bvn.utils.EmbedSwf;
+
 public class UIAssetUtil {
 
     private static var _i:UIAssetUtil;
@@ -52,12 +54,6 @@ public class UIAssetUtil {
             return;
         }
 
-//			try {
-//				Security.allowDomain("*");
-//			}catch (e) {
-//				trace(e);
-//			};
-
         _inited  = true;
         _initing = true;
 
@@ -65,16 +61,15 @@ public class UIAssetUtil {
 
         _initBack = back;
 
-        var xml:XML  = describeType(this);
-        var o:Object = {};
+        var xml:XML = describeType(this);
 
         for each(var j:XML in xml.variable) {
             var k:String  = j.@name;
             var cls:Class = this[k];
 
-            var swf:InsSwf = new InsSwf(cls);
-            swf.ready      = swfReadyBack;
-            _swfPool[cls]  = swf;
+            var swf:EmbedSwf = new EmbedSwf(cls);
+            swf.ready        = swfReadyBack;
+            _swfPool[cls]    = swf;
 
         }
 
@@ -102,17 +97,15 @@ public class UIAssetUtil {
             throw new Error('未进行初始化！');
         }
 
-//			return null;
-
-        var swf:InsSwf = _swfPool[win_ui];
+        var swf:EmbedSwf = _swfPool[win_ui];
         if (!swf) {
             throw new Error('swf is undefined!');
         }
         return swf.getClass(itemName);
     }
 
-    private function swfReadyBack(target:InsSwf):void {
-        for each(var i:InsSwf in _swfPool) {
+    private function swfReadyBack(target:EmbedSwf):void {
+        for each(var i:EmbedSwf in _swfPool) {
             if (!i.isReady) {
                 return;
             }
@@ -131,57 +124,4 @@ public class UIAssetUtil {
     }
 
 }
-}
-
-import flash.display.Loader;
-import flash.display.LoaderInfo;
-import flash.events.Event;
-import flash.system.ApplicationDomain;
-import flash.system.LoaderContext;
-import flash.utils.ByteArray;
-
-internal class InsSwf {
-
-    public function InsSwf(swfClass:Class) {
-        _swf = new swfClass();
-
-        var bytes:ByteArray = _swf.movieClipData;
-
-        if (!bytes) {
-            throw new Error('未发现swf的movieClipData!');
-        }
-
-        var loader:Loader = new Loader();
-//		if(!loader){
-//			throw new Error('未发现loader!');
-//		}
-        loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadComplete, false, 0, true);
-
-        var lc:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
-        lc.allowCodeImport   = true;
-
-        loader.loadBytes(bytes, lc);
-    }
-    public var isReady:Boolean;
-    public var ready:Function;
-    private var _swf:*;
-    private var _domain:ApplicationDomain;
-
-    public function getClass(name:String):Class {
-        return _domain.getDefinition(name) as Class;
-    }
-
-    private function loadComplete(e:Event):void {
-        var l:LoaderInfo = e.currentTarget as LoaderInfo;
-        _domain          = l.applicationDomain;
-
-        isReady = true;
-
-        if (ready != null) {
-            ready(this);
-            ready = null;
-        }
-
-    }
-
 }

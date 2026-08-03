@@ -17,23 +17,43 @@
  */
 
 package net.play5d.game.bvn.utils {
+import net.play5d.game.bvn.interfaces.ILogger;
+
+/**
+ * 游戏日志门面：可注入 <code>ILogger</code>，否则 <code>trace</code>。
+ *
+ * @see #setLoger()
+ * @see #log()
+ */
 public class GameLogger {
 
-//		private static var _loger:ILoger;
+    /** @private */
+    private static var _loger:ILogger;
 
+    /**
+     * 设置日志实现（如 PC 壳 <code>Loger</code>）。
+     * @param v <code>ILogger</code> 或 <code>null</code> 清除。
+     */
     public static function setLoger(v:Object):void {
-//			_loger = v;
+        _loger = v as ILogger;
     }
 
+    /**
+     * 记录一条日志。
+     * @param v 文本。
+     */
     public static function log(v:String):void {
-//			if(_loger){
-//				_loger.log(v);
-//			}else{
-//				trace(v);
-//			}
-        trace(v);
+        if (_loger) {
+            _loger.log(v);
+        }
+        else {
+            trace(v);
+        }
     }
 
+    /**
+     * 构造函数（本类以静态方法使用，通常无需实例化）。
+     */
     public function GameLogger() {
     }
 

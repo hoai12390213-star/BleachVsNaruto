@@ -92,7 +92,7 @@ public class ResUtils {
             var k:String  = j.@name;
             var cls:Class = swfLib[k];
 
-            var swf:InsSwf = new InsSwf(cls);
+            var swf:EmbedSwf = new EmbedSwf(cls);
             swf.ready      = swfReadyBack;
             swf.error      = swfErrorBack;
             _swfPool[cls]  = swf;
@@ -104,7 +104,7 @@ public class ResUtils {
     public function addSwf(c:Class):void {
         _swfPool ||= new Dictionary();
 
-        var swf:InsSwf = new InsSwf(c);
+        var swf:EmbedSwf = new EmbedSwf(c);
         swf.ready      = swfReadyBack;
         swf.error      = swfErrorBack;
         _swfPool[c]    = swf;
@@ -140,7 +140,7 @@ public class ResUtils {
             throw new Error('未进行初始化！');
         }
 
-        var swf:InsSwf = _swfPool[embedSwf];
+        var swf:EmbedSwf = _swfPool[embedSwf];
         if (!swf) {
             throw new Error('swf is undefined!');
         }
@@ -152,7 +152,7 @@ public class ResUtils {
             throw new Error('未进行初始化！');
         }
 
-        var swf:InsSwf = _swfPool[embedSwf];
+        var swf:EmbedSwf = _swfPool[embedSwf];
         if (!swf) {
             throw new Error('swf is undefined!');
         }
@@ -164,15 +164,15 @@ public class ResUtils {
             throw new Error('未进行初始化！');
         }
 
-        var swf:InsSwf = _swfPool[embedSwf];
+        var swf:EmbedSwf = _swfPool[embedSwf];
         if (!swf) {
             throw new Error('swf is undefined!');
         }
         return swf.call(func, params);
     }
 
-    private function swfReadyBack(target:InsSwf):void {
-        for each(var i:InsSwf in _swfPool) {
+    private function swfReadyBack(target:EmbedSwf):void {
+        for each(var i:EmbedSwf in _swfPool) {
             if (!i.isReady) {
                 return;
             }
@@ -197,83 +197,4 @@ public class ResUtils {
     }
 
 }
-}
-
-import flash.display.DisplayObject;
-import flash.display.Loader;
-import flash.display.LoaderInfo;
-import flash.events.Event;
-import flash.system.ApplicationDomain;
-import flash.system.LoaderContext;
-import flash.utils.ByteArray;
-
-internal class InsSwf {
-
-    public function InsSwf(swfClass:Class) {
-        _swf = new swfClass();
-
-        var bytes:ByteArray = _swf.movieClipData;
-
-        if (!bytes) {
-            error('未发现swf的movieClipData!');
-            throw new Error('未发现swf的movieClipData!');
-        }
-
-        var loader:Loader = new Loader();
-//		if(!loader){
-//			throw new Error('未发现loader!');
-//		}
-        loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadComplete, false, 0, true);
-
-        var lc:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
-        lc.allowCodeImport   = true;
-
-        loader.loadBytes(bytes, lc);
-    }
-    public var isReady:Boolean;
-    public var ready:Function;
-    public var error:Function;
-    private var _swf:*;
-    private var _domain:ApplicationDomain;
-    private var _content:DisplayObject;
-
-    public function getClass(name:String):Class {
-        return _domain.getDefinition(name) as Class;
-    }
-
-    public function getProperty(name:String):* {
-        return _content[name];
-    }
-
-    public function call(func:String, params:Array = null):* {
-        if (!_content) {
-            trace('swf is null !');
-            return null;
-        }
-
-        try {
-            var fn:Function = _content[func];
-            return fn.apply(null, params);
-        }
-        catch (e:Error) {
-            trace(e);
-            throw new Error('swf.' + func + ' call failed ! ');
-        }
-
-    }
-
-    private function loadComplete(e:Event):void {
-        var l:LoaderInfo = e.currentTarget as LoaderInfo;
-        _domain          = l.applicationDomain;
-        _content         = l.content;
-
-        isReady = true;
-
-        if (ready != null) {
-            ready(this);
-            ready = null;
-        }
-
-    }
-
 }
