@@ -24,8 +24,6 @@ package net.play5d.game.bvn.interfaces {
  * <p>将扩展配置序列化到存档对象，或从存档对象还原。</p>
  *
  * @see ISaveData
- * @see net.play5d.game.bvn.win.data.ExtendConfig
- * @see net.play5d.game.bvn.mob.data.ExtendConfig
  */
 public interface IExtendConfig {
 

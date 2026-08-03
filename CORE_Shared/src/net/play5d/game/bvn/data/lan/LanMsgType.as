@@ -23,9 +23,6 @@ package net.play5d.game.bvn.data.lan {
  *
  * <p><code>FIND_HOST</code> / <code>FIND_HOST_BACK</code> 因 Pc（String）与 Mob（int）线格式不同，
  * 仍由各壳 <code>MsgType</code> 定义。</p>
- *
- * @see net.play5d.game.bvn.win.utils.MsgType
- * @see net.play5d.game.bvn.mob.utils.MsgType
  */
 public class LanMsgType {
     include '../../../../../../../include/ImportVersion.as';

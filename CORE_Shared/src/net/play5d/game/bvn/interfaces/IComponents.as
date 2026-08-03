@@ -22,8 +22,6 @@ package net.play5d.game.bvn.interfaces {
  * Animate 组件库（CORE_Components）组件接口。
  *
  * <p>约定组件可主动销毁自身占用的资源。</p>
- *
- * @see net.play5d.game.bvn.ide.interfaces.BaseComponent
  */
 public interface IComponents {
 

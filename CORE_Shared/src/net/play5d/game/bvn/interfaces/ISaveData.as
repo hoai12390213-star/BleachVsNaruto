@@ -24,7 +24,6 @@ package net.play5d.game.bvn.interfaces {
  * <p>约定可序列化对象与存档数据对象之间的读写。</p>
  *
  * @see IExtendConfig
- * @see net.play5d.game.bvn.data.vos.ConfigVO
  */
 public interface ISaveData {
 

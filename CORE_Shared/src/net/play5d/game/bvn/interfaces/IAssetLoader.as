@@ -22,9 +22,6 @@ package net.play5d.game.bvn.interfaces {
  * 素材加载器接口。
  *
  * <p>统一 XML / JSON / SWF / 声音 / 位图等资源的异步加载与释放约定。</p>
- *
- * @see net.play5d.game.bvn.utils.AssetLoader
- * @see net.play5d.game.bvn.utils.ExtendAssetLoader
  */
 public interface IAssetLoader {
 
