@@ -24,6 +24,7 @@ package net.play5d.game.bvn.interfaces {
  * <p>约定可序列化对象与存档数据对象之间的读写。</p>
  *
  * @see IExtendConfig
+ * @see net.play5d.game.bvn.data.vos.ConfigVO
  */
 public interface ISaveData {
 
@@ -31,6 +32,10 @@ public interface ISaveData {
      * 保存到存档数据对象。
      *
      * @return 存档数据对象。
+     * @example
+     * <listing version="3.0">
+     * var obj:Object = saveData.toSaveObj();
+     * </listing>
      */
     function toSaveObj():Object;
 
@@ -38,6 +43,10 @@ public interface ISaveData {
      * 从存档数据对象读取。
      *
      * @param obj 存档数据对象。
+     * @example
+     * <listing version="3.0">
+     * saveData.readSaveObj(obj);
+     * </listing>
      */
     function readSaveObj(obj:Object):void;
 }

@@ -24,6 +24,8 @@ package net.play5d.game.bvn.interfaces {
  * <p>将扩展配置序列化到存档对象，或从存档对象还原。</p>
  *
  * @see ISaveData
+ * @see net.play5d.game.bvn.win.data.ExtendConfig
+ * @see net.play5d.game.bvn.mob.data.ExtendConfig
  */
 public interface IExtendConfig {
 
@@ -31,6 +33,10 @@ public interface IExtendConfig {
      * 保存到存档数据对象。
      *
      * @return 存档数据对象。
+     * @example
+     * <listing version="3.0">
+     * var obj:Object = extendConfig.toSaveObj();
+     * </listing>
      */
     function toSaveObj():Object;
 
@@ -38,6 +44,10 @@ public interface IExtendConfig {
      * 从存档数据对象读取。
      *
      * @param obj 存档数据对象。
+     * @example
+     * <listing version="3.0">
+     * extendConfig.readSaveObj(obj);
+     * </listing>
      */
     function readSaveObj(obj:Object):void;
 }

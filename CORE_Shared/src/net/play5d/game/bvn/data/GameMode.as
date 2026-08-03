@@ -205,9 +205,8 @@ public class GameMode {
      *
      * <p>默认可将练习模式视为对战电脑；传 <code>false</code> 则排除练习模式。</p>
      *
-     * @param hasTraining 是否包含练习模式。
+     * @param hasTraining 是否包含练习模式，默认 <code>true</code>。
      * @return 对战电脑时为 <code>true</code>。
-     * @default hasTraining true
      * @example
      * <listing version="3.0">
      * GameMode.currentMode = GameMode.TRAINING;

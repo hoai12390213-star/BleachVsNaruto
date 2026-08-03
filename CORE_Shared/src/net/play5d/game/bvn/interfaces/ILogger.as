@@ -20,6 +20,10 @@ package net.play5d.game.bvn.interfaces {
 
 /**
  * 日志记录器接口。
+ *
+ * <p>由外壳注入实现，供内核通过统一入口输出诊断信息。</p>
+ *
+ * @see net.play5d.game.bvn.win.utils.Loger
  */
 public interface ILogger {
 
@@ -27,6 +31,10 @@ public interface ILogger {
      * 记录日志。
      *
      * @param msg 日志内容。
+     * @example
+     * <listing version="3.0">
+     * logger.log('select fighter ready');
+     * </listing>
      */
     function log(msg:String):void;
 }

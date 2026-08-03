@@ -22,6 +22,9 @@ package net.play5d.game.bvn.interfaces {
  * 素材加载器接口。
  *
  * <p>统一 XML / JSON / SWF / 声音 / 位图等资源的异步加载与释放约定。</p>
+ *
+ * @see net.play5d.game.bvn.utils.AssetLoader
+ * @see net.play5d.game.bvn.utils.ExtendAssetLoader
  */
 public interface IAssetLoader {
 
@@ -29,8 +32,12 @@ public interface IAssetLoader {
      * 加载 XML 资源。
      *
      * @param url 资源路径。
-     * @param back 成功回调。
-     * @param fail 失败回调。
+     * @param back 成功回调，签名为 <code>function(data:XML):void</code>。
+     * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * loader.loadXML('config/fighter.xml', onXml, onFail);
+     * </listing>
      */
     function loadXML(url:String, back:Function, fail:Function = null):void;
 
@@ -38,8 +45,12 @@ public interface IAssetLoader {
      * 加载 JSON 资源。
      *
      * @param url 资源路径。
-     * @param back 成功回调。
-     * @param fail 失败回调。
+     * @param back 成功回调，签名为 <code>function(data:Object):void</code>。
+     * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * loader.loadJSON('config/map.json', onJson);
+     * </listing>
      */
     function loadJSON(url:String, back:Function, fail:Function = null):void;
 
@@ -47,9 +58,13 @@ public interface IAssetLoader {
      * 加载 SWF 资源。
      *
      * @param url 资源路径。
-     * @param back 成功回调。
-     * @param fail 失败回调。
-     * @param process 进度回调。
+     * @param back 成功回调，签名为 <code>function(loader:Loader):void</code>。
+     * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
+     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * loader.loadSwf('fighter/ichigo.swf', onSwf, onFail, onProgress);
+     * </listing>
      */
     function loadSwf(url:String, back:Function, fail:Function = null, process:Function = null):void;
 
@@ -57,9 +72,13 @@ public interface IAssetLoader {
      * 加载声音资源。
      *
      * @param url 资源路径。
-     * @param back 成功回调。
-     * @param fail 失败回调。
-     * @param process 进度回调。
+     * @param back 成功回调，签名为 <code>function(sound:Sound):void</code>。
+     * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
+     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * loader.loadSound('bgm/menu.mp3', onSound);
+     * </listing>
      */
     function loadSound(url:String, back:Function, fail:Function = null, process:Function = null):void;
 
@@ -67,16 +86,24 @@ public interface IAssetLoader {
      * 加载位图资源。
      *
      * @param url 资源路径。
-     * @param back 成功回调。
-     * @param fail 失败回调。
-     * @param process 进度回调。
+     * @param back 成功回调，签名为 <code>function(content:DisplayObject):void</code>。
+     * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
+     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * loader.loadBitmap('ui/face.png', onBmp);
+     * </listing>
      */
     function loadBitmap(url:String, back:Function, fail:Function = null, process:Function = null):void;
 
     /**
-     * 释放资源。
+     * 释放已加载资源。
      *
      * @param url 资源路径。
+     * @example
+     * <listing version="3.0">
+     * loader.dispose('fighter/ichigo.swf');
+     * </listing>
      */
     function dispose(url:String):void;
 
@@ -84,15 +111,25 @@ public interface IAssetLoader {
      * 是否需要预载。
      *
      * @return 需要预载时为 <code>true</code>。
+     * @example
+     * <listing version="3.0">
+     * if (loader.needPreLoad()) {
+     *     loader.loadPreLoad(onReady);
+     * }
+     * </listing>
      */
     function needPreLoad():Boolean;
 
     /**
      * 加载预载资源。
      *
-     * @param back 成功回调。
-     * @param fail 失败回调。
-     * @param process 进度回调。
+     * @param back 成功回调，签名为 <code>function():void</code>。
+     * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
+     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * loader.loadPreLoad(onReady, onFail, onProgress);
+     * </listing>
      */
     function loadPreLoad(back:Function, fail:Function = null, process:Function = null):void;
 }
