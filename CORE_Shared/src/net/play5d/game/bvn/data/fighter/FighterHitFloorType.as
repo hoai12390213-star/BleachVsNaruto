@@ -27,10 +27,10 @@ public class FighterHitFloorType {
     include '../../../../../../../include/ImportVersion.as';
 
     /** 弹起（0） */
-    public static const TAN:int = 0;
+    public static const TAN:int    = 0;
     /** 正常落地（1） */
     public static const NORMAL:int = 1;
     /** 重落地（2） */
-    public static const HEAVY:int = 2;
+    public static const HEAVY:int  = 2;
 }
 }

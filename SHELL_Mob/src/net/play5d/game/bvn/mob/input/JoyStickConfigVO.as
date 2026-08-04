@@ -43,7 +43,7 @@ public class JoyStickConfigVO {
     }
 
     public function toObj():Object {
-        var vs:Array = KyoUtils.getItemVaribles(this);
+        var vs:Array = KyoUtils.getItemVariables(this);
         var o:Object = {};
         for each(var i:String in vs) {
             var item:* = this[i];

@@ -135,7 +135,7 @@ public class MenuBtn extends EventDispatcher {
         ct.redOffset          = 50;
         ct.greenOffset        = -30;
         ct.blueOffset         = -30;
-        _bitmapText.colorTransform(ct);
+        _bitmapText.applyColorTransform(ct);
     }
 
     public function closeChild():void {
@@ -145,7 +145,7 @@ public class MenuBtn extends EventDispatcher {
         _isOpen = false;
         ui.bg.gotoAndStop(1);
 
-        _bitmapText.colorTransform(null);
+        _bitmapText.applyColorTransform(null);
     }
 
     public function dispose():void {
@@ -175,7 +175,7 @@ public class MenuBtn extends EventDispatcher {
         ct.greenOffset        = -30;
         ct.blueOffset         = -30;
 
-        _bitmapText.colorTransform(ct);
+        _bitmapText.applyColorTransform(ct);
         _bitmapText.scaleX = _bitmapText.scaleY = 0.75;
         _bitmapText.x      = -_bitmapText.width / 2;
 

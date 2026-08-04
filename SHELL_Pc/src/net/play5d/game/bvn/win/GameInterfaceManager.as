@@ -97,12 +97,12 @@ public class GameInterfaceManager implements IGameInterface {
 
     public function saveGame(data:Object):void {
         var json:String = JSON.stringify(data);
-        FileUtils.writeAppFloderFile('bvnsave.sav', json);
+        FileUtils.writeAppFolderFile('bvnsave.sav', json);
         trace('saveData', json);
     }
 
     public function loadGame():Object {
-        var url:String  = FileUtils.getAppFloderFileUrl('bvnsave.sav');
+        var url:String  = FileUtils.getAppFolderFileUrl('bvnsave.sav');
         var json:String = FileUtils.readTextFile(url);
         if (!json) {
             return null;

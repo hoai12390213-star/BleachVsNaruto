@@ -57,7 +57,7 @@ public class LanGameMenuCtrl {
             _exitDialog = null;
         }
 
-        KeyBoarder.unListen(keyHandler);
+        KeyBoarder.unlisten(keyHandler);
 
         _isKeyDown = false;
 

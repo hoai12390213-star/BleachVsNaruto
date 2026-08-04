@@ -27,6 +27,7 @@ import net.play5d.game.bvn.ctrler.AssetManager;
 import net.play5d.game.bvn.fighter.Assister;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.ui.GameUI;
+import net.play5d.kyo.utils.KyoDisplayUtils;
 public class QiBar {
 
     public function QiBar(ui:$fight$MC_qiBar) {

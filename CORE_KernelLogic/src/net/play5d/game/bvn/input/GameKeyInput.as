@@ -42,7 +42,7 @@ public class GameKeyInput implements IGameInput {
     }
 
     public function initlize(stage:Stage):void {
-        KeyBoarder.initlize(stage);
+        KeyBoarder.initialize(stage);
         KeyBoarder.listen(keyBoardHandler);
     }
 
