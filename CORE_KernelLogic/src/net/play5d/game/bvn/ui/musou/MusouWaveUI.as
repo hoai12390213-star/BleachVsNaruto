@@ -23,6 +23,7 @@ import flash.text.TextField;
 
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.game.bvn.ctrler.musou_ctrls.MusouCtrl;
+import net.play5d.kyo.utils.KyoColor;
 import net.play5d.kyo.utils.KyoDrawUtils;
 
 public class MusouWaveUI {
@@ -58,8 +59,8 @@ public class MusouWaveUI {
         var angle:int           = (
                                           musouCtrl.getWavePercent() * 360
                                   ) << 0;
-        _circleBp.bitmapData    = KyoDrawUtils.drawRing(10, 29, angle, [0xffff00, 0xff0000], 1);
-//			_circleBp.bitmapData = KyoDrawUtils.drawRing(10, _radius, angle, [0xffff00, 0xff0000],1);
+        _circleBp.bitmapData    = KyoDrawUtils.drawRing(10, 29, angle, [KyoColor.YELLOW, KyoColor.RED], 1);
+//			_circleBp.bitmapData = KyoDrawUtils.drawRing(10, _radius, angle, [KyoColor.YELLOW, KyoColor.RED],1);
     }
 
 //		private var _radius:Number = 20;

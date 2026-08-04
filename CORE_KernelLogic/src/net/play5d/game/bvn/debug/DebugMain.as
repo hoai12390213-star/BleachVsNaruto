@@ -218,7 +218,7 @@ public class DebugMain {
         // 渲染角色本体被打面
         var bodyArea:Rectangle = fighter.getBodyArea();
         if (bodyArea && !bodyArea.isEmpty()) {
-            var bodyShape:Shape = MainUtils.getNewShape(KyoColor.GREEN);
+            var bodyShape:Shape = MainUtils.getNewShape(KyoColor.LIME);
             renderMain(bodyShape, bodyArea);
         }
 
