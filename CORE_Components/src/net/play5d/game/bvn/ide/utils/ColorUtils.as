@@ -20,12 +20,10 @@ package net.play5d.game.bvn.ide.utils {
 import net.play5d.kyo.utils.KyoColor;
 
 /**
- * IDE 组件预览用颜色工具。
- *
- * <p><code>#RRGGBB</code> 委托 <code>KyoColor.toHex</code>；
- * <code>asLiteral</code> 为时间轴预览专用（<code>0xrrggbb</code>）。</p>
+ * IDE 组件预览用颜色工具（委托 <code>KyoColor</code>）。
  *
  * @see net.play5d.kyo.utils.KyoColor#toHex()
+ * @see net.play5d.kyo.utils.KyoColor#toLiteral()
  */
 public class ColorUtils {
 
@@ -56,7 +54,7 @@ public class ColorUtils {
      * </listing>
      */
     public static function asLiteral(color:uint):String {
-        return '0x' + KyoColor.toHex(color).substring(1).toLowerCase();
+        return KyoColor.toLiteral(color);
     }
 }
 }

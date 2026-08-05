@@ -72,10 +72,10 @@ public class LANUtils {
      * 格式化主机列表时间显示。
      * @param date 时间。
      * @return <code>MM/DD HH:mm</code>。
+     * @see KyoTimerFormat#getMonthDayTime()
      */
     public static function getTimeStr(date:Date):String {
-        return KyoTimerFormat.formatNum(date.month + 1) + '/' + KyoTimerFormat.formatNum(date.date) + ' ' +
-               KyoTimerFormat.formatNum(date.hours) + ':' + KyoTimerFormat.formatNum(date.minutes);
+        return KyoTimerFormat.getMonthDayTime(date);
     }
 
 }
