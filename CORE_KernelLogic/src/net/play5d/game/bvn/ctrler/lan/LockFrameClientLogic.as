@@ -1,31 +1,94 @@
-package net.play5d.game.bvn.mob.ctrls {
+/*
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
+ * All rights reserved.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package net.play5d.game.bvn.ctrler.lan {
 import flash.utils.ByteArray;
 import flash.utils.getTimer;
 
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
+import net.play5d.game.bvn.data.lan.LanMsgType;
 import net.play5d.game.bvn.fighter.FighterMain;
-import net.play5d.game.bvn.mob.input.InputManager;
 import net.play5d.game.bvn.utils.LANUtils;
-import net.play5d.game.bvn.mob.utils.MsgType;
 
 /**
- * 锁帧算法，客户端
+ * 锁帧算法（客户端）。
+ *
+ * <p>通过 <code>init</code> 注入会话与双方 <code>ILanSocketInput</code>。</p>
+ *
+ * @see LockFrameServerLogic
+ * @see ILanClientLockLink
+ * @see ILanSocketInput
  */
 public class LockFrameClientLogic {
+    /**
+     * 构造锁帧客户端逻辑。
+     */
     public function LockFrameClientLogic() {
     }
-    public var enabled:Boolean = true;
-    private var _updateCache:Object = {};
-    private var _clientK:int;
-    private var _serverK:int;
-    private var _clientFrame:int;
-    private var _serverFrame:int;
-    private var _serverNextFrame:int;
-    private var _lastSendK:int;
-    private var _delayTimer:int = 0;
-    private var _sendAnyWay:Boolean = false;
-    private var _sendStartFrame:int = 0;
 
+    /**
+     * 是否参与渲染推进。
+     * @default true
+     */
+    public var enabled:Boolean = true;
+
+    /** @private */
+    private var _updateCache:Object = {};
+    /** @private */
+    private var _clientK:int;
+    /** @private */
+    private var _serverK:int;
+    /** @private */
+    private var _clientFrame:int;
+    /** @private */
+    private var _serverFrame:int;
+    /** @private */
+    private var _serverNextFrame:int;
+    /** @private */
+    private var _lastSendK:int;
+    /** @private */
+    private var _delayTimer:int = 0;
+    /** @private */
+    private var _sendAnyWay:Boolean = false;
+    /** @private 准备包发送节流计数 */
+    private var _sendStartFrame:int = 0;
+    /** @private */
+    private var _link:ILanClientLockLink;
+    /** @private 本机视角下的 P1（服务端侧）输入 */
+    private var _inputP1:ILanSocketInput;
+    /** @private 本机采集的 P2 输入 */
+    private var _inputP2:ILanSocketInput;
+
+    /**
+     * 注入会话与输入通道。
+     * @param link 客户端会话。
+     * @param inputP1 P1 Socket 输入。
+     * @param inputP2 P2 Socket 输入。
+     */
+    public function init(link:ILanClientLockLink, inputP1:ILanSocketInput, inputP2:ILanSocketInput):void {
+        _link    = link;
+        _inputP1 = inputP1;
+        _inputP2 = inputP2;
+    }
+
+    /**
+     * 重置帧与缓存。
+     */
     public function reset():void {
         _updateCache     = {};
         _clientK         = 0;
@@ -37,20 +100,29 @@ public class LockFrameClientLogic {
         _sendStartFrame  = 0;
     }
 
+    /**
+     * 释放缓存引用。
+     */
     public function dispose():void {
         _updateCache = {};
+        _link        = null;
+        _inputP1     = null;
+        _inputP2     = null;
     }
 
+    /**
+     * 处理服务端输入更新包。
+     * @param msgArr 载荷。
+     * @return 已识别时为 <code>true</code>。
+     */
     public function receiveUpdate(msgArr:ByteArray):Boolean {
         if (!msgArr) {
             return false;
         }
 
         msgArr.position = 0;
-
-        var type:int = msgArr.readByte();
-
-        if (type != MsgType.INPUT_UPDATE) {
+        var type:int    = msgArr.readByte();
+        if (type != LanMsgType.INPUT_UPDATE) {
             return false;
         }
 
@@ -59,30 +131,29 @@ public class LockFrameClientLogic {
         _clientK     = msgArr.readShort();
 
         _serverNextFrame = _serverFrame + LANUtils.LOCK_KEYFRAME;
-
         cacheUpdate();
 
         var delay:int = getTimer() - _delayTimer;
-        LANClientCtrl.I.updateDelay(delay);
-
+        _link.updateDelay(delay);
         _delayTimer = getTimer();
-
         _sendAnyWay = true;
 
         return true;
     }
 
+    /**
+     * 处理服务端状态同步包。
+     * @param msgArr 载荷。
+     * @return 已识别时为 <code>true</code>。
+     */
     public function receiveSyncUpdate(msgArr:ByteArray):Boolean {
         if (!msgArr) {
             return false;
         }
 
-
         msgArr.position = 0;
-
-        var type:int = msgArr.readByte();
-
-        if (type != MsgType.INPUT_SYNC) {
+        var type:int    = msgArr.readByte();
+        if (type != LanMsgType.INPUT_SYNC) {
             return false;
         }
 
@@ -102,14 +173,12 @@ public class LockFrameClientLogic {
         var p2x:int  = msgArr.readShort();
         var p2y:int  = msgArr.readShort();
 
-        //			trace('receive sync update', 'frame='+frame, 'round='+round, 'time='+time, 'p1hp='+p1hp,
-        // 'p1qi='+p1qi, 'p1x='+p1x, 'p1y='+p1y, ' || ' ,'p2hp='+p2hp, 'p2qi='+p2qi, 'p2x='+p2x, 'p2y='+p2y);
         _serverFrame = frame;
 
         try {
-
             if (GameCtrl.I.gameRunData.round != round) {
-                LANClientCtrl.I.syncError(true);
+                _link.syncError(true);
+
                 return true;
             }
 
@@ -131,93 +200,92 @@ public class LockFrameClientLogic {
             if (p1.hp > 0 && !p1.isAlive) {
                 p1.relive();
             }
-
             if (p2.hp > 0 && !p1.isAlive) {
                 p2.relive();
             }
 
-            LANClientCtrl.I.resetSyncError();
+            _link.resetSyncError();
         }
         catch (e:Error) {
             trace(e);
-            LANClientCtrl.I.syncError(true);
+            _link.syncError(true);
         }
 
         return true;
     }
 
+    /**
+     * 每帧推进；未就绪时返回 <code>false</code> 以停顿渲染。
+     * @return 是否允许本帧游戏逻辑推进。
+     */
     public function render():Boolean {
-
         if (!enabled) {
             return true;
         }
 
         if (_serverNextFrame == 0 && _serverFrame == 0) {
             if (_sendStartFrame++ == 0) {
-                //通知服务端，客户端已准备
                 var byte:ByteArray = new ByteArray();
-                byte.writeByte(MsgType.INPUT_SEND);
+                byte.writeByte(LanMsgType.INPUT_SEND);
                 byte.writeShort(0);
                 byte.writeShort(0);
-                LANClientCtrl.I.sendUDP(byte);
+                _link.sendUDP(byte);
             }
             else if (_sendStartFrame > 5) {
                 _sendStartFrame = 0;
             }
+
             return false;
         }
 
         if (_clientFrame < _serverNextFrame) {
             _clientFrame++;
             renderUpdate();
-
-            InputManager.I.socket_input_p2.renderInput();
+            _inputP2.renderInput();
 
             if (_clientFrame % 2 == 0) {
                 sendCtrl();
             }
-            //				sendCtrl();
 
             return true;
         }
+
         return false;
     }
 
+    /** @private */
     private function sendCtrl():void {
-        //			InputManager.I.socket_input_p2.renderInput();
-
-        var k:int = InputManager.I.socket_input_p2.getSocketData();
+        var k:int = _inputP2.getSocketData();
         if (_lastSendK == k && !_sendAnyWay) {
             return;
         }
 
         _sendAnyWay = false;
-
-        InputManager.I.socket_input_p2.resetInput();
-        //			LANClientCtrl.I.send([_clientFrame , k]);
+        _inputP2.resetInput();
 
         var byte:ByteArray = new ByteArray();
-        byte.writeByte(MsgType.INPUT_SEND);
+        byte.writeByte(LanMsgType.INPUT_SEND);
         byte.writeShort(_clientFrame);
         byte.writeShort(k);
-        LANClientCtrl.I.sendUDP(byte);
+        _link.sendUDP(byte);
 
         _lastSendK = k;
     }
 
+    /** @private */
     private function cacheUpdate():void {
         for (var i:int = _serverFrame; i < _serverNextFrame; i++) {
             _updateCache[i] = [_serverK, _clientK];
         }
     }
 
+    /** @private */
     private function renderUpdate():void {
         var cacheKeys:Array = _updateCache[_clientFrame];
         if (cacheKeys) {
-            InputManager.I.socket_input_p1.setSocketData(cacheKeys[0]);
-            InputManager.I.socket_input_p2.setSocketData(cacheKeys[1]);
+            _inputP1.setSocketData(cacheKeys[0]);
+            _inputP2.setSocketData(cacheKeys[1]);
         }
     }
-
 }
 }

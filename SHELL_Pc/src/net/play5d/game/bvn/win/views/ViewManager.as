@@ -20,7 +20,7 @@ package net.play5d.game.bvn.win.views {
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.stage.SettingStage;
 import net.play5d.game.bvn.win.GameInterfaceManager;
-import net.play5d.game.bvn.win.input.JoyStickConfigVO;
+import net.play5d.game.bvn.input.JoyStickConfigVO;
 import net.play5d.kyo.stage.IStage;
 
 public class ViewManager {

@@ -23,18 +23,21 @@ import flash.utils.setTimeout;
 
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
+import net.play5d.game.bvn.ctrler.lan.ILanServerLockLink;
+import net.play5d.game.bvn.ctrler.lan.LockFrameServerLogic;
+import net.play5d.game.bvn.ctrler.lan.SelectFighterServerLogic;
 import net.play5d.game.bvn.data.vos.GameRunDataVO;
 import net.play5d.game.bvn.events.GameEvent;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.interfaces.GameInterface;
 import net.play5d.game.bvn.stage.GameStage;
 import net.play5d.game.bvn.ui.GameUI;
-import net.play5d.game.bvn.win.data.ClientVO;
+import net.play5d.game.bvn.data.lan.ClientVO;
 import net.play5d.game.bvn.win.data.HostVO;
 import net.play5d.game.bvn.win.input.InputManager;
-import net.play5d.game.bvn.win.sockets.SocketServer;
-import net.play5d.game.bvn.win.sockets.events.SocketEvent;
-import net.play5d.game.bvn.win.sockets.udp.UDPDataVO;
+import net.play5d.kyo.air.socket.SocketServer;
+import net.play5d.kyo.air.socket.events.SocketEvent;
+import net.play5d.game.bvn.data.lan.UDPDataVO;
 import net.play5d.game.bvn.win.sockets.udp.UDPSocket;
 import net.play5d.kyo.utils.JsonUtils;
 import net.play5d.game.bvn.data.lan.LanSyncType;
@@ -45,7 +48,7 @@ import net.play5d.game.bvn.win.utils.SocketMsgFactory;
 import net.play5d.game.bvn.win.views.lan.LANGameState;
 import net.play5d.game.bvn.win.views.lan.LANRoomState;
 
-public class LANServerCtrl {
+public class LANServerCtrl implements ILanServerLockLink {
     private static var _i:LANServerCtrl;
 
     public static function get I():LANServerCtrl {
@@ -196,9 +199,10 @@ public class LANServerCtrl {
         _room = null;
 
         _selectLogic = new SelectFighterServerLogic();
-        _selectLogic.init();
+        _selectLogic.init(sendTCP);
 
         _connGameLogic = new LockFrameServerLogic();
+        _connGameLogic.init(this, InputManager.I.socket_input_p1, InputManager.I.socket_input_p2);
 
         LanGameMenuCtrl.I.init();
 

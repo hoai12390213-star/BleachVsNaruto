@@ -33,9 +33,9 @@ import net.play5d.game.bvn.ui.SetBtnDialog;
 import net.play5d.game.bvn.ui.SetBtnGroup;
 import net.play5d.game.bvn.utils.URL;
 import net.play5d.game.bvn.win.GameInterfaceManager;
-import net.play5d.game.bvn.win.input.JoyStickConfigVO;
-import net.play5d.game.bvn.win.input.JoyStickSetVO;
-import net.play5d.game.bvn.win.input.JoySticker;
+import net.play5d.game.bvn.input.JoyStickConfigVO;
+import net.play5d.game.bvn.input.JoyStickSetVO;
+import net.play5d.game.bvn.input.JoySticker;
 
 public class JoyStickSetUI extends EventDispatcher implements IInnerSetUI {
     public function JoyStickSetUI() {

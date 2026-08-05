@@ -24,6 +24,9 @@ import flash.net.NetworkInfo;
 import flash.net.NetworkInterface;
 import flash.utils.ByteArray;
 
+import net.play5d.game.bvn.data.lan.UDPDataVO;
+import net.play5d.game.bvn.data.lan.UdpDataType;
+
 /**
  * UDP协议收发消息管理器
  */

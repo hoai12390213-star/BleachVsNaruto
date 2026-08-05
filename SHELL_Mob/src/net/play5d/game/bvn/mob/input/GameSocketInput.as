@@ -1,10 +1,11 @@
 package net.play5d.game.bvn.mob.input {
 import flash.display.Stage;
 
+import net.play5d.game.bvn.ctrler.lan.ILanSocketInput;
 import net.play5d.game.bvn.input.IGameInput;
-import net.play5d.game.bvn.mob.data.SocketInputData;
+import net.play5d.game.bvn.data.lan.SocketInputData;
 
-public class GameSocketInput implements IGameInput {
+public class GameSocketInput implements IGameInput, ILanSocketInput {
     public function GameSocketInput() {
         initK();
     }

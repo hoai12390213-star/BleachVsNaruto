@@ -1,7 +1,7 @@
 package net.play5d.game.bvn.mob.data {
 import net.play5d.game.bvn.interfaces.IExtendConfig;
-import net.play5d.game.bvn.mob.input.JoyStickConfigVO;
-import net.play5d.game.bvn.mob.input.JoySticker;
+import net.play5d.game.bvn.input.JoyStickConfigVO;
+import net.play5d.game.bvn.input.JoySticker;
 
 public class ExtendConfig implements IExtendConfig {
 

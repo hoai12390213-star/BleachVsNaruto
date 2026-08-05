@@ -1,6 +1,9 @@
 package net.play5d.game.bvn.mob.sockets.udp {
 import flash.utils.ByteArray;
 
+import net.play5d.game.bvn.data.lan.UDPDataVO;
+import net.play5d.game.bvn.data.lan.UdpDataType;
+
 /**
  * UDP协议收发消息管理器
  */

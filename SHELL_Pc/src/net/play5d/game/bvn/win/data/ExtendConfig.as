@@ -18,8 +18,8 @@
 
 package net.play5d.game.bvn.win.data {
 import net.play5d.game.bvn.interfaces.IExtendConfig;
-import net.play5d.game.bvn.win.input.JoyStickConfigVO;
-import net.play5d.game.bvn.win.input.JoySticker;
+import net.play5d.game.bvn.input.JoyStickConfigVO;
+import net.play5d.game.bvn.input.JoySticker;
 
 public class ExtendConfig implements IExtendConfig {
 

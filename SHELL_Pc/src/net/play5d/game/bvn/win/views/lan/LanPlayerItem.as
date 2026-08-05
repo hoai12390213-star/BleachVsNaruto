@@ -20,7 +20,7 @@ package net.play5d.game.bvn.win.views.lan {
 import flash.display.MovieClip;
 import flash.events.MouseEvent;
 
-import net.play5d.game.bvn.win.data.ClientVO;
+import net.play5d.game.bvn.data.lan.ClientVO;
 import net.play5d.game.bvn.win.data.LanGameModel;
 import net.play5d.game.bvn.win.utils.UIAssetUtil;
 
