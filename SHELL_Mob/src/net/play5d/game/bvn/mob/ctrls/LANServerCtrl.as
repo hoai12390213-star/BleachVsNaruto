@@ -5,17 +5,20 @@ import flash.utils.ByteArray;
 
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
+import net.play5d.game.bvn.ctrler.lan.ILanServerLockLink;
+import net.play5d.game.bvn.ctrler.lan.LockFrameServerLogic;
+import net.play5d.game.bvn.ctrler.lan.SelectFighterServerLogic;
 import net.play5d.game.bvn.data.vos.GameRunDataVO;
 import net.play5d.game.bvn.events.GameEvent;
 import net.play5d.game.bvn.fighter.FighterMain;
 import net.play5d.game.bvn.interfaces.GameInterface;
-import net.play5d.game.bvn.mob.data.ClientVO;
+import net.play5d.game.bvn.data.lan.ClientVO;
 import net.play5d.game.bvn.mob.data.HostVO;
 import net.play5d.game.bvn.mob.events.LanEvent;
 import net.play5d.game.bvn.mob.input.InputManager;
-import net.play5d.game.bvn.mob.sockets.SocketServer;
-import net.play5d.game.bvn.mob.sockets.events.SocketEvent;
-import net.play5d.game.bvn.mob.sockets.udp.UDPDataVO;
+import net.play5d.kyo.air.socket.SocketServer;
+import net.play5d.kyo.air.socket.events.SocketEvent;
+import net.play5d.game.bvn.data.lan.UDPDataVO;
 import net.play5d.game.bvn.mob.sockets.udp.UDPSocket;
 import net.play5d.kyo.utils.JsonUtils;
 import net.play5d.game.bvn.data.lan.LanSyncType;
@@ -24,7 +27,7 @@ import net.play5d.game.bvn.mob.utils.MsgType;
 import net.play5d.game.bvn.mob.utils.SocketMsgFactory;
 import net.play5d.game.bvn.ui.GameUI;
 
-public class LANServerCtrl extends EventDispatcher {
+public class LANServerCtrl extends EventDispatcher implements ILanServerLockLink {
     private static var _i:LANServerCtrl;
 
     public static function get I():LANServerCtrl {
@@ -118,11 +121,12 @@ public class LANServerCtrl extends EventDispatcher {
         _renderFrame = 1;
 
         _selectLogic = new SelectFighterServerLogic();
-        _selectLogic.init();
+        _selectLogic.init(sendTCP);
 
 //			_connGameLogic = new OptimisticServerLogic();
 //			_connGameLogic = new SimpleLockFrameServerLogic();
         _connGameLogic = new LockFrameServerLogic();
+        _connGameLogic.init(this, InputManager.I.socket_input_p1, InputManager.I.socket_input_p2);
 
         initSyncEvent();
 
