@@ -19,6 +19,7 @@
 package net.play5d.game.bvn.win.views.lan {
 import flash.display.Sprite;
 
+import net.play5d.game.bvn.ctrler.lan.ILanExitDialog;
 import net.play5d.game.bvn.GameConfig;
 import net.play5d.game.bvn.events.SetBtnEvent;
 import net.play5d.game.bvn.input.GameInputType;
@@ -27,7 +28,7 @@ import net.play5d.game.bvn.ui.SetBtnGroup;
 import net.play5d.game.bvn.win.ctrls.LANClientCtrl;
 import net.play5d.game.bvn.win.ctrls.LANServerCtrl;
 
-public class LANExitDialog extends Sprite {
+public class LANExitDialog extends Sprite implements ILanExitDialog {
     public function LANExitDialog() {
         _bg = new Sprite();
         _bg.graphics.beginFill(0, 0.5);

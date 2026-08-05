@@ -24,6 +24,7 @@ import flash.utils.setTimeout;
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.game.bvn.ctrler.lan.ILanServerLockLink;
+import net.play5d.game.bvn.ctrler.lan.LanGameMenuCtrl;
 import net.play5d.game.bvn.ctrler.lan.LockFrameServerLogic;
 import net.play5d.game.bvn.ctrler.lan.SelectFighterServerLogic;
 import net.play5d.game.bvn.data.vos.GameRunDataVO;
@@ -45,6 +46,7 @@ import net.play5d.game.bvn.utils.LANUtils;
 import net.play5d.game.bvn.utils.LockFrameLogic;
 import net.play5d.game.bvn.win.utils.MsgType;
 import net.play5d.game.bvn.win.utils.SocketMsgFactory;
+import net.play5d.game.bvn.win.views.lan.LANExitDialog;
 import net.play5d.game.bvn.win.views.lan.LANGameState;
 import net.play5d.game.bvn.win.views.lan.LANRoomState;
 
@@ -204,7 +206,7 @@ public class LANServerCtrl implements ILanServerLockLink {
         _connGameLogic = new LockFrameServerLogic();
         _connGameLogic.init(this, InputManager.I.socket_input_p1, InputManager.I.socket_input_p2);
 
-        LanGameMenuCtrl.I.init();
+        LanGameMenuCtrl.I.init(new LANExitDialog());
 
         initSyncEvent();
     }

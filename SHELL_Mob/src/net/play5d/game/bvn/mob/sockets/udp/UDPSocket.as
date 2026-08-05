@@ -2,10 +2,10 @@ package net.play5d.game.bvn.mob.sockets.udp {
 import flash.utils.ByteArray;
 
 import net.play5d.game.bvn.data.lan.UDPDataVO;
-import net.play5d.game.bvn.data.lan.UdpDataType;
+import net.play5d.game.bvn.data.lan.UdpPacketUtils;
 
 /**
- * UDP协议收发消息管理器
+ * UDP协议收发消息管理器（Mob / AndroidUDP）。
  */
 public class UDPSocket {
 
@@ -69,7 +69,7 @@ public class UDPSocket {
      *
      */
     public function send(ip:String, port:int, msg:Object):void {
-        var bytes:ByteArray = getSendBytes(msg);
+        var bytes:ByteArray = UdpPacketUtils.encode(msg, BUFFER_LENGTH);
         log('UDP send', ip, port, msg, bytes.length);
         AndroidUDP.getInstace().send(ip, port, bytes);
     }
@@ -81,7 +81,7 @@ public class UDPSocket {
      * @param updateOnLineIP 是否更新IP列表
      */
     public function sendBroadcast(port:int, msg:Object):void {
-        var bytes:ByteArray = getSendBytes(msg);
+        var bytes:ByteArray = UdpPacketUtils.encode(msg, BUFFER_LENGTH);
         AndroidUDP.getInstace().sendBoardcast(port, bytes);
     }
 
@@ -90,62 +90,16 @@ public class UDPSocket {
      * @param e
      */
     private function dataHandler(e:AndroidUDPEvent):void {
-
-        var data:UDPDataVO = new UDPDataVO();
-        data.fromIP        = e.ip;
-        data.fromPort      = e.port;
-
         var byte:ByteArray = e.data;
         log('UDP receive', byte, byte.length);
-        var type:int = byte.readByte();
-        switch (type) {
-        case 1:
-            data.dataType = UdpDataType.STRING;
-            data.setData(byte.readUTFBytes(byte.bytesAvailable));
-            break;
-        case 2:
-            data.dataType     = UdpDataType.BYTEARRAY;
-            var tmp:ByteArray = new ByteArray();
-            tmp.writeBytes(byte, 1, byte.bytesAvailable);
-            tmp.position = 0;
-            data.setData(tmp);
-            break;
-        case 3:
-            data.dataType = UdpDataType.OBJECT;
-            data.setData(byte.readObject());
-            break;
-        }
+
+        var data:UDPDataVO = UdpPacketUtils.decode(byte, e.ip, e.port);
 
         for each(var f:Function in _dataBacks) {
             if (f != null) {
                 f(data);
             }
         }
-    }
-
-    private function getSendBytes(msg:Object):ByteArray {
-        var bytes:ByteArray = new ByteArray();
-        if (msg is String) {
-            bytes.writeByte(1);
-            bytes.writeUTFBytes(msg as String);
-        }
-        else if (msg is ByteArray) {
-            bytes.writeByte(2);
-            bytes.writeBytes(msg as ByteArray, 0, (
-                    msg as ByteArray
-            ).bytesAvailable);
-        }
-        else {
-            bytes.writeByte(3);
-            bytes.writeObject(msg);
-        }
-        bytes.position = 0;
-
-        if (bytes.length > BUFFER_LENGTH) {
-            throw new Error('byteArray.length is over buffer length!');
-        }
-
-        return bytes;
     }
 
     private function log(...params):void {

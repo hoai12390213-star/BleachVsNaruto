@@ -6,6 +6,7 @@ import flash.utils.ByteArray;
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.game.bvn.ctrler.lan.ILanServerLockLink;
+import net.play5d.game.bvn.ctrler.lan.LanGameMenuCtrl;
 import net.play5d.game.bvn.ctrler.lan.LockFrameServerLogic;
 import net.play5d.game.bvn.ctrler.lan.SelectFighterServerLogic;
 import net.play5d.game.bvn.data.vos.GameRunDataVO;

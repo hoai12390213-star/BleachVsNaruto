@@ -25,10 +25,10 @@ import flash.net.NetworkInterface;
 import flash.utils.ByteArray;
 
 import net.play5d.game.bvn.data.lan.UDPDataVO;
-import net.play5d.game.bvn.data.lan.UdpDataType;
+import net.play5d.game.bvn.data.lan.UdpPacketUtils;
 
 /**
- * UDP协议收发消息管理器
+ * UDP协议收发消息管理器（Pc / DatagramSocket）。
  */
 public class UDPSocket {
     public function UDPSocket() {
@@ -94,21 +94,7 @@ public class UDPSocket {
     public function send(ip:String, port:int, msg:Object):void {
         log('UDPCtrler.send', ip, port, msg);
 
-        var bytes:ByteArray = new ByteArray();
-        if (msg is String) {
-            bytes.writeByte(1);
-            bytes.writeUTFBytes(msg as String);
-        }
-        else if (msg is ByteArray) {
-            bytes.writeByte(2);
-            bytes.writeBytes(msg as ByteArray, 0, (
-                    msg as ByteArray
-            ).bytesAvailable);
-        }
-        else {
-            bytes.writeByte(3);
-            bytes.writeObject(msg);
-        }
+        var bytes:ByteArray = UdpPacketUtils.encode(msg);
         _udpsocket.send(bytes, 0, 0, ip, port);
     }
 
@@ -150,30 +136,7 @@ public class UDPSocket {
      * @param e
      */
     private function dataHandler(e:DatagramSocketDataEvent):void {
-
-        var data:UDPDataVO = new UDPDataVO();
-        data.fromIP        = e.srcAddress;
-        data.fromPort      = e.srcPort;
-
-        var byte:ByteArray = e.data;
-        var type:int       = byte.readByte();
-        switch (type) {
-        case 1:
-            data.dataType = UdpDataType.STRING;
-            data.setData(byte.readUTFBytes(byte.bytesAvailable));
-            break;
-        case 2:
-            data.dataType     = UdpDataType.BYTEARRAY;
-            var tmp:ByteArray = new ByteArray();
-            tmp.writeBytes(byte, 1, byte.bytesAvailable);
-            tmp.position = 0;
-            data.setData(tmp);
-            break;
-        case 3:
-            data.dataType = UdpDataType.OBJECT;
-            data.setData(byte.readObject());
-            break;
-        }
+        var data:UDPDataVO = UdpPacketUtils.decode(e.data, e.srcAddress, e.srcPort);
 
         for each(var f:Function in _dataBacks) {
             if (f != null) {

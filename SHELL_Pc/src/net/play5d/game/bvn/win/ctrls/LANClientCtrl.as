@@ -27,6 +27,7 @@ import flash.utils.setTimeout;
 import net.play5d.game.bvn.MainGame;
 import net.play5d.game.bvn.ctrler.game_ctrls.GameCtrl;
 import net.play5d.game.bvn.ctrler.lan.ILanClientLockLink;
+import net.play5d.game.bvn.ctrler.lan.LanGameMenuCtrl;
 import net.play5d.game.bvn.ctrler.lan.LockFrameClientLogic;
 import net.play5d.game.bvn.ctrler.lan.SelectFighterClientLogic;
 import net.play5d.game.bvn.events.GameEvent;
@@ -49,6 +50,7 @@ import net.play5d.game.bvn.utils.LANUtils;
 import net.play5d.game.bvn.utils.LockFrameLogic;
 import net.play5d.game.bvn.win.utils.MsgType;
 import net.play5d.game.bvn.win.utils.SocketMsgFactory;
+import net.play5d.game.bvn.win.views.lan.LANExitDialog;
 import net.play5d.game.bvn.win.views.lan.LANGameState;
 import net.play5d.game.bvn.win.views.lan.LANRoomState;
 import net.play5d.kyo.utils.KyoTimeout;
@@ -224,7 +226,7 @@ public class LANClientCtrl implements ILanClientLockLink {
             return LANClientCtrl.I.renderGame();
         });
 
-        LanGameMenuCtrl.I.init();
+        LanGameMenuCtrl.I.init(new LANExitDialog());
 
         LANUtils.updateParams();
 

@@ -17,9 +17,15 @@
  */
 
 package net.play5d.game.bvn.win.utils {
+import net.play5d.game.bvn.data.lan.LanSocketMsgFactory;
 import net.play5d.game.bvn.win.ctrls.LANServerCtrl;
 import net.play5d.game.bvn.win.data.LanGameModel;
 
+/**
+ * PC 壳局域网消息工厂；共用 Object 消息委托 <code>LanSocketMsgFactory</code>。
+ *
+ * @see LanSocketMsgFactory
+ */
 public class SocketMsgFactory {
     /**
      * 寻找主机
@@ -44,71 +50,49 @@ public class SocketMsgFactory {
      * 加入游戏
      */
     public static function createJoinMsg():Object {
-        var o:Object = {};
-        o.type       = MsgType.JOIN;
-        o.name       = LanGameModel.I.playerName;
-        return o;
+        return LanSocketMsgFactory.createJoinMsg(LanGameModel.I.playerName);
     }
 
     /**
      * 加入游戏成功
      */
     public static function createJoinSuccMsg():Object {
-        var o:Object = {};
-        o.type       = MsgType.JOIN_BACK;
-        o.success    = true;
-        return o;
+        return LanSocketMsgFactory.createJoinSuccMsg();
     }
 
     /**
      * 加入房间
      */
     public static function createJoinInMsg():Object {
-        var o:Object = {};
-        o.type       = MsgType.JOIN_IN;
-        o.name       = LanGameModel.I.playerName;
-        return o;
+        return LanSocketMsgFactory.createJoinInMsg(LanGameModel.I.playerName);
     }
 
     /**
      * 加入游戏失败
      */
     public static function createJoinFailMsg(msg:String = null):Object {
-        var o:Object = {};
-        o.type       = MsgType.JOIN_BACK;
-        o.success    = false;
-        o.msg        = msg;
-        return o;
+        return LanSocketMsgFactory.createJoinFailMsg(msg);
     }
 
     /**
      * 踢出房间
      */
     public static function createKickOutMsg(msg:String = null):Object {
-        var o:Object = {};
-        o.type       = MsgType.KICK_OUT;
-        o.msg        = msg;
-        return o;
+        return LanSocketMsgFactory.createKickOutMsg(msg);
     }
 
     /**
      * 消息
      */
     public static function createChart(chart:String, name:String):Object {
-        var o:Object = {};
-        o.type       = MsgType.CHART;
-        o.msg        = chart;
-        o.name       = name;
-        return o;
+        return LanSocketMsgFactory.createChart(chart, name);
     }
 
     /**
      * 开始游戏
      */
     public static function createStartGame():Object {
-        var o:Object = {};
-        o.type       = MsgType.START_GAME;
-        return o;
+        return LanSocketMsgFactory.createStartGame();
     }
 
 }
