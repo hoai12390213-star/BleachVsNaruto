@@ -18,7 +18,7 @@
 
 package net.play5d.game.bvn.win.ctrls {
 import net.play5d.game.bvn.MainGame;
-import net.play5d.game.bvn.win.sockets.SocketClient;
+import net.play5d.kyo.air.socket.SocketClient;
 import net.play5d.game.bvn.win.views.lan.LANGameState;
 
 public class LANGameCtrl {

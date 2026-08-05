@@ -20,6 +20,9 @@ package net.play5d.game.bvn.win.input {
 import flash.display.Stage;
 
 import net.play5d.game.bvn.input.IGameInput;
+import net.play5d.game.bvn.input.JoyStickConfigVO;
+import net.play5d.game.bvn.input.JoySticker;
+import net.play5d.game.bvn.win.GameInterfaceManager;
 
 public class GameJoystickInput implements IGameInput {
     public function GameJoystickInput(player:int) {
@@ -47,7 +50,9 @@ public class GameJoystickInput implements IGameInput {
     }
 
     public function initlize(stage:Stage):void {
-        JoySticker.initlize();
+        JoySticker.initlize(function ():void {
+            GameInterfaceManager.config.updateJoyConfig();
+        });
     }
 
     public function setConfig(config:Object):void {

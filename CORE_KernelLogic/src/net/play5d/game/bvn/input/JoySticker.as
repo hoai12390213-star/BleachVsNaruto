@@ -1,10 +1,26 @@
-package net.play5d.game.bvn.mob.input {
+/*
+ * Copyright (C) 2021-2026, 5DPLAY Game Studio
+ * All rights reserved.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package net.play5d.game.bvn.input {
 import flash.events.GameInputEvent;
 import flash.ui.GameInput;
 import flash.ui.GameInputControl;
 import flash.ui.GameInputDevice;
-
-import net.play5d.game.bvn.mob.GameInterfaceManager;
 
 /**
  * 游戏手柄控制类
@@ -18,11 +34,17 @@ public class JoySticker {
 
     private static var _deivceMap:Object;
     private static var _downKey:JoyStickSetVO;
+    /** @private 设备列表变更回调（可选） */
+    private static var _onDevicesChanged:Function;
 
     /**
-     * 初始化，只会调用一次
+     * 初始化，只会调用一次。
+     * @param onDevicesChanged 手柄增减后回调；可为 <code>null</code>。
      */
-    public static function initlize():void {
+    public static function initlize(onDevicesChanged:Function = null):void {
+        if (onDevicesChanged != null) {
+            _onDevicesChanged = onDevicesChanged;
+        }
 
         if (_inited) {
             return;
@@ -251,7 +273,9 @@ public class JoySticker {
 
             if (GameInput.numDevices < 3) {
                 addDeivce(e.device);
-                GameInterfaceManager.config.updateJoyConfig();
+                if (_onDevicesChanged != null) {
+                    _onDevicesChanged();
+                }
             }
 
             break;
