@@ -74,36 +74,24 @@ public class FighterActionState {
     public static const LOSE:int        = 62;
 
     /** @private 不允许进行胜利的动作状态（必杀、超必杀、万解） */
-    private static const _isNotAllowWinStates:Vector.<int> = (function ():Vector.<int> {
-        var states:Vector.<int> = new Vector.<int>();
-        states.push(BISHA_ING, BISHA_SUPER_ING, WAN_KAI_ING);
-
-        return states;
-    })();
+    private static const _isNotAllowWinStates:Vector.<int> = new <int>[
+        BISHA_ING, BISHA_SUPER_ING, WAN_KAI_ING
+    ];
 
     /** @private 正在处于必杀中的动作状态（必杀、超必杀） */
-    private static const _isBishaIngStates:Vector.<int> = (function ():Vector.<int> {
-        var states:Vector.<int> = new Vector.<int>();
-        states.push(BISHA_ING, BISHA_SUPER_ING);
-
-        return states;
-    })();
+    private static const _isBishaIngStates:Vector.<int> = new <int>[
+        BISHA_ING, BISHA_SUPER_ING
+    ];
 
     /** @private 正在处于攻击中的动作状态（普通攻击、技能、必杀、超必杀） */
-    private static const _isAttackIngStates:Vector.<int> = (function ():Vector.<int> {
-        var states:Vector.<int> = new Vector.<int>();
-        states.push(ATTACK_ING, SKILL_ING, BISHA_ING, BISHA_SUPER_ING);
-
-        return states;
-    })();
+    private static const _isAttackIngStates:Vector.<int> = new <int>[
+        ATTACK_ING, SKILL_ING, BISHA_ING, BISHA_SUPER_ING
+    ];
 
     /** @private 正在处于被伤害中的动作状态（被打、击飞、落地、弹起） */
-    private static const _isHurtIngStates:Vector.<int> = (function ():Vector.<int> {
-        var states:Vector.<int> = new Vector.<int>();
-        states.push(HURT_ING, HURT_FLYING, HURT_DOWN, HURT_DOWN_TAN);
-
-        return states;
-    })();
+    private static const _isHurtIngStates:Vector.<int> = new <int>[
+        HURT_ING, HURT_FLYING, HURT_DOWN, HURT_DOWN_TAN
+    ];
 
     /**
      * 判断当前动作是否允许进入胜利（不在必杀、超必杀、万解中）。

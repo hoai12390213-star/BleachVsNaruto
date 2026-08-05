@@ -57,15 +57,10 @@ public class HitType {
     public static const CATCH:int = 11;
 
     /** @private 属于重击类型的类型（重砍、重打、魔法重击、火焰、冰冻、雷电） */
-    private static const _isHeavyTypes:Vector.<int> = (function ():Vector.<int> {
-        var heavyTypes:Vector.<int> = new Vector.<int>();
-        heavyTypes.push(
-            KAN_HEAVY, DA_HEAVY, MAGIC_HEAVY,
-            FIRE, ICE, ELECTRIC
-        );
-
-        return heavyTypes;
-    })();
+    private static const _isHeavyTypes:Vector.<int> = new <int>[
+        KAN_HEAVY, DA_HEAVY, MAGIC_HEAVY,
+        FIRE, ICE, ELECTRIC
+    ];
 
     /**
      * 判断是否为重击类型。

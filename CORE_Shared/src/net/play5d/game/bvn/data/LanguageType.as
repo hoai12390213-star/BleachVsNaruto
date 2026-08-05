@@ -40,18 +40,13 @@ public class LanguageType {
     public static const VIETNAMESE:String          = 'vi';
 
     /** @private 全部支持的语言码 */
-    private static const _allLanguages:Vector.<String> = (function ():Vector.<String> {
-        var allLanguages:Vector.<String> = new Vector.<String>();
-        allLanguages.push(
-            CHINESE_SIMPLIFIED, CHINESE_TRADITIONAL,
-            ENGLISH,
-            JAPANESE,
-            KOREAN,
-            VIETNAMESE
-        );
-
-        return allLanguages;
-    })();
+    private static const _allLanguages:Vector.<String> = new <String>[
+        CHINESE_SIMPLIFIED, CHINESE_TRADITIONAL,
+        ENGLISH,
+        JAPANESE,
+        KOREAN,
+        VIETNAMESE
+    ];
 
     /**
      * 是否支持指定语言。

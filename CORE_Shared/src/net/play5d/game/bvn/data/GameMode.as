@@ -62,78 +62,48 @@ public class GameMode {
     public static var currentMode:int;
 
     /** @private 所有小队模式（小队闯关、对战电脑、双人对战、观战、无双冒险） */
-    private static const _isTeamModes:Vector.<int> = (function ():Vector.<int> {
-        var modes:Vector.<int> = new Vector.<int>();
-        modes.push(
-            TEAM_ARCADE,
-            TEAM_VS_CPU,
-            TEAM_VS_PEOPLE,
-            TEAM_WATCH,
-            MUSOU_ARCADE
-        );
-
-        return modes;
-    })();
+    private static const _isTeamModes:Vector.<int> = new <int>[
+        TEAM_ARCADE,
+        TEAM_VS_CPU,
+        TEAM_VS_PEOPLE,
+        TEAM_WATCH,
+        MUSOU_ARCADE
+    ];
 
     /** @private 所有单人模式（单人闯关、对战电脑、双人对战、观战） */
-    private static const _isSingleModes:Vector.<int> = (function ():Vector.<int> {
-        var modes:Vector.<int> = new Vector.<int>();
-        modes.push(
-            SINGLE_ARCADE,
-            SINGLE_VS_CPU,
-            SINGLE_VS_PEOPLE,
-            SINGLE_WATCH
-        );
-
-        return modes;
-    })();
+    private static const _isSingleModes:Vector.<int> = new <int>[
+        SINGLE_ARCADE,
+        SINGLE_VS_CPU,
+        SINGLE_VS_PEOPLE,
+        SINGLE_WATCH
+    ];
 
     /** @private 所有双人对战（小队双人对战、单人双人对战） */
-    private static const _isVsPeopleModes:Vector.<int> = (function ():Vector.<int> {
-        var modes:Vector.<int> = new Vector.<int>();
-        modes.push(
-            TEAM_VS_PEOPLE,
-            SINGLE_VS_PEOPLE
-        );
-
-        return modes;
-    })();
+    private static const _isVsPeopleModes:Vector.<int> = new <int>[
+        TEAM_VS_PEOPLE,
+        SINGLE_VS_PEOPLE
+    ];
 
     /** @private 所有对战电脑（小队/单人对战电脑与观战） */
-    private static const _isVsCPUModes:Vector.<int> = (function ():Vector.<int> {
-        var modes:Vector.<int> = new Vector.<int>();
-        modes.push(
-            TEAM_VS_CPU,
-            TEAM_WATCH,
-            SINGLE_VS_CPU,
-            SINGLE_WATCH
-        );
-
-        return modes;
-    })();
+    private static const _isVsCPUModes:Vector.<int> = new <int>[
+        TEAM_VS_CPU,
+        TEAM_WATCH,
+        SINGLE_VS_CPU,
+        SINGLE_WATCH
+    ];
 
     /** @private 所有观战模式（小队观战、单人观战） */
-    private static const _isWatchModes:Vector.<int> = (function ():Vector.<int> {
-        var modes:Vector.<int> = new Vector.<int>();
-        modes.push(
-            TEAM_WATCH,
-            SINGLE_WATCH
-        );
-
-        return modes;
-    })();
+    private static const _isWatchModes:Vector.<int> = new <int>[
+        TEAM_WATCH,
+        SINGLE_WATCH
+    ];
 
     /** @private 所有闯关模式（小队闯关、单人闯关、挑战） */
-    private static const _isArcadeModes:Vector.<int> = (function ():Vector.<int> {
-        var modes:Vector.<int> = new Vector.<int>();
-        modes.push(
-            TEAM_ARCADE,
-            SINGLE_ARCADE,
-            SURVIVOR
-        );
-
-        return modes;
-    })();
+    private static const _isArcadeModes:Vector.<int> = new <int>[
+        TEAM_ARCADE,
+        SINGLE_ARCADE,
+        SURVIVOR
+    ];
 
     /**
      * 获得全部队伍信息。
@@ -145,6 +115,7 @@ public class GameMode {
      * </listing>
      * @see TeamID
      */
+    [ArrayElementType('Object')]
     public static function getAllTeams():Array {
         return [
             {

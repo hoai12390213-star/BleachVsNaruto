@@ -60,17 +60,12 @@ public class FighterHitRange {
     /**
      * 全部攻击范围元件名。
      */
-    public static const ALL_HIT_RANGES:Vector.<String> = (function ():Vector.<String> {
-        var allHitRanges:Vector.<String> = new Vector.<String>();
-        allHitRanges.push(
-            ATTACK_AIR, SKILL_AIR,
-            ATTACK,
-            SKILL_1, SKILL_2,
-            ZHAO_1, ZHAO_2, ZHAO_3,
-            BISHA, BISHA_AIR, BISHA_UP, BISHA_SUPER
-        );
-
-        return allHitRanges;
-    })();
+    public static const ALL_HIT_RANGES:Vector.<String> = new <String>[
+        ATTACK_AIR, SKILL_AIR,
+        ATTACK,
+        SKILL_1, SKILL_2,
+        ZHAO_1, ZHAO_2, ZHAO_3,
+        BISHA, BISHA_AIR, BISHA_UP, BISHA_SUPER
+    ];
 }
 }

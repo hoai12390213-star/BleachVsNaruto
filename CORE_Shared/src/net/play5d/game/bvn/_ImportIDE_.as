@@ -21,6 +21,9 @@ import flash.display.Sprite;
 
 import net.play5d.game.bvn.data.*;
 import net.play5d.game.bvn.data.fighter.*;
+import net.play5d.game.bvn.data.lan.LanMsgType;
+import net.play5d.game.bvn.data.lan.LanSyncType;
+import net.play5d.game.bvn.data.lan.SelectFighterDataType;
 import net.play5d.game.bvn.interfaces.*;
 
 /**
@@ -33,7 +36,7 @@ import net.play5d.game.bvn.interfaces.*;
 public class _ImportIDE_ extends Sprite {
 
     /** @private 强制链接共享类型，防止被优化剔除 */
-    private static const _NO_USE_:Array = [
+    private static const _NO_USE_:Vector.<Class> = new <Class>[
         // net.play5d.game.bvn.data
         DefinedClass,
         GameMode,
@@ -48,6 +51,11 @@ public class _ImportIDE_ extends Sprite {
         FighterHitRange,
         FighterHurtType,
         FighterSpecialFrame,
+
+        // net.play5d.game.bvn.data.lan
+        LanMsgType,
+        LanSyncType,
+        SelectFighterDataType,
 
         // net.play5d.game.bvn.interfaces
         IAssetLoader,
