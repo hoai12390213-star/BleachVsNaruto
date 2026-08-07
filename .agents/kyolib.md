@@ -44,6 +44,7 @@
 |----|-----|
 | `FileUtils` | `net.play5d.kyo.air.utils` |
 | `ProcessUtils` | `net.play5d.kyo.air.utils` |
+| `SocketClient` / `SocketServer` / `SocketEvent` | `net.play5d.kyo.air.socket`（定长头 TCP；异于非 AIR 的 `kyo.socket.KyoSocket`） |
 
 ---
 
