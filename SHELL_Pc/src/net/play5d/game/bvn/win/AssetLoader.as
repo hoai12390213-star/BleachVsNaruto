@@ -25,7 +25,7 @@ import flash.net.URLRequest;
 
 import net.play5d.game.bvn.interfaces.IAssetLoader;
 import net.play5d.kyo.loader.KyoLoaderLite;
-import net.play5d.kyo.loader.KyoURLoader;
+import net.play5d.kyo.loader.KyoURLLoader;
 
 public class AssetLoader implements IAssetLoader {
 
@@ -35,7 +35,7 @@ public class AssetLoader implements IAssetLoader {
     public function loadXML(url:String, back:Function, fail:Function = null):void {
         url = getFullUrl(url);
 
-        KyoURLoader.load(url, function (data:String):void {
+        KyoURLLoader.load(url, function (data:String):void {
             back(new XML(data));
         }, fail);
     }
@@ -43,7 +43,7 @@ public class AssetLoader implements IAssetLoader {
     public function loadJSON(url:String, back:Function, fail:Function = null):void {
         url = getFullUrl(url);
 
-        KyoURLoader.load(url, function (data:String):void {
+        KyoURLLoader.load(url, function (data:String):void {
             try {
                 var json:Object = JSON.parse(data);
                 back(json);
@@ -58,18 +58,18 @@ public class AssetLoader implements IAssetLoader {
         }, fail);
     }
 
-    public function loadSwf(url:String, back:Function, fail:Function = null, process:Function = null):void {
+    public function loadSwf(url:String, back:Function, fail:Function = null, progress:Function = null):void {
         url = getFullUrl(url);
-        KyoLoaderLite.loadLoader(url, back, fail, process);
+        KyoLoaderLite.loadLoader(url, back, fail, progress);
     }
 
-    public function loadBitmap(url:String, back:Function, fail:Function = null, process:Function = null):void {
+    public function loadBitmap(url:String, back:Function, fail:Function = null, progress:Function = null):void {
         url = getFullUrl(url);
-        KyoLoaderLite.load(url, back, fail, process);
+        KyoLoaderLite.load(url, back, fail, progress);
 
     }
 
-    public function loadSound(url:String, back:Function, fail:Function = null, process:Function = null):void {
+    public function loadSound(url:String, back:Function, fail:Function = null, progress:Function = null):void {
         url = getFullUrl(url);
 
         var s:Sound = new Sound();
@@ -98,8 +98,8 @@ public class AssetLoader implements IAssetLoader {
         }
 
         function onProgress(e:ProgressEvent):void {
-            if (process != null) {
-                process(e.bytesLoaded / e.bytesTotal);
+            if (progress != null) {
+                progress(e.bytesLoaded / e.bytesTotal);
             }
         }
 
@@ -107,7 +107,7 @@ public class AssetLoader implements IAssetLoader {
         //			loadAssetBytes(url, function(v:ByteArray):void{
         //				var s:BytesSound = new BytesSound(v);
         //				if(back != null) back(s);
-        //			}, fail, process);
+        //			}, fail, progress);
 
     }
 
@@ -118,7 +118,7 @@ public class AssetLoader implements IAssetLoader {
         return false;
     }
 
-    public function loadPreLoad(back:Function, fail:Function = null, process:Function = null):void {
+    public function loadPreLoad(back:Function, fail:Function = null, progress:Function = null):void {
 
     }
 
@@ -126,8 +126,8 @@ public class AssetLoader implements IAssetLoader {
         return 'assets/' + url;
     }
 
-    //		private function loadAssetBytes(url:String, back:Function, fail:Function, process:Function = null):void{
-    //			KyoURLoader.load('assets/' + url, back, fail, {dataFormat: URLLoaderDataFormat.BINARY}, process);
+    //		private function loadAssetBytes(url:String, back:Function, fail:Function, progress:Function = null):void{
+    //			KyoURLLoader.load('assets/' + url, back, fail, {dataFormat: URLLoaderDataFormat.BINARY}, progress);
     //		}
 
 

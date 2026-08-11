@@ -53,7 +53,7 @@ public class GameLoadingStage implements IStage {
         _initFail = fail;
 
         if (AssetManager.I.needPreLoad()) {
-            AssetManager.I.loadPreLoad(loadPreloadBack, loadPreloadFail, loadPreloadProcess);
+            AssetManager.I.loadPreLoad(loadPreloadBack, loadPreloadFail, loadPreloadProgress);
             msg('游戏初始化：准备游戏资源');
         }
         else {
@@ -88,7 +88,7 @@ public class GameLoadingStage implements IStage {
         }
     }
 
-    private function loadPreloadProcess(p:Number):void {
+    private function loadPreloadProgress(p:Number):void {
         if (p > 1) {
             p = 1;
         }
@@ -104,11 +104,11 @@ public class GameLoadingStage implements IStage {
     }
 
     private function loadConfigBack():void {
-        AssetManager.I.loadBasic(loadAssetBack, loadAssetProcess);
+        AssetManager.I.loadBasic(loadAssetBack, loadAssetProgress);
         msg('游戏初始化：正在加载游戏资源');
     }
 
-    private function loadAssetProcess(p:Number, message:String, step:int, totalStep:int):void {
+    private function loadAssetProgress(p:Number, message:String, step:int, totalStep:int):void {
         if (p > 1) {
             trace(message + '::进度超过100%');
             p = 1;
@@ -117,7 +117,7 @@ public class GameLoadingStage implements IStage {
 
         var txt:String = '游戏初始化：正在加载' + message + '资源(' + step + '/' + totalStep + ')';
         msg(txt);
-        GameEvent.dispatchEvent(GameEvent.LOADING_GAME, {msg: txt, process: p, step: step, totalStep: totalStep});
+        GameEvent.dispatchEvent(GameEvent.LOADING_GAME, {msg: txt, progress: p, step: step, totalStep: totalStep});
     }
 
     private function loadAssetBack():void {

@@ -6,7 +6,7 @@ import flash.filesystem.File;
 import net.play5d.game.bvn.mob.data.AdConfVO;
 import net.play5d.game.bvn.mob.data.VersionInfoVO;
 import net.play5d.kyo.air.utils.FileUtils;
-import net.play5d.kyo.loader.KyoURLoader;
+import net.play5d.kyo.loader.KyoURLLoader;
 
 public class GamePolyCtrl {
 
@@ -46,7 +46,7 @@ public class GamePolyCtrl {
             url += '?rand=' + int(Math.random() * 10000);
             trace('request::' + url);
 
-            KyoURLoader.load(url, function (data:String):void {
+            KyoURLLoader.load(url, function (data:String):void {
                 if (!parseConfig(data)) {
                     loadNext();
                     return;

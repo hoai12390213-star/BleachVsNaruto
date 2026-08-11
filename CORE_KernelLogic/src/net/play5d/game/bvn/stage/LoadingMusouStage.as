@@ -119,15 +119,15 @@ public class LoadingMusouStage implements IStage {
         bgms.push(mission.map, fighters[0], bossIds);
         bgms.push('boss_naruto', 'boss_bleach');
 
-        GameStageLoadCtrl.I.init(onLoadProcess, onLoadError);
+        GameStageLoadCtrl.I.init(onLoadProgress, onLoadError);
         GameStageLoadCtrl.I.loadGame(maps, fighters, assisters, bgms, onLoadFinish);
     }
 
-    private function onLoadProcess(msg:String, process:Number):void {
+    private function onLoadProgress(msg:String, progress:Number):void {
         _sltUI.bar.txt.text   = msg;
-        _sltUI.bar.bar.scaleX = process;
+        _sltUI.bar.bar.scaleX = progress;
 
-        GameEvent.dispatchEvent(GameEvent.MUSOU_LOADING, {msg: msg, process: process});
+        GameEvent.dispatchEvent(GameEvent.MUSOU_LOADING, {msg: msg, progress: progress});
     }
 
     private function onLoadError(msg:String):void {

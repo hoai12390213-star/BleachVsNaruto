@@ -57,13 +57,13 @@ public interface IAssetLoader {
      * @param url 资源路径。
      * @param back 成功回调，签名为 <code>function(loader:Loader):void</code>。
      * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
-     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @param progress 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
      * @example
      * <listing version="3.0">
      * loader.loadSwf('fighter/ichigo.swf', onSwf, onFail, onProgress);
      * </listing>
      */
-    function loadSwf(url:String, back:Function, fail:Function = null, process:Function = null):void;
+    function loadSwf(url:String, back:Function, fail:Function = null, progress:Function = null):void;
 
     /**
      * 加载声音资源。
@@ -71,13 +71,13 @@ public interface IAssetLoader {
      * @param url 资源路径。
      * @param back 成功回调，签名为 <code>function(sound:Sound):void</code>。
      * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
-     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @param progress 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
      * @example
      * <listing version="3.0">
      * loader.loadSound('bgm/menu.mp3', onSound);
      * </listing>
      */
-    function loadSound(url:String, back:Function, fail:Function = null, process:Function = null):void;
+    function loadSound(url:String, back:Function, fail:Function = null, progress:Function = null):void;
 
     /**
      * 加载位图资源。
@@ -85,13 +85,13 @@ public interface IAssetLoader {
      * @param url 资源路径。
      * @param back 成功回调，签名为 <code>function(content:DisplayObject):void</code>。
      * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
-     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @param progress 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
      * @example
      * <listing version="3.0">
      * loader.loadBitmap('ui/face.png', onBmp);
      * </listing>
      */
-    function loadBitmap(url:String, back:Function, fail:Function = null, process:Function = null):void;
+    function loadBitmap(url:String, back:Function, fail:Function = null, progress:Function = null):void;
 
     /**
      * 释放已加载资源。
@@ -122,12 +122,12 @@ public interface IAssetLoader {
      *
      * @param back 成功回调，签名为 <code>function():void</code>。
      * @param fail 失败回调，签名为 <code>function():void</code>；可为 <code>null</code>。
-     * @param process 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
+     * @param progress 进度回调，签名为 <code>function(p:Number):void</code>（<code>p</code> 为 0–1）；可为 <code>null</code>。
      * @example
      * <listing version="3.0">
      * loader.loadPreLoad(onReady, onFail, onProgress);
      * </listing>
      */
-    function loadPreLoad(back:Function, fail:Function = null, process:Function = null):void;
+    function loadPreLoad(back:Function, fail:Function = null, progress:Function = null):void;
 }
 }

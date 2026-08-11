@@ -37,16 +37,16 @@ public class ExtendAssetLoader implements IAssetLoader {
         _extend.loadJSON(url, back, fail);
     }
 
-    public function loadSwf(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        _extend.loadSwf(url, back, fail, process);
+    public function loadSwf(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        _extend.loadSwf(url, back, fail, progress);
     }
 
-    public function loadSound(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        _extend.loadSound(url, back, fail, process);
+    public function loadSound(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        _extend.loadSound(url, back, fail, progress);
     }
 
-    public function loadBitmap(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        _extend.loadBitmap(url, back, fail, process);
+    public function loadBitmap(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        _extend.loadBitmap(url, back, fail, progress);
     }
 
     public function dispose(url:String):void {
@@ -57,8 +57,8 @@ public class ExtendAssetLoader implements IAssetLoader {
         return _extend.needPreLoad();
     }
 
-    public function loadPreLoad(back:Function, fail:Function = null, process:Function = null):void {
-        _extend.loadPreLoad(back, fail, process);
+    public function loadPreLoad(back:Function, fail:Function = null, progress:Function = null):void {
+        _extend.loadPreLoad(back, fail, progress);
     }
 }
 }

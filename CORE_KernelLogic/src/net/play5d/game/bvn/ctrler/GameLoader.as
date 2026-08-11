@@ -41,7 +41,7 @@ public class GameLoader {
     private static var _loadedSwfCache:Vector.<Loader> = new Vector.<Loader>();
 
     public static function loadAndCacheFighter(fighterId:String, back:Function, fail:Function = null,
-                                               process:Function                               = null
+                                               progress:Function                               = null
     ):void {
         if (_fighterCache[fighterId]) {
             if (back != null) {
@@ -60,7 +60,7 @@ public class GameLoader {
             return;
         }
 
-        loadSWF(fv.fileUrl, loadComplete, fail, process);
+        loadSWF(fv.fileUrl, loadComplete, fail, progress);
 
         function loadComplete(loader:Loader):void {
             var cachevo:FighterCacheVO = new FighterCacheVO();
@@ -84,7 +84,7 @@ public class GameLoader {
         }
     }
 
-    public static function loadFighter(fighterId:String, back:Function, fail:Function = null, process:Function = null,
+    public static function loadFighter(fighterId:String, back:Function, fail:Function = null, progress:Function = null,
                                        customBackParam:Object                                                  = null
     ):void {
         var result:FighterMain = createCacheFighter(fighterId);
@@ -101,7 +101,7 @@ public class GameLoader {
             return;
         }
 
-        loadAndCacheFighter(fighterId, loadComplete, fail, process);
+        loadAndCacheFighter(fighterId, loadComplete, fail, progress);
 
         function loadComplete():void {
             result = createCacheFighter(fighterId);
@@ -138,7 +138,7 @@ public class GameLoader {
         return fighter;
     }
 
-    public static function loadAssister(fighterId:String, back:Function, fail:Function = null, process:Function = null,
+    public static function loadAssister(fighterId:String, back:Function, fail:Function = null, progress:Function = null,
                                         customBackParam:Object                                                  = null
     ):void {
         var fv:FighterVO = AssisterModel.I.getAssister(fighterId, true);
@@ -150,7 +150,7 @@ public class GameLoader {
             return;
         }
 
-        loadSWF(fv.fileUrl, loadComplete, fail, process);
+        loadSWF(fv.fileUrl, loadComplete, fail, progress);
 
         function loadComplete(loader:Loader):void {
             var fighter:Assister = new Assister(loader.content as MovieClip);
@@ -168,7 +168,7 @@ public class GameLoader {
 
     }
 
-    public static function loadMap(mapId:String, back:Function, fail:Function = null, process:Function = null,
+    public static function loadMap(mapId:String, back:Function, fail:Function = null, progress:Function = null,
                                    customBackParam:Object                                              = null
     ):void {
         var mv:MapVO = MapModel.I.getMap(mapId);
@@ -180,7 +180,7 @@ public class GameLoader {
             return;
         }
 
-        loadSWF(mv.fileUrl, loadComplete, fail, process);
+        loadSWF(mv.fileUrl, loadComplete, fail, progress);
 
         function loadComplete(loader:Loader):void {
             var map:MapMain = new MapMain(loader.content as Sprite);
@@ -220,8 +220,8 @@ public class GameLoader {
         _fighterCache = {};
     }
 
-    public static function loadSWF(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        AssetManager.I.loadSWF(url, loadComplete, loadIOError, process);
+    public static function loadSWF(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        AssetManager.I.loadSWF(url, loadComplete, loadIOError, progress);
 
         function loadComplete(l:Loader):void {
             _loadedSwfCache.push(l);

@@ -73,15 +73,15 @@ public class AssetManager {
         _assetLoader = v;
     }
 
-    public function loadBasic(back:Function, process:Function = null):void {
+    public function loadBasic(back:Function, progress:Function = null):void {
 
         var loadStep:int  = 0;
         var loadCount:int = 4;
         var type:String;
 
-        function loadProcess(p:Number):void {
-            if (process != null) {
-                process(p, type, loadStep, loadCount);
+        function loadProgress(p:Number):void {
+            if (progress != null) {
+                progress(p, type, loadStep, loadCount);
             }
         }
 
@@ -91,23 +91,23 @@ public class AssetManager {
             switch (loadStep) {
             case 1:
                 type = GetLang('txt.asset_manager.sound');
-                loadProcess(0);
-                loadPreLoadSounds(loadNext, loadProcess);
+                loadProgress(0);
+                loadPreLoadSounds(loadNext, loadProgress);
                 break;
             case 2:
                 type = GetLang('txt.asset_manager.effect');
-                loadProcess(0);
-                loadGraphics([_effectSwfPath], loadNext, loadProcess);
+                loadProgress(0);
+                loadGraphics([_effectSwfPath], loadNext, loadProgress);
                 break;
             case 3:
                 type = GetLang('txt.asset_manager.font');
-                loadProcess(0);
-                loadFonts(loadNext, loadProcess);
+                loadProgress(0);
+                loadFonts(loadNext, loadProgress);
                 break;
             case 4:
                 type = GetLang('txt.asset_manager.bitmap');
-                loadProcess(0);
-                loadBitmaps(loadNext, loadProcess);
+                loadProgress(0);
+                loadBitmaps(loadNext, loadProgress);
                 break;
             default:
                 initAssets();
@@ -217,24 +217,24 @@ public class AssetManager {
         _assetLoader.loadJSON(url, back, fail);
     }
 
-    public function loadSWF(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        _assetLoader.loadSwf(url, back, fail, process);
+    public function loadSWF(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        _assetLoader.loadSwf(url, back, fail, progress);
     }
 
-    public function loadSound(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        _assetLoader.loadSound(url, back, fail, process);
+    public function loadSound(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        _assetLoader.loadSound(url, back, fail, progress);
     }
 
-    public function loadBitmap(url:String, back:Function, fail:Function = null, process:Function = null):void {
-        _assetLoader.loadBitmap(url, back, fail, process);
+    public function loadBitmap(url:String, back:Function, fail:Function = null, progress:Function = null):void {
+        _assetLoader.loadBitmap(url, back, fail, progress);
     }
 
     public function disposeAsset(url:String):void {
         _assetLoader.dispose(url);
     }
 
-    public function loadSWFs(loadarray:Array, back:Function = null, process:Function = null):void {
-        loadGraphics(loadarray, back, process);
+    public function loadSWFs(loadarray:Array, back:Function = null, progress:Function = null):void {
+        loadGraphics(loadarray, back, progress);
 
     }
 
@@ -242,11 +242,11 @@ public class AssetManager {
         return _assetLoader.needPreLoad();
     }
 
-    public function loadPreLoad(back:Function, fail:Function = null, process:Function = null):void {
-        _assetLoader.loadPreLoad(back, fail, process);
+    public function loadPreLoad(back:Function, fail:Function = null, progress:Function = null):void {
+        _assetLoader.loadPreLoad(back, fail, progress);
     }
 
-    private function loadPreLoadSounds(back:Function, process:Function):void {
+    private function loadPreLoadSounds(back:Function, progress:Function):void {
 //			_assetLoader.loadXML("config/preload.xml",function(xml:XML):void{
 //				var sounds:Array = [];
 //				var bgmPath:String = xml.bgm.@path;
@@ -257,8 +257,8 @@ public class AssetManager {
 //				for each(var j:XML in xml.sound.item){
 //					sounds.push(soundPath+'/'+j.toString());
 //				}
-////				_soundLoader.loadSounds(sounds , back , process);
-//				loadSnds(sounds , back , process);
+////				_soundLoader.loadSounds(sounds , back , progress);
+//				loadSnds(sounds , back , progress);
 //			});
 
         _assetLoader.loadJSON('config/preload.json', function (obj:Object):void {
@@ -274,11 +274,11 @@ public class AssetManager {
                 sounds.push(soundObj['path'] + sound);
             }
 
-            loadSnds(sounds, back, process);
+            loadSnds(sounds, back, progress);
         });
     }
 
-    private function loadSnds(sounds:Array, back:Function, process:Function):void {
+    private function loadSnds(sounds:Array, back:Function, progress:Function):void {
         var snds:Array = sounds.concat();
         var sndLen:int = snds.length;
         var curUrl:String;
@@ -295,7 +295,7 @@ public class AssetManager {
             }
 
             curUrl = snds.shift();
-            _assetLoader.loadSound(curUrl, loadCom, loadErr, loadProcess);
+            _assetLoader.loadSound(curUrl, loadCom, loadErr, loadProgress);
         }
 
         function loadCom(snd:Sound):void {
@@ -309,11 +309,11 @@ public class AssetManager {
             loadNext();
         }
 
-        function loadProcess(v:Number):void {
-            if (process != null) {
+        function loadProgress(v:Number):void {
+            if (progress != null) {
                 var cur:Number = sndLen - snds.length - 1 + v;
                 var p:Number   = cur / sndLen;
-                process(p);
+                progress(p);
             }
         }
 
@@ -328,7 +328,7 @@ public class AssetManager {
         }
     }
 
-    private function loadGraphics(loadarray:Array, back:Function = null, process:Function = null):void {
+    private function loadGraphics(loadarray:Array, back:Function = null, progress:Function = null):void {
 
         var loads:Array = loadarray.concat();
         var loadedAmount:int;
@@ -344,7 +344,7 @@ public class AssetManager {
                 return;
             }
             curUrl = loads.shift();
-            _assetLoader.loadSwf(curUrl, loadCom, loadFail, process);
+            _assetLoader.loadSwf(curUrl, loadCom, loadFail, progress);
         }
 
         function loadCom(loader:Loader):void {
@@ -361,7 +361,7 @@ public class AssetManager {
 
     }
 
-    private function loadBitmaps(back:Function = null, process:Function = null):void {
+    private function loadBitmaps(back:Function = null, progress:Function = null):void {
 
         var bps:Array = getFighterFaceUrls(FighterModel.I.getAllFighters(), true, true);
         bps           = bps.concat(getFighterFaceUrls(AssisterModel.I.getAllAssisters()));
@@ -369,10 +369,10 @@ public class AssetManager {
 
         KyoArrayUtils.deleteDuplicates(bps);
 
-        _bitmapLoader.loadQueue(bps, back, process);
+        _bitmapLoader.loadQueue(bps, back, progress);
     }
 
-    private function loadFonts(back:Function = null, process:Function = null):void {
+    private function loadFonts(back:Function = null, progress:Function = null):void {
 
         var url:String = 'font/font1.xml';
         var fontXML:XML;

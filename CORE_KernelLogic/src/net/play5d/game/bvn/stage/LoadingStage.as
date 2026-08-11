@@ -171,9 +171,9 @@ public class LoadingStage implements IStage {
         }
     }
 
-    private function onLoadProcess(msg:String, process:Number):void {
+    private function onLoadProgress(msg:String, progress:Number):void {
         _sltUI.bar.txt.text   = msg;
-        _sltUI.bar.bar.scaleX = process;
+        _sltUI.bar.bar.scaleX = progress;
     }
 
     private function onLoadError(msg:String):void {
@@ -237,7 +237,7 @@ public class LoadingStage implements IStage {
 
         bgms = fighters.concat([GameData.I.selectMap]);
 
-        GameStageLoadCtrl.I.init(onLoadProcess, onLoadError);
+        GameStageLoadCtrl.I.init(onLoadProgress, onLoadError);
         GameStageLoadCtrl.I.loadGame(maps, fighters, assisters, bgms, onLoadFinish);
 
         GameEvent.dispatchEvent(GameEvent.FIGHT_LOADING);

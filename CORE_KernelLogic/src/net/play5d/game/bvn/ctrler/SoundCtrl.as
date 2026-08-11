@@ -188,11 +188,11 @@ public class SoundCtrl {
      * @param arr {id:Object,url:String,rate:Number(0-1)} , 如果是场景ID，ID值为'map'
      * @param success
      * @param fail
-     * @param process
+     * @param progress
      *
      */
     public function loadFightBGM(arr:Vector.<BgmVO>, success:Function, fail:Function = null,
-                                 process:Function                                    = null
+                                 progress:Function                                    = null
     ):void {
         _bgmObj        = {};
         var urls:Array = [];
@@ -215,7 +215,7 @@ public class SoundCtrl {
                 return;
             }
             curUrl = urls.shift();
-            AssetManager.I.loadSound(curUrl, loadBack, loadFail, loadProcess);
+            AssetManager.I.loadSound(curUrl, loadBack, loadFail, loadProgress);
         }
 
         function loadBack(snd:Sound):void {
@@ -228,11 +228,11 @@ public class SoundCtrl {
             loadNext();
         }
 
-        function loadProcess(v:Number):void {
-            if (process != null) {
+        function loadProgress(v:Number):void {
+            if (progress != null) {
                 var cur:Number = sndLen - urls.length - 1 + v;
                 var p:Number   = cur / sndLen;
-                process(v);
+                progress(v);
             }
         }
 

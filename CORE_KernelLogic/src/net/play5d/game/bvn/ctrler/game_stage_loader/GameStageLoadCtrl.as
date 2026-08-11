@@ -49,7 +49,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
     private var _assisterCache:Object;
     private var _mapCache:Object;
 
-    private var _processCallBack:Function;
+    private var _progressCallBack:Function;
     private var _errorCallBack:Function;
 
     private var _loadStep:int;
@@ -69,7 +69,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
 
     private var _loadFinishBack:Function;
 
-    public function init(processCallBack:Function = null, errorCallBack:Function = null):void {
+    public function init(progressCallBack:Function = null, errorCallBack:Function = null):void {
         _fighterCache  = {};
         _assisterCache = {};
         _mapCache      = {};
@@ -77,7 +77,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
         _loadStep    = 0;
         _curLoadStep = 0;
 
-        _processCallBack = processCallBack;
+        _progressCallBack = progressCallBack;
         _errorCallBack   = errorCallBack;
     }
 
@@ -292,7 +292,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
 
     private function loadMaps(maps:Vector.<LoadAssetVO>, callback:Function):void {
         function load(lv:LoadAssetVO, succBack:Function):void {
-            GameLoader.loadSWF(lv.url, loadSucc, onLoadError, onLoadProcess);
+            GameLoader.loadSWF(lv.url, loadSucc, onLoadError, onLoadProgress);
 
             function loadSucc(l:Loader):void {
                 _mapCache[lv.url] = l.content;
@@ -322,7 +322,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
                     mc    : l.content
                 };
                 disposeLoader(l);
-                GameLoader.loadSWF(lv.url, loadSucc3, onLoadError, onLoadProcess);
+                GameLoader.loadSWF(lv.url, loadSucc3, onLoadError, onLoadProgress);
             }
 
             function loadSucc3(l:Loader):void {
@@ -333,10 +333,10 @@ public class GameStageLoadCtrl extends EventDispatcher {
 
 
             if (IGNORE_OLD_FIGHTER) {
-                GameLoader.loadSWF(lv.url, loadSucc2, onLoadError, onLoadProcess);
+                GameLoader.loadSWF(lv.url, loadSucc2, onLoadError, onLoadProgress);
             }
             else {
-                GameLoader.loadSWF(lv.url, loadSucc, onLoadError, onLoadProcess);
+                GameLoader.loadSWF(lv.url, loadSucc, onLoadError, onLoadProgress);
             }
 
 
@@ -366,7 +366,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
                     mc    : l.content
                 };
                 disposeLoader(l);
-                GameLoader.loadSWF(lv.url, loadSucc3, onLoadError, onLoadProcess);
+                GameLoader.loadSWF(lv.url, loadSucc3, onLoadError, onLoadProgress);
             }
 
             function loadSucc3(l:Loader):void {
@@ -376,10 +376,10 @@ public class GameStageLoadCtrl extends EventDispatcher {
             }
 
             if (IGNORE_OLD_FIGHTER) {
-                GameLoader.loadSWF(lv.url, loadSucc2, onLoadError, onLoadProcess);
+                GameLoader.loadSWF(lv.url, loadSucc2, onLoadError, onLoadProgress);
             }
             else {
-                GameLoader.loadSWF(lv.url, loadSucc, onLoadError, onLoadProcess);
+                GameLoader.loadSWF(lv.url, loadSucc, onLoadError, onLoadProgress);
             }
         }
 
@@ -402,10 +402,10 @@ public class GameStageLoadCtrl extends EventDispatcher {
         _loadingType       = GameStageLoadDefine.TYPE_BGM;
         _curLoadStep       = 0;
         _curLoadStepLength = 1;
-        SoundCtrl.I.loadFightBGM(bgms, succBack, callback, onLoadProcess);
+        SoundCtrl.I.loadFightBGM(bgms, succBack, callback, onLoadProgress);
     }
 
-    private function onLoadProcess(v:Number):void {
+    private function onLoadProgress(v:Number):void {
         var itemName:String;
         switch (_loadingType) {
         case GameStageLoadDefine.TYPE_MAP:
@@ -447,7 +447,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
                                  _curLoadStep + v
                          ) / _curLoadStepLength;
 
-        _processCallBack(msg, val);
+        _progressCallBack(msg, val);
     }
 
     private function onLoadError(msg:String):void {
@@ -502,7 +502,7 @@ public class GameStageLoadCtrl extends EventDispatcher {
             var fv:LoadAssetVO = assets.shift();
             currentAsset       = fv;
             _curLoadName       = fv.name;
-            //				GameLoader.loadSWF(fv.url, loadSucc, onLoadError, onLoadProcess);
+            //				GameLoader.loadSWF(fv.url, loadSucc, onLoadError, onLoadProgress);
 
             loadFunc(fv, loadSucess);
         }

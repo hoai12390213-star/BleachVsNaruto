@@ -20,7 +20,7 @@ package net.play5d.game.bvn.utils {
 import flash.net.URLLoaderDataFormat;
 import flash.utils.ByteArray;
 
-import net.play5d.kyo.loader.KyoURLoader;
+import net.play5d.kyo.loader.KyoURLLoader;
 import net.play5d.kyo.utils.EncryptUtils;
 
 public class GameSafeKeeper {
@@ -67,7 +67,7 @@ public class GameSafeKeeper {
             }
         }
 
-        KyoURLoader.load('assets/.md5', succBack, failBack, {dataFormat: URLLoaderDataFormat.BINARY});
+        KyoURLLoader.load('assets/.md5', succBack, failBack, {dataFormat: URLLoaderDataFormat.BINARY});
     }
 
     public function getConfigFailed():Boolean {

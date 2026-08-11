@@ -8,7 +8,7 @@
 
 | # | 域 | 首选 | 说明 |
 |---|----|------|------|
-| 1 | 文本/字节 HTTP | `KyoURLoader` | GET/POST、二进制；**不要**用 `AJAX` 写新代码 |
+| 1 | 文本/字节 HTTP | `KyoURLLoader` | GET/POST、二进制；**不要**用 `AJAX` 写新代码 |
 | 2 | 显示对象加载 | `KyoLoaderLite` | `load` / `loadLoader`；二进制可再委托 URLoader |
 | 3 | 游戏内延时 | `KyoTimeout` | 须先 `init`；帧同步（`setFrameout` / 毫秒转帧） |
 | 4 | 广告/可暂停延时 | `KyoTimerUtils` | 真实 `Timer`；支持 `pauseAllTimer` / `resumeAllTimer` |
@@ -19,7 +19,7 @@
 ## NEVER
 
 - 合并 `KyoTimeout` 与 `KyoTimerUtils`（时钟与暂停语义不同）
-- 合并 `KyoURLoader` 与 `KyoLoaderLite`（URLLoader ≠ Display Loader）
+- 合并 `KyoURLLoader` 与 `KyoLoaderLite`（URLLoader ≠ Display Loader）
 - 合并游戏 `BtnUtils` 与库 `KyoBtnUtils`（见下节）
 - 新代码依赖 `AJAX`、未标注用途的根包杂类
 - 在非 AIR 目标中引用 `net.play5d.kyo.air.*`（仅 AIR：`FileUtils` / `ProcessUtils` 等）
@@ -78,7 +78,7 @@
 
 ```actionscript
 // 加载
-KyoURLoader.load(url, onText);
+KyoURLLoader.load(url, onText);
 KyoLoaderLite.loadLoader(url, onLoader, onFail, onProg);
 
 // 延时

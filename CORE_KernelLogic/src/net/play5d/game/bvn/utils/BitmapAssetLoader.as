@@ -29,7 +29,7 @@ public class BitmapAssetLoader {
     private var _urls:Array;
     private var _cacheObj:Object = {};
     private var _successBack:Function;
-    private var _processBack:Function;
+    private var _progressBack:Function;
 
     public function getBitmap(id:String):Bitmap {
 //			var r:DisplayObject = _cacheObj[id];
@@ -47,17 +47,17 @@ public class BitmapAssetLoader {
         return new Bitmap(bd);
     }
 
-    public function loadQueue(urls:Array, success:Function, process:Function = null):void {
-        _successBack = success;
-        _processBack = process;
+    public function loadQueue(urls:Array, success:Function, progress:Function = null):void {
+        _successBack  = success;
+        _progressBack = progress;
 
         _urls        = urls.concat();
         _queueLength = urls.length;
         loadNext();
     }
 
-    private function load(url:String, back:Function = null, process:Function = null):void {
-        AssetManager.I.loadBitmap(url, loadCom, loadFail, process);
+    private function load(url:String, back:Function = null, progress:Function = null):void {
+        AssetManager.I.loadBitmap(url, loadCom, loadFail, progress);
 
         function loadCom(bp:DisplayObject):void {
             cacheBitmap(url, bp);
@@ -115,13 +115,13 @@ public class BitmapAssetLoader {
             return;
         }
         var url:String = _urls.shift();
-        load(url, loadNext, loadProcess);
+        load(url, loadNext, loadProgress);
 
-        function loadProcess(v:Number):void {
-            if (_processBack != null) {
+        function loadProgress(v:Number):void {
+            if (_progressBack != null) {
                 var cur:Number = _queueLength - _urls.length - 1 + v;
                 var p:Number   = cur / _queueLength;
-                _processBack(p);
+                _progressBack(p);
             }
         }
 
