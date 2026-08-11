@@ -232,7 +232,7 @@ public class GameOverStage implements IStage {
 
         }
         else {
-            KyoTimeout.setFrameout(addChar, 2);
+            KyoTimeout.setFrameTimeout(addChar, 2);
         }
     }
 
@@ -260,7 +260,7 @@ public class GameOverStage implements IStage {
             ct.addChild(scoreTxt);
         }
         else {
-            KyoTimeout.setFrameout(addScore, 1);
+            KyoTimeout.setFrameTimeout(addScore, 1);
         }
     }
 

@@ -9,8 +9,8 @@
 | # | 域 | 首选 | 说明 |
 |---|----|------|------|
 | 1 | 文本/字节 HTTP | `KyoURLLoader` | GET/POST、二进制；**不要**用 `AJAX` 写新代码 |
-| 2 | 显示对象加载 | `KyoLoaderLite` | `load` / `loadLoader`；二进制可再委托 URLoader |
-| 3 | 游戏内延时 | `KyoTimeout` | 须先 `init`；帧同步（`setFrameout` / 毫秒转帧） |
+| 2 | 显示对象加载 | `KyoLoaderLite` | `load` / `loadLoader`；二进制可再委托 `KyoURLLoader` |
+| 3 | 游戏内延时 | `KyoTimeout` | 须先 `init`；帧同步（`setFrameTimeout` / 毫秒转帧） |
 | 4 | 广告/可暂停延时 | `KyoTimerUtils` | 真实 `Timer`；支持 `pauseAllTimer` / `resumeAllTimer` |
 | 5 | AIR 本地文件 | `net.play5d.kyo.air.utils.FileUtils` | **仅 AIR**（`kyo.air.*`）；壳存档读写 |
 | 6 | SharedObject 快照 | `net.play5d.kyo.storage.KyoSharedObject` | 简单 load/save |
@@ -83,6 +83,6 @@ KyoLoaderLite.loadLoader(url, onLoader, onFail, onProg);
 
 // 延时
 KyoTimeout.init(root);
-KyoTimeout.setFrameout(fn, frames);
+KyoTimeout.setFrameTimeout(fn, frames);
 KyoTimerUtils.setTimeout(fn, ms); // 可 pauseAllTimer
 ```

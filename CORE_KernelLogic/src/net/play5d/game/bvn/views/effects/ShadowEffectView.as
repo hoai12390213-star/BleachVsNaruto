@@ -69,7 +69,7 @@ public class ShadowEffectView {
     private var _bps:Vector.<Bitmap> = new Vector.<Bitmap>();
     /** @private Bitmap -&gt; 位图是否由帧缓存持有 */
     private var _bpCached:Dictionary = new Dictionary();
-    private var _alphaLose:Number    = 0.1;
+    private var _alphaLoss:Number    = 0.1;
     private var _alphaStart:Number   = 0.8;
     private var _addBpGap:int        = 1;
     private var _addBpFrame:int      = 0;
@@ -114,7 +114,7 @@ public class ShadowEffectView {
 
         for (var i:int; i < _bps.length; i++) {
             var bp:Bitmap = _bps[i];
-            bp.alpha -= _alphaLose;
+            bp.alpha -= _alphaLoss;
             if (bp.alpha <= 0) {
                 removeBitmap(bp);
             }

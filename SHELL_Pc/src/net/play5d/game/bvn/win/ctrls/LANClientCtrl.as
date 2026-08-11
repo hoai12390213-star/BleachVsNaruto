@@ -412,7 +412,7 @@ public class LANClientCtrl implements ILanClientLockLink {
 //							clearTimeout(_syncRoundFinishInt);
 //							_syncRoundFinishInt = setTimeout(syncRoundFinish , 30 , arr);
 
-                    KyoTimeout.setFrameout(function ():void {
+                    KyoTimeout.setFrameTimeout(function ():void {
                         syncRoundFinish(arr);
                     }, 1, MainGame.I.stage);
                     break;
