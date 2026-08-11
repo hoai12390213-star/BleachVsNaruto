@@ -2,6 +2,29 @@
 
 本项目的所有重要变更都将会记录在此文件中。
 
+## [3.7.0.0.08112026_alpha] - 2026-08-11
+
+### 新增
+
+- 新增 AsDoc 构建脚本 `asdoc.bat`。
+- 新增完善的 *$effect_ctrler* 组件。
+
+### 更改
+
+- 更新所有错误的 **destory** 拼写到 **destroy**。
+- 更新优化残影与发光效果的缓存实现。
+- 更新优化库方法，减少重复项，必要的进行委托，并将可抽离的方法抽离成独立工具类，可合并的合并到 **LIB_KyoLib** 模块。
+
+### 修复
+
+- 修正 **LIB_KyoLib** 模块错误的 公开 API 拼写。
+
+### 移除
+
+- 移除所有的 INCLUDE 实现。
+- 移除 *GetElement* 与 *SetElement* 全局函数。
+- 移除所有静态纯工具类的构造方法。
+
 ## [3.7.0.0.07232026_alpha] - 2026-07-23
 
 ### 新增
@@ -353,6 +376,7 @@
 - [#1] 修复在执行构建前的资源清理时，5DPLAY_TOOLS 提供的 SyncAssets 工具只清理了 pc 通道的资源
 - [#2] 修复BUG: 不存在无双模式时，声音被意外唤醒
 
+[3.7.0.0.08112026_alpha]: https://github.com/5DPLAY-Game-Studio/BleachVsNaruto/compare/3.7.0.0.07232026_alpha...3.7.0.0.08112026_alpha
 [3.7.0.0.07232026_alpha]: https://github.com/5DPLAY-Game-Studio/BleachVsNaruto/compare/3.7.0.0.05252026_alpha...3.7.0.0.07232026_alpha
 [3.7.0.0.05252026_alpha]: https://github.com/5DPLAY-Game-Studio/BleachVsNaruto/compare/3.7.0.0.05212026_alpha...3.7.0.0.05252026_alpha
 [3.7.0.0.05212026_alpha]: https://github.com/5DPLAY-Game-Studio/BleachVsNaruto/compare/3.7.0.0.04232026_alpha...3.7.0.0.05212026_alpha
