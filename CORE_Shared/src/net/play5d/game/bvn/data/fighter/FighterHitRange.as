@@ -58,7 +58,7 @@ public class FighterHitRange {
     public static const BISHA_SUPER:String = 'cbsmian';
 
     /**
-     * 全部攻击范围元件名。
+     * 全部攻击范围元件名（本类各常量的集合，便于遍历注册判定面）。
      */
     public static const ALL_HIT_RANGES:Vector.<String> = new <String>[
         ATTACK_AIR, SKILL_AIR,

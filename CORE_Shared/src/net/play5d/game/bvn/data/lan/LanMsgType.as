@@ -27,7 +27,7 @@ package net.play5d.game.bvn.data.lan {
 public class LanMsgType {
     include '../../../../../../../include/ImportVersion.as';
 
-    /** 聊天 */
+    /** 聊天（字段名 <code>CHART</code> 为历史拼写） */
     public static const CHART:String = 'CHART';
 
     /** 开始游戏 */

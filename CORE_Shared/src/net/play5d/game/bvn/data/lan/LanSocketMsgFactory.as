@@ -31,6 +31,10 @@ public class LanSocketMsgFactory {
      * 加入游戏。
      * @param name 玩家名。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createJoinMsg('player1');
+     * </listing>
      */
     public static function createJoinMsg(name:String):Object {
         var o:Object = {};
@@ -43,6 +47,10 @@ public class LanSocketMsgFactory {
     /**
      * 加入游戏成功。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createJoinSuccMsg();
+     * </listing>
      */
     public static function createJoinSuccMsg():Object {
         var o:Object = {};
@@ -56,6 +64,10 @@ public class LanSocketMsgFactory {
      * 加入房间通知。
      * @param name 玩家名。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createJoinInMsg('player1');
+     * </listing>
      */
     public static function createJoinInMsg(name:String):Object {
         var o:Object = {};
@@ -69,6 +81,10 @@ public class LanSocketMsgFactory {
      * 加入游戏失败。
      * @param msg 失败原因。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createJoinFailMsg('room full');
+     * </listing>
      */
     public static function createJoinFailMsg(msg:String = null):Object {
         var o:Object = {};
@@ -83,6 +99,10 @@ public class LanSocketMsgFactory {
      * 踢出房间。
      * @param msg 原因。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createKickOutMsg('timeout');
+     * </listing>
      */
     public static function createKickOutMsg(msg:String = null):Object {
         var o:Object = {};
@@ -97,6 +117,10 @@ public class LanSocketMsgFactory {
      * @param chart 内容。
      * @param name 发送者名。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createChart('hello', 'player1');
+     * </listing>
      */
     public static function createChart(chart:String, name:String):Object {
         var o:Object = {};
@@ -110,6 +134,10 @@ public class LanSocketMsgFactory {
     /**
      * 开始游戏。
      * @return 消息对象。
+     * @example
+     * <listing version="3.0">
+     * LanSocketMsgFactory.createStartGame();
+     * </listing>
      */
     public static function createStartGame():Object {
         var o:Object = {};

@@ -44,6 +44,10 @@ public class UdpPacketUtils {
      * @param maxLength 最大字节数；&lt;0 不限制。
      * @return 编码后的字节（position=0）。
      * @throws Error 超出 <code>maxLength</code>。
+     * @example
+     * <listing version="3.0">
+     * var bytes:ByteArray = UdpPacketUtils.encode('ping', 512);
+     * </listing>
      */
     public static function encode(msg:Object, maxLength:int = -1):ByteArray {
         var bytes:ByteArray = new ByteArray();
@@ -74,6 +78,10 @@ public class UdpPacketUtils {
      * @param fromIP 发送方 IP。
      * @param fromPort 发送方端口。
      * @return 封装后的 VO。
+     * @example
+     * <listing version="3.0">
+     * var vo:UDPDataVO = UdpPacketUtils.decode(bytes, '192.168.1.2', 8080);
+     * </listing>
      */
     public static function decode(byte:ByteArray, fromIP:String, fromPort:int):UDPDataVO {
         var data:UDPDataVO = new UDPDataVO();

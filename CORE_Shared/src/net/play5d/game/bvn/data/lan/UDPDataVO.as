@@ -23,20 +23,34 @@ import flash.utils.ByteArray;
  * UDP 收包封装：来源地址与按类型取出的载荷。
  *
  * @see UdpDataType
+ * @see UdpPacketUtils
  */
 public class UDPDataVO {
     /**
      * 构造空 VO。
+     * @example
+     * <listing version="3.0">
+     * var vo:UDPDataVO = new UDPDataVO();
+     * </listing>
      */
     public function UDPDataVO() {
     }
 
-    /** 载荷类型，见 <code>UdpDataType</code>。 */
+    /**
+     * 载荷类型，见 <code>UdpDataType</code>。
+     * @default 0
+     */
     public var dataType:int;
 
-    /** 发送方 IP。 */
+    /**
+     * 发送方 IP。
+     * @default null
+     */
     public var fromIP:String;
-    /** 发送方端口。 */
+    /**
+     * 发送方端口。
+     * @default 0
+     */
     public var fromPort:int;
 
     /** @private */
@@ -45,6 +59,10 @@ public class UDPDataVO {
     /**
      * 取出二进制载荷；读取前将 <code>position</code> 置 0。
      * @return 二进制数据，类型不匹配时为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * var bytes:ByteArray = vo.getDataByteArray();
+     * </listing>
      */
     public function getDataByteArray():ByteArray {
         if (dataType == UdpDataType.BYTEARRAY) {
@@ -59,6 +77,10 @@ public class UDPDataVO {
     /**
      * 取出字符串载荷。
      * @return 字符串，类型不匹配时为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * var s:String = vo.getDataString();
+     * </listing>
      */
     public function getDataString():String {
         return dataType == UdpDataType.STRING ? _data as String : null;
@@ -67,6 +89,10 @@ public class UDPDataVO {
     /**
      * 取出对象载荷。
      * @return 对象，类型不匹配时为 <code>null</code>。
+     * @example
+     * <listing version="3.0">
+     * var o:Object = vo.getDataObject();
+     * </listing>
      */
     public function getDataObject():Object {
         return dataType == UdpDataType.OBJECT ? _data : null;
@@ -75,6 +101,11 @@ public class UDPDataVO {
     /**
      * 写入载荷本体。
      * @param v 与 <code>dataType</code> 对应的数据。
+     * @example
+     * <listing version="3.0">
+     * vo.dataType = UdpDataType.STRING;
+     * vo.setData('ping');
+     * </listing>
      */
     public function setData(v:Object):void {
         _data = v;

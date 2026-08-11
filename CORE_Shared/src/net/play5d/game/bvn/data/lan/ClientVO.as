@@ -25,22 +25,43 @@ import flash.net.Socket;
 public class ClientVO {
     /**
      * 构造空客户端 VO。
+     * @example
+     * <listing version="3.0">
+     * var client:ClientVO = new ClientVO();
+     * </listing>
      */
     public function ClientVO() {
     }
 
-    /** 客户端 IP。 */
+    /**
+     * 客户端 IP。
+     * @default null
+     */
     public var ip:String;
-    /** 客户端端口。 */
+    /**
+     * 客户端端口。
+     * @default 0
+     */
     public var port:int;
-    /** 显示名。 */
+    /**
+     * 显示名。
+     * @default null
+     */
     public var name:String;
-    /** TCP 套接字。 */
+    /**
+     * TCP 套接字。
+     * @default null
+     */
     public var socket:Socket;
 
     /**
      * 客户端标识（当前为 IP）。
      * @return 标识字符串。
+     * @example
+     * <listing version="3.0">
+     * client.ip; // '192.168.1.2'
+     * client.id; // '192.168.1.2'
+     * </listing>
      */
     public function get id():String {
         return ip;

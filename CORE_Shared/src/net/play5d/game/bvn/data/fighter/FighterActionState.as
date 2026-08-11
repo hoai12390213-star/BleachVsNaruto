@@ -24,14 +24,13 @@ package net.play5d.game.bvn.data.fighter {
  * <p>用整型常量表示当前动作阶段，并提供若干状态判定静态方法。</p>
  *
  * @see FighterSpecialFrame
- * @see FighterHurtType
  */
 public class FighterActionState {
     include '../../../../../../../include/ImportVersion.as';
 
     /** 正常 */
     public static const NORMAL:int = 0;
-    /** 硬直（后摇，<code>endAct()</code>） */
+    /** 硬直（动作结束后摇） */
     public static const FREEZE:int = 40;
 
     /** 正在普通攻击（J / KJ） */
@@ -47,7 +46,7 @@ public class FighterActionState {
     public static const JUMP_ING:int     = 14;
     /** 正在瞬步（L） */
     public static const DASH_ING:int     = 15;
-    /** 正在执行防反（受击后触发，<code>setHurtAction()</code>） */
+    /** 正在执行受击触发动作（如反击等） */
     public static const HURT_ACT_ING:int = 16;
 
     /** 正在防御（S） */

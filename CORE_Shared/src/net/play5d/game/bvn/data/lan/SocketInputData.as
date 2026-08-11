@@ -25,37 +25,81 @@ public class SocketInputData {
 
     /**
      * 构造空缓冲。
+     * @example
+     * <listing version="3.0">
+     * var input:SocketInputData = new SocketInputData();
+     * </listing>
      */
     public function SocketInputData() {
     }
 
-    /** 上 */
+    /**
+     * 上。
+     * @default false
+     */
     public var up:Boolean;
-    /** 下 */
+    /**
+     * 下。
+     * @default false
+     */
     public var down:Boolean;
-    /** 左 */
+    /**
+     * 左。
+     * @default false
+     */
     public var left:Boolean;
-    /** 右 */
+    /**
+     * 右。
+     * @default false
+     */
     public var right:Boolean;
-    /** 攻击 */
+    /**
+     * 攻击。
+     * @default false
+     */
     public var attack:Boolean;
-    /** 跳跃 */
+    /**
+     * 跳跃。
+     * @default false
+     */
     public var jump:Boolean;
-    /** 冲刺 */
+    /**
+     * 冲刺。
+     * @default false
+     */
     public var dash:Boolean;
-    /** 技能 */
+    /**
+     * 技能。
+     * @default false
+     */
     public var skill:Boolean;
-    /** 大招 */
+    /**
+     * 大招。
+     * @default false
+     */
     public var superSkill:Boolean;
-    /** 特殊 */
+    /**
+     * 特殊。
+     * @default false
+     */
     public var special:Boolean;
-    /** 确认/选择（主要 Mob） */
+    /**
+     * 确认/选择（主要 Mob）。
+     * @default false
+     */
     public var select:Boolean;
-    /** 返回（主要 Mob） */
+    /**
+     * 返回（主要 Mob）。
+     * @default false
+     */
     public var back:Boolean;
 
     /**
      * 清空全部按键标记。
+     * @example
+     * <listing version="3.0">
+     * input.clear();
+     * </listing>
      */
     public function clear():void {
         up    = false;
