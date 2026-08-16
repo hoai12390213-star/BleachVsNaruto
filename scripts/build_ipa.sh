@@ -58,8 +58,8 @@ cd "${WORK}/payload"
 
 set +e
 # Strategy 1: ad-hoc signed IPA (no real identity / no Apple cert needed).
-"${ADT}" -package -target ipa-ad-hoc -storetype adhoc \
-    -platforms ios-arm64 \
+"${ADT}" -package -target ipa-ad-hoc \
+    -keystore "${SIGN_DIR}/dev.p12" -storepass bvn-ios -storetype pkcs12 \
     -provisioning-profile "${WORK}/embedded.mobileprovision" \
     "${WORK}/output.ipa" "${WORK}/ios-launch.xml" \
     launch.swf assets icon 2>&1 | tee "${WORK}/adt.log"
@@ -70,7 +70,6 @@ if [ ${ADT_RC} -ne 0 ]; then
     "${ADT}" -package -target ipa-test-interpreter \
         -keystore "${SIGN_DIR}/dev.p12" -storepass bvn-ios -storetype pkcs12 \
         -provisioning-profile "${WORK}/embedded.mobileprovision" \
-        -platforms ios-arm64 \
         "${WORK}/output.ipa" "${WORK}/ios-launch.xml" \
         launch.swf assets icon 2>&1 | tee "${WORK}/adt2.log"
     ADT_RC=$?
