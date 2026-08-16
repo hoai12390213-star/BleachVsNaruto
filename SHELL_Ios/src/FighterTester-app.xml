@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/51.0">
+    <id>net.5dplay.bleachvsnaruto.ios</id>
+    <filename>BleachVsNarutoIOS</filename>
+    <name>BleachVsNaruto</name>
+    <versionNumber>3.7.0</versionNumber>
+    <versionLabel>3.7.0</versionLabel>
+
+    <initialWindow>
+        <content>FighterTesterIOS.swf</content>
+        <title>BleachVsNaruto</title>
+        <autoOrients>true</autoOrients>
+        <fullScreen>false</fullScreen>
+        <visible>true</visible>
+        <renderMode>gpu</renderMode>
+    </initialWindow>
+
+    <iPhone>
+        <InfoAdditions><![CDATA[
+            <key>UIDeviceFamily</key>
+            <array>
+                <string>1</string>
+                <string>2</string>
+            </array>
+            <key>UIStatusBarStyle</key>
+            <string>UIStatusBarStyleBlackOpaque</string>
+            <key>UIRequiresPersistentWiFi</key>
+            <string>YES</string>
+            <key>UISupportedInterfaceOrientations</key>
+            <array>
+                <string>UIInterfaceOrientationPortrait</string>
+                <string>UIInterfaceOrientationLandscapeLeft</string>
+                <string>UIInterfaceOrientationLandscapeRight</string>
+            </array>
+        ]]></InfoAdditions>
+    </iPhone>
+</application>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<flex-config>
+    <compiler>
+        <debug>true</debug>
+        <optimize>false</optimize>
+        <advanced-telemetry>true</advanced-telemetry>
+        <source-path>
+            <path-element>src</path-element>
+            <path-element>../CORE_KernelLogic/global</path-element>
+            <path-element>../shared/_tmp/dev</path-element>
+        </source-path>
+        <library-path append="true">
+            <path-element>../out/production/CORE_KernelLogic/CORE_KernelLogic.swc</path-element>
+            <path-element>../out/production/LIB_KyoLib/LIB_KyoLib.swc</path-element>
+            <path-element>../out/production/CORE_Utils/CORE_Utils.swc</path-element>
+            <path-element>../out/production/CORE_Shared/CORE_Shared.swc</path-element>
+            <path-element>lib/swc</path-element>
+        </library-path>
+        <external-library-path append="true">
+            <path-element>../shared/lib/swc</path-element>
+        </external-library-path>
+    </compiler>
+
+    <swf-version>37</swf-version>
+    <use-network>false</use-network>
+    <use-direct-blit>true</use-direct-blit>
+    <use-gpu>true</use-gpu>
+
+    <includes>
+        <symbol>_ALL_GLOBALS_</symbol>
+    </includes>
+
+    <output>../out/production/SHELL_Ios/FighterTesterIOS.swf</output>
+</flex-config>
