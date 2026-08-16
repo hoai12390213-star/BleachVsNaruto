@@ -10,9 +10,17 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    # Pin macos-14 so we get Xcode 16.x (AIR SDK 51.x is built against
+    # Xcode 16.2 / iOS 18.2). Newer Xcode (26.x) produces Mach-O binaries that
+    # adt's MachoSigner cannot parse, failing with an ADTException.
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
+
+      - name: Select Xcode 16.2
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.app
+          xcodebuild -version
 
       - name: Install python deps
         run: pip3 install --quiet asn1crypto 2>/dev/null || true
