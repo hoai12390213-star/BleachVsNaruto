@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application xmlns="http://ns.adobe.com/air/application/51.0">
+
+    <!-- Bleach vs Naruto (死神vs火影) - iOS app descriptor
+         Personal-use / TrollStore build only. Not for the App Store. -->
+
+    <id>net.play5d.game.bvn.ios</id>
+
+    <filename>BVN</filename>
+
+    <name>死神vs火影</name>
+
+    <!-- iOS: versionNumber = build number -->
+    <versionNumber>1.3.9</versionNumber>
+    <!-- iOS: versionLabel = CFBundleShortVersionString -->
+    <versionLabel>3.7.0</versionLabel>
+
+    <copyright>5DPLAY Game Studio</copyright>
+
+    <initialWindow>
+        <content>launch.swf</content>
+        <visible>true</visible>
+        <fullScreen>true</fullScreen>
+        <aspectRatio>landscape</aspectRatio>
+        <autoOrients>true</autoOrients>
+        <renderMode>gpu</renderMode>
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+    </initialWindow>
+
+    <supportedProfiles>mobileDevice extendedMobileDevice</supportedProfiles>
+
+    <icon>
+        <image57x57>icon/icon-57.png</image57x57>
+        <image72x72>icon/icon-72.png</image72x72>
+        <image114x114>icon/icon-114.png</image114x114>
+        <image144x144>icon/icon-144.png</image144x144>
+        <image120x120>icon/icon-120.png</image120x120>
+        <image180x180>icon/icon-180.png</image180x180>
+    </icon>
+
+    <iPhone>
+        <InfoAdditions>
+            <![CDATA[
+                <key>UIDeviceFamily</key>
+                <array>
+                    <string>1</string>
+                    <string>2</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <true/>
+                <key>UIViewControllerBasedStatusBarAppearance</key>
+                <false/>
+                <key>UIRequiresFullScreen</key>
+                <true/>
+                <key>UILaunchStoryboardName</key>
+                <string></string>
+                <key>ITSAppUsesNonExemptEncryption</key>
+                <false/>
+            ]]>
+        </InfoAdditions>
+        <Entitlements>
+            <![CDATA[
+                <key>application-identifier</key>
+                <string>$(AppIdentifierPrefix)net.play5d.game.bvn.ios</string>
+                <key>keychain-access-groups</key>
+                <array>
+                    <string>$(AppIdentifierPrefix)net.play5d.game.bvn.ios</string>
+                </array>
+                <key>get-task-allow</key>
+                <true/>
+            ]]>
+        </Entitlements>
+    </iPhone>
+
+</application>

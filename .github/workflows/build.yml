@@ -1,78 +1,59 @@
-name: iOS AIR dev build
+name: Build BVN iOS IPA
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - master
+    inputs:
+      apk_release:
+        description: 'Tag of the GitHub Release that has the input.apk asset (leave empty to use a committed file at build/input.apk)'
+        required: false
+        default: ''
 
 jobs:
-  ios-dev-build:
-    runs-on: macos-14
-    timeout-minutes: 60
-
-    env:
-      FLEX_HOME: ${{ github.workspace }}/sdk/flex4.16.1-air51.0.1.1
-      IOS_SHELL_DIR: ${{ github.workspace }}/SHELL_Ios
-      APP_ENTRY: ${{ github.workspace }}/SHELL_Ios/src/FighterTesterIOS.as
-      FLEX_CFG: ${{ github.workspace }}/SHELL_Ios/flex-config.xml
-      APP_XML: ${{ github.workspace }}/SHELL_Ios/src/FighterTester-app.xml
-      ADT_PACKAGE_TARGET: ipa-debug
-
+  build:
+    runs-on: macos-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '15.4'
+      - name: Install python deps
+        run: pip3 install --quiet asn1crypto 2>/dev/null || true
 
-      - name: Setup Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Install extraction tools
+      - name: Print environment
         run: |
-          brew install p7zip
+          uname -a
+          xcodebuild -version 2>/dev/null | head -1
+          which adt sips || true
 
-      - name: Download Flex/AIR SDK
+      - name: Fetch AIR SDK (compiler-only)
+        run: bash scripts/fetch_sdk.sh "${{ github.workspace }}/.cache/airsdk"
+
+      - name: Obtain input APK
         run: |
-          mkdir -p sdk
-          cd sdk
-          curl -L "https://github.com/5DPLAY-Game-Studio/BleachVsNaruto_FlexSDK/releases/download/flex4.16.1-air51.0.1.1/flex4.16.1-air51.0.1.1.rar" -o flexsdk.rar
-          7z x flexsdk.rar -y
-          ls -la
+          mkdir -p build
+          if [ -n "${{ github.event.inputs.apk_release }}" ]; then
+            gh release download "${{ github.event.inputs.apk_release }}" \
+              --pattern '*.apk' --dir build --clobber || true
+          fi
+          APK="$(ls build/*.apk 2>/dev/null | head -1 || true)"
+          if [ -z "${APK}" ] && [ -f build/input.apk ]; then
+            APK="build/input.apk"
+          fi
+          if [ -z "${APK}" ]; then
+            echo "::error::No APK found. Add an APK to a GitHub Release as asset, or commit it at build/input.apk"
+            exit 1
+          fi
+          echo "APK=${GITHUB_WORKSPACE}/${APK}" >> "$GITHUB_ENV"
 
-      - name: Decode signing files
-        if: ${{ secrets.APPLE_CERTIFICATE_BASE64 != '' && secrets.APPLE_PROVISIONING_PROFILE_BASE64 != '' }}
-        run: |
-          echo "${{ secrets.APPLE_CERTIFICATE_BASE64 }}" | base64 --decode > Certificate.p12
-          echo "${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}" | base64 --decode > profile.mobileprovision
-          echo "APPLE_CERTIFICATE_PATH=${{ github.workspace }}/Certificate.p12" >> $GITHUB_ENV
-          echo "APPLE_PROVISIONING_PROFILE_PATH=${{ github.workspace }}/profile.mobileprovision" >> $GITHUB_ENV
-          echo "APPLE_CERTIFICATE_PASSWORD=${{ secrets.APPLE_CERTIFICATE_PASSWORD }}" >> $GITHUB_ENV
+      - name: Build IPA
+        id: build
+        env:
+          SDK_DIR: "${{ github.workspace }}/.cache/airsdk/sdk"
+          APK: "${{ env.APK }}"
+          OUT_DIR: "${{ github.workspace }}/dist"
+        run: bash scripts/build_ipa.sh
 
-      - name: Make build script executable
-        run: chmod +x tools/script/build_ios.sh
-
-      - name: Execute iOS personal build
-        run: |
-          export PATH="$FLEX_HOME/bin:$PATH"
-          export APPLE_CERTIFICATE_PATH="${APPLE_CERTIFICATE_PATH:-}"
-          export APPLE_CERTIFICATE_PASSWORD="${APPLE_CERTIFICATE_PASSWORD:-}"
-          export APPLE_PROVISIONING_PROFILE_PATH="${APPLE_PROVISIONING_PROFILE_PATH:-}"
-          tools/script/build_ios.sh
-
-      - name: Upload personal IPA artifact
-        if: always()
+      - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
-          name: bleachvsnaruto-ios-ipa
-          path: |
-            build/*.ipa
-            out/
-          if-no-files-found: warn
+          name: BVN-iOS
+          path: dist/BVN.ipa
+          if-no-files-found: error

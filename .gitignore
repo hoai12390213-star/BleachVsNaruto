@@ -1,2 +1,9 @@
 # IDEA 输出目录
 /out/
+# iOS port artifacts
+/build/
+/dist/
+/.cache/
+*.ipa
+__pycache__/
+*.pyc
