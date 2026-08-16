@@ -47,5 +47,14 @@ rm -rf "${OUT_DIR}/sdk"
 mv "${SDK_ROOT}" "${OUT_DIR}/sdk"
 
 chmod +x "${OUT_DIR}/sdk/bin/"* 2>/dev/null || true
+
+# Enable adt troubleshooting logs so failures are diagnosable in CI
+CFG="${OUT_DIR}/sdk/bin/adt.cfg"
+if [ ! -f "${CFG}" ]; then CFG="${OUT_DIR}/sdk/lib/adt.cfg"; fi
+if [ -f "${CFG}" ]; then
+    awk '{ if ($0 ~ /^[[:space:]]*#(DebugOut|VerboseOut)=/) gsub(/^[[:space:]]*#/, "", $0); print }' \
+        "${CFG}" > "${CFG}.tmp" && mv "${CFG}.tmp" "${CFG}"
+fi
+
 echo "[fetch-sdk] done: ${OUT_DIR}/sdk"
 "${OUT_DIR}/sdk/bin/adt" -version

@@ -78,6 +78,10 @@ set -e
 
 if [ ${ADT_RC} -ne 0 ] || [ ! -f "${WORK}/output.ipa" ]; then
     echo "== ERROR: adt packaging failed (see logs above)"
+    echo "== ---- ~/adt.log (if any) ----"
+    for L in "$HOME/adt.log" "$HOME/logs/adt.log"; do
+        [ -f "$L" ] && { echo "== $L"; tail -60 "$L"; }
+    done
     exit 1
 fi
 
