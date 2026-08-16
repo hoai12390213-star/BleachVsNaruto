@@ -27,6 +27,8 @@ jobs:
         run: bash scripts/fetch_sdk.sh "${{ github.workspace }}/.cache/airsdk"
 
       - name: Obtain input APK
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p build
           if [ -n "${{ github.event.inputs.apk_release }}" ]; then
