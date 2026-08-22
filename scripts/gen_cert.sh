@@ -13,10 +13,16 @@ if [ -f "${OUT}/dev.p12" ]; then
 fi
 
 # 1) RSA key + self-signed X.509 certificate
-openssl req -x509 -newkey rsa:2048 -nodes \
+# NOTE: adt's MachoSigner requires an OU (Organizational Unit) RDN in the
+# subject - it uses it as the code-signing "team identifier". Without OU,
+# adt fails with "ADT exception: Using old Signing Certificate."
+openssl req -x509 -newkey rsa:2048 -nodes -sha256 \
     -keyout "${OUT}/dev.key" \
     -out "${OUT}/dev.crt" \
-    -subj "/CN=BVN iOS Side-load/O=Personal/C=US" \
+    -subj "/CN=BVN iOS Side-load/O=Personal/C=US/OU=BVNTEAM" \
+    -addext "basicConstraints=critical,CA:FALSE" \
+    -addext "keyUsage=critical,digitalSignature" \
+    -addext "extendedKeyUsage=codeSigning" \
     -days 3650 2>/dev/null
 
 # 2) DER forms the tooling wants
