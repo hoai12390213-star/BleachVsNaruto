@@ -18,7 +18,7 @@ ADT="${SDK_DIR}/bin/adt"
 mkdir -p "${WORK}" "${OUT_DIR}"
 
 echo "== [1/5] Fetching ad-hoc signing identity + fake provisioning profile"
-bash "$(dirname "$0")/gen_cert.sh" "${SIGN_DIR}"
+ADT_BIN="${ADT}" bash "$(dirname "$0")/gen_cert.sh" "${SIGN_DIR}"
 PY=$(command -v python3 || command -v python)
 "${PY}" "$(dirname "$0")/gen_provisioning.py" \
     "${BUNDLE_ID}" \
